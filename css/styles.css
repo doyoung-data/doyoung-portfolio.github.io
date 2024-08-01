@@ -13,4 +13,5 @@
 .stack-menu {
   color: #3e64ff; /* 텍스트 색상: 파란색 */
   font-size: 30px; /* 폰트 크기: 16px */
+  padding: 2px 4px;
 }
