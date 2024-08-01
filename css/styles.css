@@ -9,3 +9,7 @@
 .spaced-paragraph {
   margin-bottom: 8px; /* 각 문단 아래에 8px 여백 추가 */
 }
+
+.stack-menu {
+  color: #007bff !important;
+}
