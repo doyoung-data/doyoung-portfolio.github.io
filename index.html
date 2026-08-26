@@ -22,7 +22,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260826-5">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260826-6">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -342,6 +342,62 @@
       </div>
     </section>
 
+    <section class="section codex-activity-section" id="codex-activity" aria-labelledby="codex-activity-title">
+      <div class="section-inner">
+        <div class="section-heading compact-heading codex-activity-heading">
+          <div>
+            <p class="section-kicker">AI-NATIVE DEVELOPMENT LOG</p>
+            <h2 id="codex-activity-title">AI를 실제 개발과 운영에<br>꾸준히 활용합니다.</h2>
+          </div>
+          <p>기획, 코드 검토, 테스트, 배포 후 재확인에 Codex를 활용한 기록입니다. 사용량 자체보다 위 프로젝트를 더 빠르게 구현하고 반복 검증해 온 작업 흐름을 함께 보여줍니다.</p>
+        </div>
+
+        <div class="codex-activity-panel" data-codex-activity>
+          <header class="codex-profile-header">
+            <div class="codex-profile-identity">
+              <span class="codex-profile-mark" aria-hidden="true">KD</span>
+              <div><strong>권도영</strong><span>Python · Data · AI</span></div>
+            </div>
+            <div class="codex-activity-updated"><i data-lucide="refresh-cw" aria-hidden="true"></i><span data-codex-updated>집계 중</span></div>
+          </header>
+
+          <div class="codex-metrics" aria-label="Codex 활동 요약">
+            <div><strong data-codex-metric="lifetime_tokens">—</strong><span>누적 처리 토큰</span></div>
+            <div><strong data-codex-metric="active_days">—</strong><span>활동 일수</span></div>
+            <div><strong data-codex-metric="current_streak_days">—</strong><span>현재 연속 기록</span></div>
+            <div><strong data-codex-metric="longest_streak_days">—</strong><span>최장 연속 기록</span></div>
+            <div><strong data-codex-metric="recorded_tasks">—</strong><span>기록된 작업</span></div>
+          </div>
+
+          <div class="codex-heatmap-block">
+            <div class="codex-heatmap-heading">
+              <div><strong>최근 52주 토큰 활동</strong><span>일별 처리량에 따라 색이 진해집니다.</span></div>
+              <div class="codex-heatmap-legend" aria-label="활동량 범례"><span>적음</span><i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i><span>많음</span></div>
+            </div>
+            <div class="codex-heatmap-scroll" tabindex="0" aria-label="Codex 토큰 활동 그래프. 가로로 스크롤할 수 있습니다.">
+              <div class="codex-heatmap-chart">
+                <div class="codex-day-labels" aria-hidden="true"><span></span><span>월</span><span></span><span>수</span><span></span><span>금</span><span></span></div>
+                <div class="codex-heatmap-data">
+                  <div class="codex-month-labels" data-codex-months aria-hidden="true"></div>
+                  <div class="codex-heatmap" data-codex-heatmap role="img" aria-label="Codex 활동 데이터를 불러오는 중입니다."></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="codex-methods" aria-label="Codex 활용 과정">
+            <div><i data-lucide="scan-search" aria-hidden="true"></i><span>01</span><strong>문제 정의</strong></div>
+            <div><i data-lucide="code-2" aria-hidden="true"></i><span>02</span><strong>구현</strong></div>
+            <div><i data-lucide="test-tube-diagonal" aria-hidden="true"></i><span>03</span><strong>테스트·검수</strong></div>
+            <div><i data-lucide="rocket" aria-hidden="true"></i><span>04</span><strong>배포·운영</strong></div>
+          </div>
+
+          <p class="codex-privacy-note"><i data-lucide="shield-check" aria-hidden="true"></i>Codex 로컬 기록에서 날짜별 합계만 자동 반영합니다. 대화 내용, 코드, 회사 데이터와 파일 경로는 공개하지 않습니다.</p>
+          <p class="sr-only" data-codex-activity-status aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="section data-section" id="data-lab" aria-labelledby="data-title">
       <div class="section-inner">
         <div class="section-heading">
@@ -561,6 +617,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/portfolio.js" defer></script>
+  <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260826-6" defer></script>
 </body>
 </html>
