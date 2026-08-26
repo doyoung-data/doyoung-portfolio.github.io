@@ -24,6 +24,8 @@
       inboundDays: 4,
       leadDays: 10,
       moq: 120,
+      coupangOrderStatus: "자동발주 대기 없음",
+      previousDecision: "채널 재고 이동 검토",
       paidShare: { meta: 0.44, naver: 0.48, coupang: 0.56 },
       targetRoas: { meta: 290, naver: 360, coupang: 420 },
       options: [
@@ -49,6 +51,8 @@
       inboundDays: 8,
       leadDays: 14,
       moq: 80,
+      coupangOrderStatus: "발주 잔여 없음",
+      previousDecision: "추가 발주 보류",
       paidShare: { meta: 0.38, naver: 0.42, coupang: 0.48 },
       targetRoas: { meta: 310, naver: 390, coupang: 450 },
       options: [
@@ -70,10 +74,12 @@
       restocks: { 15: 120, 35: 180 },
       coupangStockStart: 230,
       coupangRestocks: { 18: 100, 33: 80 },
-      inboundQty: 300,
+      inboundQty: 120,
       inboundDays: 3,
       leadDays: 7,
       moq: 100,
+      coupangOrderStatus: "쿠팡 재고 보충 필요",
+      previousDecision: "수요 증가 재검토",
       paidShare: { meta: 0.52, naver: 0.46, coupang: 0.61 },
       targetRoas: { meta: 270, naver: 340, coupang: 380 },
       options: [
@@ -129,9 +135,17 @@
   const aiChat = demo.querySelector("[data-ai-chat]");
   const aiForm = demo.querySelector("[data-ai-form]");
   const aiInput = demo.querySelector("[data-ai-input]");
+  const orderAiBody = demo.querySelector("[data-order-ai-body]");
+  const orderAiProduct = demo.querySelector("[data-order-ai-product]");
+  const orderAiMeta = demo.querySelector("[data-order-ai-meta]");
+  const orderAiStatus = demo.querySelector("[data-order-ai-status]");
+  const orderAiDecision = demo.querySelector("[data-order-ai-decision]");
+  const orderAiReason = demo.querySelector("[data-order-ai-reason]");
+  const orderAiChecks = demo.querySelector("[data-order-ai-checks]");
 
   const state = {
     productId: products[0].id,
+    orderProductId: "neck-band",
     chartMode: "sales",
     chart: null,
     output: null
@@ -254,6 +268,171 @@
   products.forEach(function (product) {
     product.records = buildProductRecords(product);
   });
+
+  function calculateOrderSnapshot(product) {
+    const recent = product.records.slice(-7);
+    const previous = product.records.slice(-14, -7);
+    const recentSales = recent.reduce(function (sum, record) { return sum + record.sales; }, 0);
+    const previousSales = previous.reduce(function (sum, record) { return sum + record.sales; }, 0);
+    const recentAverage = recentSales / Math.max(recent.length, 1);
+    const previousAverage = previousSales / Math.max(previous.length, 1);
+    const recentCoupangAverage = recent.reduce(function (sum, record) { return sum + record.coupang; }, 0) / Math.max(recent.length, 1);
+    const latest = recent[recent.length - 1];
+    const trendPct = previousAverage > 0 ? ((recentAverage - previousAverage) / previousAverage) * 100 : 0;
+    const warehouseDays = recentAverage > 0 ? latest.stock / recentAverage : Infinity;
+    const coupangDays = recentCoupangAverage > 0 ? latest.coupangStock / recentCoupangAverage : Infinity;
+    const targetDays = product.leadDays + 14;
+    const targetStock = recentAverage * targetDays;
+    const shortage = Math.max(0, targetStock - latest.stock - product.inboundQty);
+    const recommendedQty = shortage > 0 ? Math.ceil(shortage / product.moq) * product.moq : 0;
+    const isCoupangCritical = coupangDays <= 5;
+    let tone = "normal";
+    let label = "발주 보류";
+    let decision = "추가 발주 보류";
+    let reason = `사내 재고 ${formatInteger(latest.stock)}개와 ${product.inboundDays}일 뒤 입고 ${formatInteger(product.inboundQty)}개를 합치면 목표 보유기간 ${targetDays}일을 충족합니다.`;
+    let checks = ["입고 예정일 변동 여부", "판매 속도 급변 시 재계산"];
+
+    if (recommendedQty > 0) {
+      tone = "critical";
+      label = "추가 발주";
+      decision = `${formatInteger(recommendedQty)}개 추가 발주 검토`;
+      reason = `사내 재고 ${formatInteger(latest.stock)}개와 ${product.inboundDays}일 뒤 입고 ${formatInteger(product.inboundQty)}개를 반영해도 목표 보유기간 ${targetDays}일 대비 약 ${formatInteger(shortage)}개가 부족합니다. 최소 주문수량 ${formatInteger(product.moq)}개 단위로 올림했습니다.`;
+      checks = ["최근 판매 증가가 계속되는지 확인", "입고 예정일 지연 여부 확인", "공급처 납기와 최소 주문수량 확인"];
+      if (isCoupangCritical) {
+        reason += ` 쿠팡 재고도 ${formatInteger(latest.coupangStock)}개라 사내 재고의 채널 이동을 함께 확인해야 합니다.`;
+        checks.unshift("쿠팡 품절 대응을 위한 사내 재고 이동 가능 수량");
+      }
+    } else if (isCoupangCritical) {
+      tone = "watch";
+      label = "채널 이동";
+      decision = "쿠팡 재고 이동 검토";
+      reason = `전체 재고와 입고 예정 물량은 확보됐지만 쿠팡 재고가 ${formatDaySupply(coupangDays)}입니다. 추가 발주보다 사내 재고의 채널 이동을 먼저 검토합니다.`;
+      checks = ["쿠팡으로 이동 가능한 사내 재고 수량", "다음 입고 전 쿠팡 판매 속도"];
+    }
+
+    if (product.category === "시즌상품" && !checks.includes("계절·프로모션에 따른 수요 급증 지속 여부")) {
+      checks.unshift("계절·프로모션에 따른 수요 급증 지속 여부");
+    }
+
+    return {
+      product,
+      recentSales,
+      recentAverage,
+      trendPct,
+      latestStock: latest.stock,
+      latestCoupangStock: latest.coupangStock,
+      warehouseDays,
+      coupangDays,
+      targetDays,
+      shortage,
+      recommendedQty,
+      tone,
+      label,
+      decision,
+      reason,
+      checks
+    };
+  }
+
+  function appendOrderCell(row, primary, secondary) {
+    const cell = document.createElement("td");
+    const value = document.createElement("strong");
+    value.textContent = primary;
+    cell.appendChild(value);
+    if (secondary) {
+      const note = document.createElement("small");
+      note.textContent = secondary;
+      cell.appendChild(note);
+    }
+    row.appendChild(cell);
+  }
+
+  function setOrderFactor(key, value, note) {
+    const valueNode = demo.querySelector(`[data-order-factor="${key}"]`);
+    const noteNode = demo.querySelector(`[data-order-factor-note="${key}"]`);
+    valueNode.textContent = value;
+    noteNode.textContent = note;
+  }
+
+  function renderOrderAiReview(snapshot) {
+    const product = snapshot.product;
+    orderAiProduct.textContent = product.name;
+    orderAiMeta.textContent = `${product.sku} · ${product.category}`;
+    orderAiStatus.className = `status-${snapshot.tone}`;
+    orderAiStatus.textContent = snapshot.label;
+    orderAiDecision.textContent = snapshot.decision;
+    orderAiReason.textContent = snapshot.reason;
+
+    setOrderFactor("velocity", `일평균 ${snapshot.recentAverage.toFixed(1)}개`, `최근 7일 ${formatInteger(snapshot.recentSales)}개 판매`);
+    setOrderFactor("trend", formatTrend(snapshot.trendPct), "이전 7일 대비");
+    setOrderFactor("warehouse", `${formatInteger(snapshot.latestStock)}개`, `최근 속도 기준 ${formatDaySupply(snapshot.warehouseDays)}`);
+    setOrderFactor("coupang", `${formatInteger(snapshot.latestCoupangStock)}개`, `쿠팡 판매 기준 ${formatDaySupply(snapshot.coupangDays)}`);
+    setOrderFactor("inbound", `${formatInteger(product.inboundQty)}개`, `${product.inboundDays}일 뒤 도착 예정`);
+    setOrderFactor("terms", `${product.leadDays}일 · ${formatInteger(product.moq)}개`, "리드타임 · 최소 주문수량");
+    setOrderFactor("coupangOrder", product.coupangOrderStatus, "쿠팡 재고·발주 상태");
+    setOrderFactor("previous", product.previousDecision, "직전 검토 결과");
+
+    orderAiChecks.replaceChildren();
+    snapshot.checks.forEach(function (check) {
+      const item = document.createElement("li");
+      item.textContent = check;
+      orderAiChecks.appendChild(item);
+    });
+  }
+
+  function selectOrderProduct(productId) {
+    state.orderProductId = productId;
+    renderOrderAiQueue();
+  }
+
+  function renderOrderAiQueue() {
+    const snapshots = products.map(calculateOrderSnapshot);
+    orderAiBody.replaceChildren();
+
+    snapshots.forEach(function (snapshot) {
+      const row = document.createElement("tr");
+      const productCell = document.createElement("td");
+      const button = document.createElement("button");
+      const productName = document.createElement("strong");
+      const productMetaLine = document.createElement("small");
+      const isSelected = snapshot.product.id === state.orderProductId;
+
+      row.classList.toggle("is-active", isSelected);
+      button.type = "button";
+      button.className = "order-ai-product-button";
+      button.dataset.orderProduct = snapshot.product.id;
+      button.setAttribute("aria-pressed", String(isSelected));
+      productName.textContent = snapshot.product.name;
+      productMetaLine.textContent = `${snapshot.product.sku} · ${snapshot.product.category}`;
+      button.append(productName, productMetaLine);
+      button.addEventListener("click", function () {
+        selectOrderProduct(snapshot.product.id);
+      });
+      productCell.appendChild(button);
+      row.appendChild(productCell);
+
+      appendOrderCell(row, `일평균 ${snapshot.recentAverage.toFixed(1)}개`, `7일 ${formatInteger(snapshot.recentSales)}개`);
+      appendOrderCell(row, formatTrend(snapshot.trendPct), "이전 7일 대비");
+      appendOrderCell(row, `${formatInteger(snapshot.latestStock)}개`, formatDaySupply(snapshot.warehouseDays));
+      appendOrderCell(row, `${formatInteger(snapshot.latestCoupangStock)}개`, formatDaySupply(snapshot.coupangDays));
+      appendOrderCell(row, `${formatInteger(snapshot.product.inboundQty)}개`, `${snapshot.product.inboundDays}일 뒤`);
+      appendOrderCell(row, `${snapshot.product.leadDays}일 · ${formatInteger(snapshot.product.moq)}개`, "리드타임 · MOQ");
+      appendOrderCell(row, snapshot.product.coupangOrderStatus, "현재 상태");
+
+      const statusCell = document.createElement("td");
+      const status = document.createElement("span");
+      status.className = `order-ai-status status-${snapshot.tone}`;
+      status.textContent = snapshot.label;
+      statusCell.appendChild(status);
+      row.appendChild(statusCell);
+      orderAiBody.appendChild(row);
+    });
+
+    const selectedSnapshot = snapshots.find(function (snapshot) {
+      return snapshot.product.id === state.orderProductId;
+    }) || snapshots[0];
+    renderOrderAiReview(selectedSnapshot);
+  }
 
   function currentProduct() {
     return products.find(function (product) { return product.id === state.productId; }) || products[0];
@@ -1052,6 +1231,7 @@
     }
   });
 
+  renderOrderAiQueue();
   initializeDates();
   selectProduct(products[0].id);
   runQuery();

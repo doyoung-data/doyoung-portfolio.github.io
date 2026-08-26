@@ -1416,6 +1416,7 @@ html[data-theme="light"] .button-primary {
 
 .sheet-demo,
 .intelligence-demo,
+.order-ai-demo,
 .jarvis-demo {
   overflow: hidden;
   border: 1px solid var(--line-strong);
@@ -1424,7 +1425,8 @@ html[data-theme="light"] .button-primary {
 }
 
 .sheet-demo,
-.intelligence-demo {
+.intelligence-demo,
+.order-ai-demo {
   background: var(--surface);
 }
 
@@ -2337,6 +2339,343 @@ html[data-theme="light"] .button-primary {
 
 .demo-row-status.status-normal {
   background: var(--accent-soft);
+}
+
+.order-ai-header {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.order-ai-heading,
+.order-ai-header > strong {
+  display: flex;
+  align-items: center;
+}
+
+.order-ai-heading {
+  min-width: 0;
+  gap: 11px;
+}
+
+.order-ai-heading > svg {
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent-strong);
+}
+
+.order-ai-heading span,
+.order-ai-heading h3 {
+  display: block;
+}
+
+.order-ai-heading span,
+.order-ai-review-heading span,
+.order-ai-result > span,
+.order-ai-check > span {
+  color: var(--accent-strong);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.order-ai-heading h3 {
+  margin: 2px 0 0;
+  font-size: 16px;
+}
+
+.order-ai-header > strong {
+  flex: 0 0 auto;
+  gap: 6px;
+  color: var(--accent-strong);
+  font-size: 10px;
+}
+
+.order-ai-header > strong svg {
+  width: 15px;
+  height: 15px;
+}
+
+.order-ai-table-shell {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.order-ai-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.order-ai-table th,
+.order-ai-table td {
+  padding: 12px 13px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.order-ai-table th:last-child,
+.order-ai-table td:last-child {
+  border-right: 0;
+}
+
+.order-ai-table th {
+  background: var(--surface);
+  color: var(--muted);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 9px;
+}
+
+.order-ai-table tbody tr {
+  background: var(--surface);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.order-ai-table tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+.order-ai-table tbody tr.is-active {
+  background: var(--blue-soft);
+  box-shadow: inset 4px 0 0 var(--blue);
+}
+
+.order-ai-table td > strong,
+.order-ai-table td > small,
+.order-ai-product-button strong,
+.order-ai-product-button small {
+  display: block;
+}
+
+.order-ai-table td > strong {
+  color: var(--text);
+  font-size: 10px;
+}
+
+.order-ai-table td > small,
+.order-ai-product-button small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.order-ai-product-button {
+  min-width: 190px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.order-ai-product-button strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.order-ai-product-button:hover strong,
+.order-ai-product-button[aria-pressed="true"] strong {
+  color: var(--blue);
+}
+
+.order-ai-status,
+.order-ai-review-heading > strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.order-ai-status.status-critical,
+.order-ai-review-heading > strong.status-critical {
+  border-color: color-mix(in srgb, var(--warm) 55%, var(--line));
+  background: var(--warm-soft);
+  color: var(--warm);
+}
+
+.order-ai-status.status-watch,
+.order-ai-review-heading > strong.status-watch {
+  border-color: color-mix(in srgb, var(--blue) 55%, var(--line));
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.order-ai-status.status-normal,
+.order-ai-review-heading > strong.status-normal {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.order-ai-table-note {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.order-ai-table-note svg {
+  width: 14px;
+  height: 14px;
+  color: var(--blue);
+}
+
+.order-ai-review-heading {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.order-ai-review-heading h3,
+.order-ai-review-heading small {
+  display: block;
+}
+
+.order-ai-review-heading h3 {
+  margin: 3px 0 1px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.order-ai-review-heading small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.order-ai-factor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.order-ai-factor-grid > div {
+  min-width: 0;
+  min-height: 106px;
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+
+.order-ai-factor-grid > div:nth-child(4n) {
+  border-right: 0;
+}
+
+.order-ai-factor-grid > div:nth-child(-n + 4) {
+  border-bottom: 1px solid var(--line);
+}
+
+.order-ai-factor-grid span,
+.order-ai-factor-grid strong,
+.order-ai-factor-grid small {
+  display: block;
+}
+
+.order-ai-factor-grid span,
+.order-ai-factor-grid small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.order-ai-factor-grid strong {
+  margin: 7px 0 3px;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.order-ai-outcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  background: var(--code-bg);
+  color: var(--code-text);
+}
+
+.order-ai-result,
+.order-ai-check {
+  min-width: 0;
+  padding: 20px 18px;
+}
+
+.order-ai-result {
+  border-right: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+}
+
+.order-ai-result > span,
+.order-ai-check > span {
+  color: #72e6c8;
+}
+
+.order-ai-result > strong {
+  display: block;
+  margin: 8px 0 6px;
+  color: var(--code-text);
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.order-ai-result > p,
+.order-ai-check ul {
+  color: var(--code-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.order-ai-result > p {
+  max-width: 720px;
+  margin: 0;
+}
+
+.order-ai-check ul {
+  display: grid;
+  gap: 5px;
+  margin: 9px 0 0;
+  padding-left: 17px;
+}
+
+.order-ai-boundary {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 9px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.order-ai-boundary svg {
+  width: 15px;
+  height: 15px;
+  color: var(--accent-strong);
 }
 
 .jarvis-demo {
@@ -3619,6 +3958,31 @@ html[data-theme="light"] .button-primary {
     height: 340px;
   }
 
+  .order-ai-factor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-ai-factor-grid > div:nth-child(4n) {
+    border-right: 1px solid var(--line);
+  }
+
+  .order-ai-factor-grid > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .order-ai-factor-grid > div:nth-child(-n + 6) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .order-ai-outcome {
+    grid-template-columns: 1fr;
+  }
+
+  .order-ai-result {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+  }
+
   .jarvis-demo {
     grid-template-columns: 1fr;
   }
@@ -3769,6 +4133,40 @@ html[data-theme="light"] .button-primary {
 
   .chart-caption {
     padding: 8px 14px 14px;
+  }
+
+  .order-ai-header,
+  .order-ai-review-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .order-ai-header > strong,
+  .order-ai-review-heading > strong {
+    align-self: flex-start;
+  }
+
+  .order-ai-table-note,
+  .order-ai-result,
+  .order-ai-check,
+  .order-ai-boundary {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .order-ai-factor-grid > div {
+    min-height: 112px;
+    padding: 14px;
+  }
+
+  .order-ai-factor-grid strong {
+    font-size: 13px;
+  }
+
+  .order-ai-result > strong {
+    font-size: 17px;
   }
 
   .jarvis-demo-header {
