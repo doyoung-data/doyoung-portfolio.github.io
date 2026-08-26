@@ -22,7 +22,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260826-3">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260826-4">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -313,7 +313,7 @@
       <div class="section-inner">
         <div class="section-heading">
           <div><p class="section-kicker">SANITIZED DATA LAB</p><h2 id="data-title">수집한 데이터가 실무 화면으로 이어집니다.</h2></div>
-          <p>시트에 업로드해 지표를 확인하는 형태를 공개 가능한 합성 데이터로 재현했습니다.</p>
+          <p>서로 다른 판매처·광고·재고·입고 데이터를 한곳에 모아 보고, 발주 AI와 자비스가 다음 행동을 돕는 흐름을 공개 가능한 합성 데이터로 재현했습니다.</p>
         </div>
 
         <div class="data-journey" data-intelligence-demo>
@@ -336,7 +336,7 @@
                 <div><span>전달</span><strong>60개 이상 시트 탭 갱신</strong></div>
               </div>
               <div class="sheet-grid-shell" tabindex="0" aria-label="합성 시트 표. 가로로 스크롤할 수 있습니다.">
-                <table class="sheet-grid"><thead><tr><th>상품</th><th>SKU</th><th>판매량</th><th>광고비</th><th>사내재고</th><th>쿠팡재고</th><th>입고예정</th><th>확인 상태</th></tr></thead><tbody><tr><td>스테디 텀블러 600ml</td><td>DEMO-TB600</td><td>668</td><td>₩1,284,000</td><td>287</td><td>84</td><td>400</td><td><span>확인 완료</span></td></tr><tr><td>컴팩트 폴딩 카트</td><td>DEMO-FC01</td><td>401</td><td>₩746,000</td><td>438</td><td>126</td><td>240</td><td><span>확인 완료</span></td></tr><tr><td>에어핏 쿨링 넥밴드</td><td>DEMO-NB24</td><td>512</td><td>₩1,108,000</td><td>162</td><td>37</td><td>300</td><td><span class="is-watch">재고 확인</span></td></tr></tbody></table>
+                <table class="sheet-grid"><thead><tr><th>상품</th><th>SKU</th><th>판매량</th><th>광고비</th><th>사내재고</th><th>쿠팡재고</th><th>입고예정</th><th>확인 상태</th></tr></thead><tbody><tr><td>스테디 텀블러 600ml</td><td>DEMO-TB600</td><td>668</td><td>₩1,284,000</td><td>287</td><td>84</td><td>400</td><td><span>확인 완료</span></td></tr><tr><td>컴팩트 폴딩 카트</td><td>DEMO-FC01</td><td>401</td><td>₩746,000</td><td>438</td><td>126</td><td>240</td><td><span>확인 완료</span></td></tr><tr><td>에어핏 쿨링 넥밴드</td><td>DEMO-NB24</td><td>512</td><td>₩1,108,000</td><td>162</td><td>37</td><td>120</td><td><span class="is-watch">재고 확인</span></td></tr></tbody></table>
               </div>
               <p class="sheet-demo-foot"><i data-lucide="refresh-cw" aria-hidden="true"></i>수집 · 통합 · 업로드 · 담당자 확인이 한 흐름으로 이어집니다.</p>
             </div>
@@ -404,11 +404,58 @@
             </div>
           </article>
 
-          <div class="journey-connector" aria-hidden="true"><span>그래프에서 멈추지 않았습니다.</span><i data-lucide="arrow-down" aria-hidden="true"></i></div>
+          <div class="journey-connector" aria-hidden="true"><span>통합 데이터를 발주 판단으로 이어갑니다.</span><i data-lucide="arrow-down" aria-hidden="true"></i></div>
+
+          <article class="journey-stage order-ai-journey">
+            <header class="journey-copy">
+              <span>03 · ORDER AI</span>
+              <h3>복잡한 발주 조건을 한눈에 비교하고, 먼저 검토할 상품을 추립니다.</h3>
+              <p>최근 판매 속도, 사내·쿠팡 재고, 입고 예정, 리드타임, 최소 주문수량, 쿠팡 발주 상태와 이전 판단을 한 화면에서 비교합니다. AI는 추가 발주·채널 재고 이동·보류 검토안을 만들고, 담당자가 근거를 확인해 최종 결정합니다.</p>
+            </header>
+
+            <section class="order-ai-demo" aria-labelledby="order-ai-demo-title">
+              <header class="order-ai-header">
+                <div class="order-ai-heading"><i data-lucide="clipboard-check" aria-hidden="true"></i><div><span>ORDER REVIEW QUEUE</span><h3 id="order-ai-demo-title">수요예측·발주 AI 검토</h3></div></div>
+                <strong><i data-lucide="circle-check" aria-hidden="true"></i>실사용 도입 확정</strong>
+              </header>
+
+              <div class="order-ai-table-shell" tabindex="0" aria-label="상품별 발주 판단 비교표. 가로로 스크롤할 수 있습니다.">
+                <table class="order-ai-table">
+                  <thead><tr><th>상품</th><th>최근 7일</th><th>판매 추이</th><th>사내 재고</th><th>쿠팡 재고</th><th>입고 예정</th><th>리드타임·MOQ</th><th>쿠팡 발주 상태</th><th>AI 검토</th></tr></thead>
+                  <tbody data-order-ai-body></tbody>
+                </table>
+              </div>
+              <p class="order-ai-table-note"><i data-lucide="mouse-pointer-click" aria-hidden="true"></i>상품을 선택하면 여러 조건을 함께 반영한 판단 근거와 최종 확인 항목을 볼 수 있습니다.</p>
+
+              <div class="order-ai-review" aria-live="polite">
+                <header class="order-ai-review-heading">
+                  <div><span>SELECTED PRODUCT</span><h3 data-order-ai-product>에어핏 쿨링 넥밴드</h3><small data-order-ai-meta>DEMO-NB24 · 시즌상품</small></div>
+                  <strong data-order-ai-status>검토안 계산 중</strong>
+                </header>
+                <div class="order-ai-factor-grid" aria-label="선택 상품의 발주 판단 기준">
+                  <div><span>최근 판매 속도</span><strong data-order-factor="velocity">—</strong><small data-order-factor-note="velocity">최근 7일 일평균</small></div>
+                  <div><span>판매 변화</span><strong data-order-factor="trend">—</strong><small data-order-factor-note="trend">이전 7일 대비</small></div>
+                  <div><span>사내 재고</span><strong data-order-factor="warehouse">—</strong><small data-order-factor-note="warehouse">현재 재고와 보유일</small></div>
+                  <div><span>쿠팡 재고</span><strong data-order-factor="coupang">—</strong><small data-order-factor-note="coupang">채널 재고와 보유일</small></div>
+                  <div><span>입고 예정</span><strong data-order-factor="inbound">—</strong><small data-order-factor-note="inbound">수량과 도착 예정</small></div>
+                  <div><span>발주 조건</span><strong data-order-factor="terms">—</strong><small data-order-factor-note="terms">리드타임과 MOQ</small></div>
+                  <div><span>쿠팡 발주 상태</span><strong data-order-factor="coupangOrder">—</strong><small data-order-factor-note="coupangOrder">채널 상태 반영</small></div>
+                  <div><span>이전 판단</span><strong data-order-factor="previous">—</strong><small data-order-factor-note="previous">과거 검토 결과 반영</small></div>
+                </div>
+                <div class="order-ai-outcome">
+                  <div class="order-ai-result"><span>AI 검토안</span><strong data-order-ai-decision>계산 중</strong><p data-order-ai-reason>판매·재고·입고 조건을 함께 계산하고 있습니다.</p></div>
+                  <div class="order-ai-check"><span>담당자 최종 확인</span><ul data-order-ai-checks><li>입고 일정과 판매 흐름을 확인합니다.</li></ul></div>
+                </div>
+                <p class="order-ai-boundary"><i data-lucide="user-check" aria-hidden="true"></i>AI가 발주를 자동 확정하지 않습니다. 검토 순서와 수량 근거를 제시하고 담당자가 최종 결정합니다.</p>
+              </div>
+            </section>
+          </article>
+
+          <div class="journey-connector" aria-hidden="true"><span>발주 판단을 질문으로 다시 확인합니다.</span><i data-lucide="arrow-down" aria-hidden="true"></i></div>
 
           <article class="journey-stage ai-journey">
             <header class="journey-copy">
-              <span>03 · AI DECISION SUPPORT</span>
+              <span>04 · JARVIS</span>
               <h3>통합된 데이터를 AI가 함께 읽고, 다음 행동까지 답합니다.</h3>
               <p>매일 그래프를 다시 훑는 데서 끝내지 않고, 자비스가 같은 조회 조건의 판매 변화·광고 효율·사내 및 쿠팡 재고·입고 일정을 함께 읽습니다. 질문 하나로 이상 징후의 관계와 오늘의 우선 행동을 확인할 수 있습니다.</p>
             </header>
@@ -498,6 +545,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/portfolio.js" defer></script>
-  <script src="js/product-intelligence.js?v=20260826-5" defer></script>
+  <script src="js/product-intelligence.js?v=20260826-6" defer></script>
 </body>
 </html>
