@@ -95,6 +95,66 @@
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
 
+  function setupJourneyTabs() {
+    const journey = document.querySelector("[data-journey]");
+    if (!journey) {
+      return;
+    }
+
+    const tabs = Array.from(journey.querySelectorAll("[data-journey-tab]"));
+    const panels = Array.from(journey.querySelectorAll("[data-journey-panel]"));
+
+    function activate(key, focusTab) {
+      tabs.forEach(function (tab) {
+        const selected = tab.dataset.journeyTab === key;
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && focusTab) {
+          tab.focus();
+        }
+      });
+
+      panels.forEach(function (panel) {
+        panel.hidden = panel.dataset.journeyPanel !== key;
+      });
+
+      window.requestAnimationFrame(function () {
+        window.dispatchEvent(new Event("resize"));
+      });
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener("click", function () {
+        activate(tab.dataset.journeyTab, false);
+      });
+
+      tab.addEventListener("keydown", function (event) {
+        let nextIndex = index;
+        if (event.key === "ArrowRight") {
+          nextIndex = (index + 1) % tabs.length;
+        } else if (event.key === "ArrowLeft") {
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        activate(tabs[nextIndex].dataset.journeyTab, true);
+      });
+    });
+
+    const initial = tabs.find(function (tab) {
+      return tab.getAttribute("aria-selected") === "true";
+    }) || tabs[0];
+    activate(initial.dataset.journeyTab, false);
+  }
+
+  setupJourneyTabs();
+
   const datasetDefinitions = {
     market: {
       path: "samples/market_daily_sample.csv",
