@@ -511,7 +511,7 @@
 
   function resetChat(output) {
     aiChat.replaceChildren();
-    const exampleQuestion = `${output.product.name} 판매량이 올랐던데 원인을 분석해줘.`;
+    const exampleQuestion = "오늘 주의해야 할 사항이 있어?";
     appendChat("user", exampleQuestion);
     appendChat("assistant", answerQuestion(exampleQuestion, output));
   }
@@ -533,6 +533,16 @@
 
   function answerQuestion(question, output) {
     const normalized = question.replace(/\s/g, "");
+    if (/오늘|주의|체크|점검|브리핑/.test(normalized)) {
+      const trendDirection = output.trendPct >= 0 ? "증가" : "감소";
+      const stockRisk = output.runoutDays <= output.product.leadDays
+        ? `현재 재고 ${formatInteger(output.latestStock)}개는 약 ${output.runoutDays.toFixed(1)}일분으로, 입고 리드타임 ${output.product.leadDays}일보다 짧습니다.`
+        : `현재 재고 ${formatInteger(output.latestStock)}개는 약 ${output.runoutDays.toFixed(1)}일분으로, 단기 품절 위험은 낮습니다.`;
+      const priority = output.recommendedQty > 0
+        ? `${formatInteger(output.recommendedQty)}개 발주 검토와 ${output.topChannel.label}의 가격·노출 변화를 먼저 확인하세요.`
+        : `즉시 발주보다는 재고 추이와 ${output.topChannel.label}의 가격·노출 변화를 먼저 확인하세요.`;
+      return `오늘 주의해서 볼 사항은 3가지입니다. 1) 최근 7일 판매가 이전 7일보다 ${Math.abs(output.trendPct).toFixed(0)}% ${trendDirection}했습니다. 2) ${stockRisk} 3) ${output.topChannel.label} 판매 비중이 ${output.topChannelShare.toFixed(0)}%로 가장 높습니다. 오늘 우선순위는 ${priority}`;
+    }
     if (/재고|소진|품절/.test(normalized)) {
       return `현재 재고는 ${formatInteger(output.latestStock)}개이고 최근 판매속도 기준 약 ${output.runoutDays.toFixed(1)}일분입니다. ${output.runoutDays <= output.product.leadDays ? "입고 리드타임보다 짧아 오늘 발주 검토가 필요합니다." : "리드타임 안에는 소진되지 않지만 판매 증가 여부를 계속 확인하세요."}`;
     }
