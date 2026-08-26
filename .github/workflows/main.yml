@@ -21,6 +21,9 @@ jobs:
           test -s index.html
           test -s css/portfolio.css
           test -s js/portfolio.js
-          test -s samples/market_daily_sample.csv
+          test -s js/product-intelligence.js
+          test -s samples/product_intelligence_sample.csv
       - name: Check JavaScript syntax
-        run: node --check js/portfolio.js
+        run: |
+          node --check js/portfolio.js
+          node --check js/product-intelligence.js
