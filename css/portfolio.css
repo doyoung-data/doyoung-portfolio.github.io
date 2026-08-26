@@ -1939,7 +1939,7 @@ html[data-theme="light"] .button-primary {
 
 .demo-source-map {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
   align-items: center;
   gap: 18px;
   padding: 11px 18px;
@@ -1947,7 +1947,12 @@ html[data-theme="light"] .button-primary {
   background: var(--surface-2);
 }
 
-.demo-source-map > strong {
+.demo-source-map-title strong,
+.demo-source-map-title span {
+  display: block;
+}
+
+.demo-source-map-title strong {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -1955,10 +1960,17 @@ html[data-theme="light"] .button-primary {
   font-size: 10px;
 }
 
-.demo-source-map > strong svg {
+.demo-source-map-title strong svg {
   width: 15px;
   height: 15px;
   color: var(--accent-strong);
+}
+
+.demo-source-map-title span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 8px;
 }
 
 .demo-source-map ul {
@@ -2027,6 +2039,121 @@ html[data-theme="light"] .button-primary {
   font-family: Consolas, "SFMono-Regular", monospace;
   font-size: 22px;
   line-height: 1.2;
+}
+
+.decision-workbench {
+  background: var(--code-bg);
+  color: var(--code-text);
+}
+
+.decision-workbench-heading {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  border-bottom: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+}
+
+.decision-workbench-heading span,
+.decision-workbench-heading h3 {
+  display: block;
+}
+
+.decision-workbench-heading span,
+.decision-flow article > span,
+.decision-summary span {
+  color: #72e6c8;
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.decision-workbench-heading h3 {
+  margin: 3px 0 0;
+  font-size: 17px;
+}
+
+.decision-priority {
+  flex: 0 0 auto;
+  max-width: 290px;
+  padding: 8px 10px;
+  border: 1px solid #72e6c8;
+  border-radius: 4px;
+  color: #72e6c8;
+  font-size: 11px;
+  text-align: center;
+}
+
+.decision-priority.is-critical {
+  border-color: #ffad9f;
+  color: #ffad9f;
+}
+
+.decision-priority.is-watch {
+  border-color: #f6c85f;
+  color: #f6c85f;
+}
+
+.decision-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.decision-flow article {
+  min-width: 0;
+  min-height: 154px;
+  padding: 20px 18px;
+  border-right: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+}
+
+.decision-flow article:last-child {
+  border-right: 0;
+}
+
+.decision-flow article > strong {
+  display: block;
+  margin: 10px 0 7px;
+  color: var(--code-text);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.decision-flow article > p {
+  margin: 0;
+  color: var(--code-muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.decision-summary {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-top: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+  background: var(--code-surface);
+}
+
+.decision-summary > svg {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border: 1px solid #72e6c8;
+  border-radius: 4px;
+  color: #72e6c8;
+}
+
+.decision-summary strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--code-text);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .trend-panel,
@@ -3466,6 +3593,20 @@ html[data-theme="light"] .button-primary {
     border-bottom: 1px solid var(--line);
   }
 
+  .decision-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-flow article {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--code-muted) 35%, transparent);
+  }
+
+  .decision-flow article:last-child {
+    border-bottom: 0;
+  }
+
   .panel-heading {
     align-items: flex-start;
   }
@@ -3571,6 +3712,24 @@ html[data-theme="light"] .button-primary {
 
   .demo-kpis strong {
     font-size: 19px;
+  }
+
+  .decision-workbench-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .decision-priority {
+    max-width: none;
+    text-align: left;
+  }
+
+  .decision-flow article,
+  .decision-summary {
+    padding-right: 14px;
+    padding-left: 14px;
   }
 
   .panel-heading,

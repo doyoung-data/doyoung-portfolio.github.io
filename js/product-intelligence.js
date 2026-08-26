@@ -104,6 +104,15 @@
   const queryForm = demo.querySelector("[data-demo-form]");
   const queryStatus = demo.querySelector("[data-query-status]");
   const queryScope = demo.querySelector("[data-query-scope]");
+  const sourceSummary = demo.querySelector("[data-source-summary]");
+  const decisionPriority = demo.querySelector("[data-decision-priority]");
+  const decisionSalesMetric = demo.querySelector("[data-decision-sales-metric]");
+  const decisionSalesAction = demo.querySelector("[data-decision-sales-action]");
+  const decisionStockMetric = demo.querySelector("[data-decision-stock-metric]");
+  const decisionStockAction = demo.querySelector("[data-decision-stock-action]");
+  const decisionOrderMetric = demo.querySelector("[data-decision-order-metric]");
+  const decisionOrderAction = demo.querySelector("[data-decision-order-action]");
+  const decisionSummary = demo.querySelector("[data-decision-summary]");
   const updatedAt = demo.querySelector("[data-demo-updated]");
   const chartTitle = demo.querySelector("[data-chart-title]");
   const chartKicker = demo.querySelector("[data-chart-kicker]");
@@ -145,6 +154,17 @@
       return `₩${Math.round(amount / 10000).toLocaleString("ko-KR")}만`;
     }
     return formatCurrency(amount);
+  }
+
+  function formatDaySupply(value) {
+    return Number.isFinite(value) ? `${value.toFixed(1)}일분` : "선택 기간 판매 없음";
+  }
+
+  function formatTrend(value) {
+    if (Math.abs(value) < 1) {
+      return "이전 7일과 비슷";
+    }
+    return `${Math.abs(value).toFixed(0)}% ${value > 0 ? "증가" : "감소"}`;
   }
 
   function formatDateInput(date) {
@@ -743,12 +763,73 @@
     });
   }
 
+  function renderDecisionWorkbench(output) {
+    const activeAdItems = ["metaAdCost", "naverAdCost", "naverTopCost", "coupangAdCost"].filter(function (key) {
+      return output.dailyRecords.some(function (record) { return record[key] > 0; });
+    }).length;
+    const salesTrend = formatTrend(output.trendPct);
+    const adTrend = formatTrend(output.adCostTrendPct);
+    const coupangCritical = output.coupangRunoutDays <= 5;
+    const warehouseCritical = output.runoutDays <= output.product.leadDays;
+    const adNeedsReview = output.totalRoas < 300 || (output.adCostTrendPct > 0 && output.trendPct < 0);
+
+    sourceSummary.textContent = `${output.channels.length}개 판매처 · ${activeAdItems}개 광고 항목 · 2개 재고 원천 · 1개 입고 계획`;
+    decisionSalesMetric.textContent = `판매 ${salesTrend} · 광고비 ${adTrend} · ROAS ${output.totalRoas.toFixed(0)}%`;
+    if (output.adCostTrendPct > 0 && output.trendPct < 0) {
+      decisionSalesAction.textContent = `광고비는 늘었지만 판매는 감소했습니다. ${output.adChannelTotals[0].label} 광고 효율을 먼저 점검합니다.`;
+    } else if (output.totalRoas < 300) {
+      decisionSalesAction.textContent = `통합 ROAS가 300% 미만입니다. 예산 확대보다 소재·키워드별 효율 점검이 우선입니다.`;
+    } else {
+      decisionSalesAction.textContent = `${output.adChannelTotals[0].label} 광고비 비중이 가장 높습니다. 판매 변화와 함께 움직였는지 비교합니다.`;
+    }
+
+    decisionStockMetric.textContent = `사내 ${formatDaySupply(output.runoutDays)} · 쿠팡 ${formatDaySupply(output.coupangRunoutDays)}`;
+    if (coupangCritical) {
+      decisionStockAction.textContent = "쿠팡 재고가 먼저 소진될 가능성이 있어 사내 재고의 채널 이동 가능 물량을 확인합니다.";
+    } else if (warehouseCritical) {
+      decisionStockAction.textContent = "입고 리드타임 전에 사내 재고가 소진될 수 있어 입고 일정과 발주 수량을 확인합니다.";
+    } else {
+      decisionStockAction.textContent = "두 재고의 단기 품절 위험은 낮아 판매 속도 차이를 계속 관찰합니다.";
+    }
+
+    decisionOrderMetric.textContent = `${output.product.inboundDays}일 후 ${formatInteger(output.inboundQty)}개 · 추가 발주 ${output.recommendedQty > 0 ? `${formatInteger(output.recommendedQty)}개` : "보류"}`;
+    decisionOrderAction.textContent = output.recommendedQty > 0
+      ? `입고 예정 물량을 반영한 뒤에도 부족해 최소 주문단위 기준 추가 발주를 검토합니다.`
+      : "입고 예정 물량을 반영하면 목표 보유기간을 충족해 추가 발주를 보류합니다.";
+
+    decisionPriority.classList.remove("is-critical", "is-watch");
+    if (coupangCritical) {
+      decisionPriority.classList.add("is-critical");
+      decisionPriority.textContent = "오늘의 1순위 · 쿠팡 재고 이동 검토";
+      decisionSummary.textContent = `판매는 ${salesTrend}했고 쿠팡 재고는 ${formatDaySupply(output.coupangRunoutDays)}입니다. ${output.product.inboundDays}일 뒤 입고를 기다리기 전 사내 재고의 쿠팡 이동 가능 물량을 먼저 확인합니다.`;
+    } else if (output.recommendedQty > 0) {
+      decisionPriority.classList.add("is-critical");
+      decisionPriority.textContent = "오늘의 1순위 · 입고·추가 발주 검토";
+      decisionSummary.textContent = `사내 재고는 ${formatDaySupply(output.runoutDays)}이고 ${output.product.inboundDays}일 뒤 ${formatInteger(output.inboundQty)}개가 입고됩니다. 입고 반영 후에도 부족한 ${formatInteger(output.recommendedQty)}개를 추가 발주 대상으로 검토합니다.`;
+    } else if (warehouseCritical) {
+      decisionPriority.classList.add("is-watch");
+      decisionPriority.textContent = "오늘의 1순위 · 입고 일정 확인";
+      decisionSummary.textContent = `사내 재고는 ${formatDaySupply(output.runoutDays)}으로 리드타임 ${output.product.leadDays}일보다 짧지만 ${output.product.inboundDays}일 뒤 ${formatInteger(output.inboundQty)}개가 입고됩니다. 추가 발주보다 예정 입고가 제때 도착하는지 먼저 확인합니다.`;
+    } else if (adNeedsReview) {
+      decisionPriority.classList.add("is-watch");
+      decisionPriority.textContent = "오늘의 1순위 · 광고 효율 점검";
+      decisionSummary.textContent = `판매 ${salesTrend}, 광고비 ${adTrend}, 통합 ROAS ${output.totalRoas.toFixed(0)}%입니다. ${output.adChannelTotals[0].label} 광고부터 매출 기여와 예산 배분을 확인합니다.`;
+    } else if (output.trendPct >= 15) {
+      decisionPriority.classList.add("is-watch");
+      decisionPriority.textContent = "오늘의 1순위 · 판매 증가 대응";
+      decisionSummary.textContent = `판매가 ${salesTrend}했습니다. 현재 재고와 ${output.product.inboundDays}일 뒤 입고 예정 물량을 함께 보면 추가 발주는 보류할 수 있지만 채널별 소진 속도는 계속 확인합니다.`;
+    } else {
+      decisionPriority.textContent = "오늘의 1순위 · 판매·재고 흐름 관찰";
+      decisionSummary.textContent = `광고 효율과 재고가 현재 기준 범위 안에 있고 ${formatInteger(output.inboundQty)}개 입고도 예정되어 있습니다. 추가 발주를 보류하고 판매·재고 흐름을 관찰합니다.`;
+    }
+  }
+
   function insightPoints(output) {
     const trendText = Math.abs(output.trendPct) < 1
       ? "최근 판매 속도는 이전 기간과 비슷합니다."
       : `최근 7일 판매가 이전 7일보다 ${Math.abs(output.trendPct).toFixed(0)}% ${output.trendPct > 0 ? "증가" : "감소"}했습니다.`;
     const adText = `광고비 ${formatCurrency(output.totalAdCost)}, 통합 ROAS ${output.totalRoas.toFixed(0)}%이며 ${output.adChannelTotals[0].label} 비중이 가장 높습니다.`;
-    const stockText = `사내 재고는 약 ${output.runoutDays.toFixed(1)}일분, 쿠팡 재고는 약 ${output.coupangRunoutDays.toFixed(1)}일분이며 ${output.inboundQty}개가 ${output.product.inboundDays}일 뒤 입고 예정입니다.`;
+    const stockText = `사내 재고는 ${formatDaySupply(output.runoutDays)}, 쿠팡 재고는 ${formatDaySupply(output.coupangRunoutDays)}이며 ${output.inboundQty}개가 ${output.product.inboundDays}일 뒤 입고 예정입니다.`;
     const actionText = output.recommendedQty > 0
       ? `현재 재고와 입고 예정을 함께 반영해 ${formatInteger(output.recommendedQty)}개 추가 발주 검토를 권장합니다.`
       : "현재 재고와 입고 예정 물량으로 목표 보유기간을 충족합니다.";
@@ -804,8 +885,8 @@
       const trendDirection = output.trendPct >= 0 ? "증가" : "감소";
       const adTrendDirection = output.adCostTrendPct >= 0 ? "증가" : "감소";
       const stockRisk = output.coupangRunoutDays <= 5
-        ? `쿠팡 재고 ${formatInteger(output.latestCoupangStock)}개가 약 ${output.coupangRunoutDays.toFixed(1)}일분이라 채널 재고 보충을 먼저 확인해야 합니다.`
-        : `사내 재고는 약 ${output.runoutDays.toFixed(1)}일분, 쿠팡 재고는 약 ${output.coupangRunoutDays.toFixed(1)}일분입니다.`;
+        ? `쿠팡 재고 ${formatInteger(output.latestCoupangStock)}개가 ${formatDaySupply(output.coupangRunoutDays)}이라 채널 재고 보충을 먼저 확인해야 합니다.`
+        : `사내 재고는 ${formatDaySupply(output.runoutDays)}, 쿠팡 재고는 ${formatDaySupply(output.coupangRunoutDays)}입니다.`;
       const priority = output.recommendedQty > 0
         ? `${output.product.inboundDays}일 뒤 입고 예정 ${formatInteger(output.inboundQty)}개를 반영해도 ${formatInteger(output.recommendedQty)}개가 부족하므로 추가 발주를 검토하세요.`
         : `${output.product.inboundDays}일 뒤 입고 예정 ${formatInteger(output.inboundQty)}개가 있어 추가 발주보다 판매·재고 추이 확인이 우선입니다.`;
@@ -825,7 +906,7 @@
       const action = output.coupangRunoutDays <= 5
         ? "사내 재고에서 쿠팡으로 보낼 수 있는 물량과 다음 입고 일정을 오늘 확인하세요."
         : "현재는 즉시 이동보다 판매속도 변화를 계속 확인하는 단계입니다.";
-      return `쿠팡 재고는 ${formatInteger(output.latestCoupangStock)}개이며 최근 쿠팡 판매속도 기준 약 ${output.coupangRunoutDays.toFixed(1)}일분입니다. 사내 재고는 ${formatInteger(output.latestStock)}개, 약 ${output.runoutDays.toFixed(1)}일분입니다. ${action}`;
+      return `쿠팡 재고는 ${formatInteger(output.latestCoupangStock)}개이며 최근 쿠팡 판매속도 기준 ${formatDaySupply(output.coupangRunoutDays)}입니다. 사내 재고는 ${formatInteger(output.latestStock)}개, ${formatDaySupply(output.runoutDays)}입니다. ${action}`;
     }
     if (/입고|도착/.test(normalized)) {
       const orderAction = output.recommendedQty > 0
@@ -834,7 +915,7 @@
       return `${formatInteger(output.inboundQty)}개가 ${output.product.inboundDays}일 뒤 입고 예정입니다. 현재 사내 재고 ${formatInteger(output.latestStock)}개와 입고 예정 물량을 함께 계산했습니다. ${orderAction}`;
     }
     if (/재고|소진|품절/.test(normalized)) {
-      return `사내 재고는 ${formatInteger(output.latestStock)}개로 약 ${output.runoutDays.toFixed(1)}일분이고, 쿠팡 재고는 ${formatInteger(output.latestCoupangStock)}개로 약 ${output.coupangRunoutDays.toFixed(1)}일분입니다. ${formatInteger(output.inboundQty)}개가 ${output.product.inboundDays}일 뒤 입고 예정이므로 사내 재고, 채널 재고, 입고 일정을 따로 보지 않고 함께 판단해야 합니다.`;
+      return `사내 재고는 ${formatInteger(output.latestStock)}개로 ${formatDaySupply(output.runoutDays)}이고, 쿠팡 재고는 ${formatInteger(output.latestCoupangStock)}개로 ${formatDaySupply(output.coupangRunoutDays)}입니다. ${formatInteger(output.inboundQty)}개가 ${output.product.inboundDays}일 뒤 입고 예정이므로 사내 재고, 채널 재고, 입고 일정을 따로 보지 않고 함께 판단해야 합니다.`;
     }
     if (/발주|수량|시점/.test(normalized)) {
       if (output.recommendedQty === 0) {
@@ -867,14 +948,15 @@
     setKpi("revenue", formatCompactCurrency(output.totalRevenue), `${output.channels.map(function (channel) { return channelLabels[channel]; }).join(" · ")} 매출`);
     setKpi("adCost", formatCompactCurrency(output.totalAdCost), `${output.adChannelTotals[0].label} 광고비 비중 최대`);
     setKpi("roas", `${output.totalRoas.toFixed(0)}%`, `매출 대비 광고비 ${output.adCostRate.toFixed(1)}%`);
-    setKpi("stock", `${formatInteger(output.latestStock)}개`, `최근 속도 기준 ${output.runoutDays.toFixed(1)}일분`);
-    setKpi("coupangStock", `${formatInteger(output.latestCoupangStock)}개`, `쿠팡 판매 기준 ${output.coupangRunoutDays.toFixed(1)}일분`);
+    setKpi("stock", `${formatInteger(output.latestStock)}개`, `최근 속도 기준 ${formatDaySupply(output.runoutDays)}`);
+    setKpi("coupangStock", `${formatInteger(output.latestCoupangStock)}개`, `쿠팡 판매 기준 ${formatDaySupply(output.coupangRunoutDays)}`);
     setKpi("inbound", `${formatInteger(output.inboundQty)}개`, `${output.product.inboundDays}일 뒤 도착 예정`);
     setKpi("reorder", output.recommendedQty > 0 ? `${formatInteger(output.recommendedQty)}개` : "관찰", `입고 예정 ${formatInteger(output.inboundQty)}개 반영`);
     queryStatus.textContent = "조회 완료";
     queryScope.textContent = `${output.dailyRecords.length}일 · ${output.options.length}개 옵션 · ${output.channels.length}개 판매처 · 광고·재고·입고 통합`;
     aiProduct.textContent = output.product.name;
     updatedAt.textContent = new Intl.DateTimeFormat("ko-KR", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(new Date());
+    renderDecisionWorkbench(output);
     renderChart(output);
     renderTable(output);
     renderAiOverview(output);
