@@ -2,13 +2,13 @@
   "schema_version": 1,
   "source": "local_codex_rollouts",
   "privacy": "aggregate_only",
-  "data_through": "2026-08-26T17:17:54+09:00",
+  "data_through": "2026-08-26T17:18:20+09:00",
   "period": {
     "start": "2026-03-06",
     "end": "2026-08-26"
   },
   "summary": {
-    "lifetime_tokens": 26318064449,
+    "lifetime_tokens": 26318487362,
     "peak_daily_tokens": 6548193255,
     "active_days": 145,
     "current_streak_days": 59,
@@ -738,8 +738,8 @@
     },
     {
       "date": "2026-08-26",
-      "tokens": 293875305,
-      "turns": 1897
+      "tokens": 294298218,
+      "turns": 1899
     }
   ]
 }
