@@ -1,0 +1,15 @@
+date,product_name,sku,units,coupang,naver,own_store,stock,status
+2026-08-13,스테디 텀블러 600ml,DEMO-TB600,23,13,6,4,472,normal
+2026-08-14,스테디 텀블러 600ml,DEMO-TB600,26,15,7,4,446,normal
+2026-08-15,스테디 텀블러 600ml,DEMO-TB600,29,17,8,4,417,normal
+2026-08-16,스테디 텀블러 600ml,DEMO-TB600,21,12,6,3,396,normal
+2026-08-17,스테디 텀블러 600ml,DEMO-TB600,25,14,7,4,371,normal
+2026-08-18,스테디 텀블러 600ml,DEMO-TB600,27,15,7,5,344,normal
+2026-08-19,스테디 텀블러 600ml,DEMO-TB600,31,18,8,5,313,demand_up
+2026-08-20,스테디 텀블러 600ml,DEMO-TB600,34,19,9,6,279,demand_up
+2026-08-21,스테디 텀블러 600ml,DEMO-TB600,39,22,11,6,240,demand_up
+2026-08-22,스테디 텀블러 600ml,DEMO-TB600,37,21,10,6,203,demand_up
+2026-08-23,스테디 텀블러 600ml,DEMO-TB600,35,20,9,6,168,reorder_review
+2026-08-24,스테디 텀블러 600ml,DEMO-TB600,41,23,11,7,127,reorder_review
+2026-08-25,스테디 텀블러 600ml,DEMO-TB600,38,22,10,6,349,restocked
+2026-08-26,스테디 텀블러 600ml,DEMO-TB600,36,21,9,6,313,normal

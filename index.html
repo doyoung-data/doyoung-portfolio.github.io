@@ -40,7 +40,7 @@
       <nav class="site-nav" id="site-nav" aria-label="주요 메뉴" data-nav>
         <a href="#work">주요 성과</a>
         <a href="#architecture">개발 범위</a>
-        <a href="#data-lab">데이터 샘플</a>
+        <a href="#data-lab">업무 데모</a>
         <a href="#experience">경력</a>
         <a href="#contact">연락처</a>
       </nav>
@@ -313,54 +313,105 @@
       <div class="section-inner">
         <div class="section-heading">
           <div><p class="section-kicker">SANITIZED DATA LAB</p><h2 id="data-title">수집한 데이터가 실무 화면으로 이어집니다.</h2></div>
-          <p>시트에 업로드해 지표를 확인하는 형태를 합성 데이터로 재현했습니다.</p>
+          <p>시트에 업로드해 지표를 확인하는 형태를 공개 가능한 합성 데이터로 재현했습니다.</p>
         </div>
-        <div class="data-workbench" data-workbench>
-          <div class="data-toolbar">
-            <div class="segmented-control" role="tablist" aria-label="샘플 데이터 선택">
-              <button type="button" role="tab" aria-selected="true" data-dataset="market">통합 매출</button>
-              <button type="button" role="tab" aria-selected="false" data-dataset="price">가격 추적</button>
-              <button type="button" role="tab" aria-selected="false" data-dataset="order">발주 검토</button>
-              <button type="button" role="tab" aria-selected="false" data-dataset="review">리뷰 분석</button>
+
+        <div class="data-journey" data-intelligence-demo>
+          <article class="journey-stage sheet-journey">
+            <header class="journey-copy">
+              <span>01 · SHEET DELIVERY</span>
+              <h3>채널 데이터를 통합해 시트에 자동 업로드합니다.</h3>
+              <p>채널마다 다른 데이터를 상품·SKU 기준으로 통합하고, 시트에 자동 업로드해 담당자가 익숙한 화면에서 지표를 확인할 수 있게 했습니다.</p>
+            </header>
+            <div class="sheet-demo" aria-label="합성 데이터의 시트 자동 업로드 예시">
+              <div class="sheet-demo-header">
+                <div><i data-lucide="table-2" aria-hidden="true"></i><strong>상품 통합 현황</strong><span>자동 갱신 시트</span></div>
+                <span class="sheet-sync-ok"><i data-lucide="circle-check" aria-hidden="true"></i>갱신 완료</span>
+              </div>
+              <div class="sheet-route" aria-label="데이터 처리 단계">
+                <div><span>수집</span><strong>판매처 · CSV · 크롤링</strong></div>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                <div><span>통합</span><strong>상품 · SKU 기준 정리</strong></div>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+                <div><span>전달</span><strong>60개 이상 시트 탭 갱신</strong></div>
+              </div>
+              <div class="sheet-grid-shell" tabindex="0" aria-label="합성 시트 표. 가로로 스크롤할 수 있습니다.">
+                <table class="sheet-grid"><thead><tr><th>상품</th><th>SKU</th><th>쿠팡</th><th>네이버</th><th>재고</th><th>확인 상태</th></tr></thead><tbody><tr><td>스테디 텀블러 600ml</td><td>DEMO-TB600</td><td>318</td><td>151</td><td>287</td><td><span>확인 완료</span></td></tr><tr><td>컴팩트 폴딩 카트</td><td>DEMO-FC01</td><td>184</td><td>140</td><td>438</td><td><span>확인 완료</span></td></tr><tr><td>에어핏 쿨링 넥밴드</td><td>DEMO-NB24</td><td>276</td><td>99</td><td>162</td><td><span class="is-watch">재고 확인</span></td></tr></tbody></table>
+              </div>
+              <p class="sheet-demo-foot"><i data-lucide="refresh-cw" aria-hidden="true"></i>수집 · 통합 · 업로드 · 담당자 확인이 한 흐름으로 이어집니다.</p>
             </div>
-            <div class="data-actions">
-              <a class="icon-button" data-raw-link href="samples/market_daily_sample.csv" target="_blank" rel="noreferrer" aria-label="원본 파일 새 창에서 보기" title="원본 보기"><i data-lucide="external-link" aria-hidden="true"></i></a>
-              <a class="icon-button" data-download-link href="samples/market_daily_sample.csv" download aria-label="샘플 파일 다운로드" title="다운로드"><i data-lucide="download" aria-hidden="true"></i></a>
+          </article>
+
+          <div class="journey-connector" aria-hidden="true"><span>시트에서 멈추지 않았습니다.</span><i data-lucide="arrow-down" aria-hidden="true"></i></div>
+
+          <article class="journey-stage site-journey">
+            <header class="journey-copy">
+              <span>02 · OPERATIONS SITE</span>
+              <h3>같은 데이터를 상품별로 탐색하는 통계 사이트로 연결했습니다.</h3>
+              <p>상품을 선택하면 판매량과 재고 흐름이 함께 바뀝니다. 담당자는 반복 파일 작업 없이 필요한 상품을 직접 조회하고 비교할 수 있습니다.</p>
+            </header>
+
+            <div class="intelligence-demo">
+              <header class="demo-header">
+                <div><span class="demo-status-badge"><i data-lucide="sparkles" aria-hidden="true"></i>SYNTHETIC DEMO</span><h3>상품별 판매·재고 통계</h3><p>아래 상품을 바꿔 보며 조회 결과와 그래프 변화를 확인할 수 있습니다.</p></div>
+                <div class="demo-update"><span>최근 갱신</span><strong data-demo-updated>—</strong></div>
+              </header>
+
+              <div class="demo-product-switcher" role="group" aria-label="예시 상품 선택">
+                <button type="button" data-product-switch="tumbler"><span>상품 A</span><strong>스테디 텀블러</strong><small>DEMO-TB600</small></button>
+                <button type="button" data-product-switch="folding-cart"><span>상품 B</span><strong>컴팩트 폴딩 카트</strong><small>DEMO-FC01</small></button>
+                <button type="button" data-product-switch="neck-band"><span>상품 C</span><strong>에어핏 쿨링 넥밴드</strong><small>DEMO-NB24</small></button>
+              </div>
+
+              <form class="demo-query" data-demo-form>
+                <div class="demo-product-field">
+                  <label for="demo-product-search">상품 검색</label>
+                  <div class="demo-search-box"><i data-lucide="search" aria-hidden="true"></i><input id="demo-product-search" type="search" value="스테디 텀블러 600ml" placeholder="상품명 또는 SKU 검색" autocomplete="off" data-product-search aria-controls="demo-product-results" aria-expanded="false"></div>
+                  <div class="demo-product-results" id="demo-product-results" role="listbox" data-product-results hidden></div>
+                  <p class="demo-product-meta" data-product-meta>SKU DEMO-TB600 · 생활용품</p>
+                </div>
+                <fieldset class="demo-filter-group demo-option-group"><legend>옵션</legend><div class="demo-check-list" data-option-list></div></fieldset>
+                <div class="demo-date-group"><label>시작일<input type="date" data-start-date></label><label>종료일<input type="date" data-end-date></label><label>집계<select data-group-select><option value="day">일별</option><option value="week">주별</option></select></label></div>
+                <fieldset class="demo-filter-group demo-channel-group"><legend>판매처</legend><div class="demo-check-list"><label><input type="checkbox" value="coupang" data-channel checked><span>쿠팡</span></label><label><input type="checkbox" value="naver" data-channel checked><span>네이버</span></label><label><input type="checkbox" value="own" data-channel checked><span>자사몰</span></label></div></fieldset>
+                <button class="button button-primary demo-run-button" type="submit"><i data-lucide="search-check" aria-hidden="true"></i>조회</button>
+              </form>
+
+              <div class="demo-query-status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><strong data-query-status>조회 완료</strong><span data-query-scope>최근 14일 · 전체 옵션 · 3개 판매처</span></div>
+              <div class="demo-kpis" aria-label="조회 결과 핵심 지표"><div><span>기간 판매량</span><strong data-kpi-value="sales">—</strong><small data-kpi-note="sales">선택 조건 합계</small></div><div><span>일 평균 판매</span><strong data-kpi-value="average">—</strong><small data-kpi-note="average">기간 일수 기준</small></div><div><span>현재 재고</span><strong data-kpi-value="stock">—</strong><small data-kpi-note="stock">최신 스냅샷</small></div><div><span>예상 소진</span><strong data-kpi-value="runout">—</strong><small data-kpi-note="runout">최근 판매속도 기준</small></div></div>
+
+              <section class="trend-panel" aria-labelledby="trend-title">
+                <div class="panel-heading"><div><span>SALES & STOCK</span><h3 id="trend-title" data-chart-title>스테디 텀블러 600ml 판매·재고 추이</h3></div><div class="chart-legend" aria-label="그래프 범례"><span><i class="legend-bar" aria-hidden="true"></i>판매량</span><span><i class="legend-line" aria-hidden="true"></i>재고</span></div></div>
+                <div class="chart-shell"><canvas data-product-chart aria-label="선택 상품의 판매량과 재고 변화 그래프" role="img"></canvas><div class="chart-fallback" data-chart-fallback hidden><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i><p>그래프를 표시하지 못했습니다. 아래 표에서 데이터를 확인할 수 있습니다.</p></div></div>
+                <p class="chart-caption" data-chart-caption>판매량과 최신 재고 흐름을 같은 기간에서 비교합니다.</p>
+              </section>
+
+              <section class="demo-detail" aria-labelledby="demo-table-title">
+                <div class="demo-detail-heading"><div><span>QUERY RESULT</span><h3 id="demo-table-title">일자별 판매·재고</h3></div><a href="samples/product_intelligence_sample.csv" download><i data-lucide="download" aria-hidden="true"></i>합성 CSV</a></div>
+                <div class="demo-table-shell" tabindex="0" aria-label="조회 결과 표. 가로로 스크롤할 수 있습니다."><table class="demo-table"><thead><tr><th>기간</th><th>판매량</th><th>쿠팡</th><th>네이버</th><th>자사몰</th><th>재고</th><th>상태</th></tr></thead><tbody data-demo-table-body></tbody></table></div>
+              </section>
             </div>
-          </div>
-          <div class="sheet-sync">
-            <div class="sheet-sync-title"><i data-lucide="file-spreadsheet" aria-hidden="true"></i><div><strong>Google Sheets 실무 출력</strong><span>원천 수집 → 검증 → 탭별 갱신 → 담당자 확인</span></div></div>
-            <div class="sheet-sync-state"><span><i data-lucide="layers-3" aria-hidden="true"></i>60+ TABS</span><span><i data-lucide="clock-3" aria-hidden="true"></i>SCHEDULED</span><span><i data-lucide="circle-check" aria-hidden="true"></i>REVIEWABLE</span></div>
-          </div>
-          <div class="data-meta" aria-live="polite">
-            <div><span>FILE</span><strong data-file-name>market_daily_sample.csv</strong></div>
-            <div><span>FORMAT</span><strong data-file-format>CSV</strong></div>
-            <div><span>ROWS</span><strong data-row-count>-</strong></div>
-            <div><span>STATUS</span><strong class="status-ready" data-file-status>LOADING</strong></div>
-          </div>
-          <div class="data-summary" data-summary-grid aria-live="polite">
-            <div><span data-summary-label="0">총 순매출</span><strong data-summary-value="0">—</strong><small data-summary-note="0">합성 데이터 합계</small></div>
-            <div><span data-summary-label="1">판매수량</span><strong data-summary-value="1">—</strong><small data-summary-note="1">표시된 기간 기준</small></div>
-            <div><span data-summary-label="2">연동 채널</span><strong data-summary-value="2">—</strong><small data-summary-note="2">중복 제외</small></div>
-            <div><span data-summary-label="3">정상 데이터</span><strong data-summary-value="3">—</strong><small data-summary-note="3">상태 검증 결과</small></div>
-          </div>
-          <div class="table-controls">
-            <label class="table-search">
-              <i data-lucide="search" aria-hidden="true"></i>
-              <span class="sr-only">표 데이터 검색</span>
-              <input type="search" data-table-search placeholder="상품·채널·상태 검색" autocomplete="off">
-            </label>
-            <label class="attention-filter">
-              <input type="checkbox" data-attention-filter>
-              <span data-attention-label>이상 상태만</span>
-            </label>
-            <span class="table-result-count" data-result-count>—</span>
-          </div>
-          <div class="table-shell" tabindex="0" aria-label="샘플 데이터 표. 가로로 스크롤할 수 있습니다.">
-            <table class="data-table"><thead data-table-head></thead><tbody data-table-body></tbody></table>
-            <div class="data-empty" data-table-empty hidden><i data-lucide="file-warning" aria-hidden="true"></i><p data-empty-message>샘플 데이터를 불러오지 못했습니다.</p></div>
-          </div>
-          <p class="data-caption"><i data-lucide="shield-check" aria-hidden="true"></i>모든 상품명·식별자·수치·리뷰 문장은 포트폴리오용으로 새로 만든 합성 데이터입니다.</p>
+          </article>
+
+          <div class="journey-connector" aria-hidden="true"><span>그래프에서 멈추지 않았습니다.</span><i data-lucide="arrow-down" aria-hidden="true"></i></div>
+
+          <article class="journey-stage ai-journey">
+            <header class="journey-copy">
+              <span>03 · AI DECISION SUPPORT</span>
+              <h3>선택한 상품의 변화를 AI에게 묻고, 다음 행동까지 확인합니다.</h3>
+              <p>그래프를 사람이 다시 해석하는 데서 끝내지 않고, 조회 중인 상품과 기간의 데이터를 자비스가 함께 읽어 원인·재고 위험·발주 시점·우선 행동을 답하도록 연결했습니다.</p>
+            </header>
+            <aside class="jarvis-demo" aria-labelledby="jarvis-demo-title">
+              <div class="jarvis-demo-header"><div class="jarvis-mark" aria-hidden="true">J</div><div><span>DATA COPILOT</span><h3 id="jarvis-demo-title">자비스 분석</h3></div><strong>INTERACTIVE DEMO</strong></div>
+              <div class="ai-context"><span>현재 분석 상품</span><strong data-ai-product>스테디 텀블러 600ml</strong><small>위 통계 화면의 조회 조건을 함께 사용합니다.</small></div>
+              <div class="ai-overview" data-ai-overview><span>핵심 판단</span><strong data-ai-headline>조회 결과를 분석하고 있습니다.</strong><ul data-ai-points></ul></div>
+              <div class="ai-quick-actions" aria-label="자비스 빠른 질문"><button type="button" data-ai-prompt="판매량이 올랐던데 원인을 분석해줘">판매 증가 원인</button><button type="button" data-ai-prompt="재고 소진 위험을 알려줘">재고 위험</button><button type="button" data-ai-prompt="다음 발주 시점과 수량은?">다음 발주</button><button type="button" data-ai-prompt="이번 주 행동을 추천해줘">행동 추천</button></div>
+              <div class="ai-chat" data-ai-chat aria-live="polite"><div class="chat-message assistant"><span>J</span><p>조회 결과를 기준으로 판매 변화와 다음 행동을 물어보세요.</p></div></div>
+              <form class="ai-question-form" data-ai-form><label class="sr-only" for="demo-ai-question">자비스에게 질문</label><input id="demo-ai-question" type="text" data-ai-input placeholder="예: 이 상품 판매량이 올랐던데 원인을 분석해줘" autocomplete="off"><button type="submit" aria-label="질문 보내기" title="질문 보내기"><i data-lucide="send" aria-hidden="true"></i></button></form>
+              <p class="ai-disclosure"><i data-lucide="shield-check" aria-hidden="true"></i>합성 데이터에 연결된 포트폴리오용 데모 응답입니다.</p>
+            </aside>
+          </article>
+
+          <p class="data-caption"><i data-lucide="shield-check" aria-hidden="true"></i>상품명·SKU·판매량·재고·추천 내용은 실제 회사 데이터가 아닌 포트폴리오용 합성 예시입니다.</p>
         </div>
       </div>
     </section>
@@ -432,7 +483,9 @@
     <p>© <span data-year></span> Kwon Doyoung. Built as a static, accessible portfolio.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/portfolio.js" defer></script>
+  <script src="js/product-intelligence.js" defer></script>
 </body>
 </html>
