@@ -1,0 +1,9 @@
+product_code,current_stock,inbound_qty,avg_daily_sales,lead_time_days,min_order_qty,recommended_qty,risk_flag,review_reason
+DEMO-101,318,120,42.6,12,50,100,normal,재고와 입고 예정 반영
+DEMO-205,97,0,31.2,18,60,480,review,최근 7일 판매 급증
+DEMO-330,86,200,14.8,25,100,200,normal,최소 주문수량 단위 적용
+DEMO-440,51,300,9.4,30,100,0,review,입고 예정 물량 우선 확인
+DEMO-518,22,0,3.1,45,50,150,review,배송 기간이 길어 담당자 검토
+DEMO-623,410,0,2.7,14,40,0,hold,저판매 및 과재고
+DEMO-711,74,80,18.5,10,30,60,normal,안전재고 기준 충족
+DEMO-890,0,0,0,21,50,0,review,판매 이력 부족

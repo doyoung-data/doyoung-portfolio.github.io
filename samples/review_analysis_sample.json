@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-08-24T11:30:00+09:00",
+  "synthetic": true,
+  "records": [
+    {
+      "product_type": "자사 DEMO-A",
+      "review_count": 1842,
+      "avg_rating": 4.62,
+      "top_keyword": "사용 편의성",
+      "low_rating_driver": "포장 손상",
+      "improvement_signal": "완충 포장 보강",
+      "wordcloud_term": "간편함"
+    },
+    {
+      "product_type": "경쟁사 DEMO-B",
+      "review_count": 967,
+      "avg_rating": 4.38,
+      "top_keyword": "디자인",
+      "low_rating_driver": "사이즈 편차",
+      "improvement_signal": "상세 규격 안내",
+      "wordcloud_term": "깔끔함"
+    },
+    {
+      "product_type": "자사 DEMO-C",
+      "review_count": 723,
+      "avg_rating": 4.71,
+      "top_keyword": "재구매",
+      "low_rating_driver": "배송 지연",
+      "improvement_signal": "출고 안내 개선",
+      "wordcloud_term": "만족"
+    },
+    {
+      "product_type": "경쟁사 DEMO-D",
+      "review_count": 2154,
+      "avg_rating": 4.44,
+      "top_keyword": "가격 경쟁력",
+      "low_rating_driver": "내구성",
+      "improvement_signal": "소재 설명 강화",
+      "wordcloud_term": "가성비"
+    },
+    {
+      "product_type": "자사 DEMO-E",
+      "review_count": 518,
+      "avg_rating": 4.29,
+      "top_keyword": "구성품",
+      "low_rating_driver": "사용 설명 부족",
+      "improvement_signal": "설명서 및 영상 제공",
+      "wordcloud_term": "구성"
+    }
+  ]
+}
