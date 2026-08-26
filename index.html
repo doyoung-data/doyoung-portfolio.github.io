@@ -22,7 +22,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260826-2">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -336,7 +336,7 @@
                 <div><span>전달</span><strong>60개 이상 시트 탭 갱신</strong></div>
               </div>
               <div class="sheet-grid-shell" tabindex="0" aria-label="합성 시트 표. 가로로 스크롤할 수 있습니다.">
-                <table class="sheet-grid"><thead><tr><th>상품</th><th>SKU</th><th>쿠팡</th><th>네이버</th><th>재고</th><th>확인 상태</th></tr></thead><tbody><tr><td>스테디 텀블러 600ml</td><td>DEMO-TB600</td><td>318</td><td>151</td><td>287</td><td><span>확인 완료</span></td></tr><tr><td>컴팩트 폴딩 카트</td><td>DEMO-FC01</td><td>184</td><td>140</td><td>438</td><td><span>확인 완료</span></td></tr><tr><td>에어핏 쿨링 넥밴드</td><td>DEMO-NB24</td><td>276</td><td>99</td><td>162</td><td><span class="is-watch">재고 확인</span></td></tr></tbody></table>
+                <table class="sheet-grid"><thead><tr><th>상품</th><th>SKU</th><th>판매량</th><th>광고비</th><th>사내재고</th><th>쿠팡재고</th><th>입고예정</th><th>확인 상태</th></tr></thead><tbody><tr><td>스테디 텀블러 600ml</td><td>DEMO-TB600</td><td>668</td><td>₩1,284,000</td><td>287</td><td>84</td><td>400</td><td><span>확인 완료</span></td></tr><tr><td>컴팩트 폴딩 카트</td><td>DEMO-FC01</td><td>401</td><td>₩746,000</td><td>438</td><td>126</td><td>240</td><td><span>확인 완료</span></td></tr><tr><td>에어핏 쿨링 넥밴드</td><td>DEMO-NB24</td><td>512</td><td>₩1,108,000</td><td>162</td><td>37</td><td>300</td><td><span class="is-watch">재고 확인</span></td></tr></tbody></table>
               </div>
               <p class="sheet-demo-foot"><i data-lucide="refresh-cw" aria-hidden="true"></i>수집 · 통합 · 업로드 · 담당자 확인이 한 흐름으로 이어집니다.</p>
             </div>
@@ -347,13 +347,13 @@
           <article class="journey-stage site-journey">
             <header class="journey-copy">
               <span>02 · OPERATIONS SITE</span>
-              <h3>같은 데이터를 상품별로 탐색하는 통계 사이트로 연결했습니다.</h3>
-              <p>상품을 선택하면 판매량과 재고 흐름이 함께 바뀝니다. 담당자는 반복 파일 작업 없이 필요한 상품을 직접 조회하고 비교할 수 있습니다.</p>
+              <h3>서로 다른 주문·광고·재고 데이터를 상품별 통계로 연결했습니다.</h3>
+              <p>판매처 주문, 광고 계정, 사내 재고, 쿠팡 재고와 입고 예정 데이터를 상품·SKU 기준으로 묶었습니다. 담당자는 파일을 번갈아 열지 않고 필요한 상품을 직접 조회하고 비교할 수 있습니다.</p>
             </header>
 
             <div class="intelligence-demo">
               <header class="demo-header">
-                <div><span class="demo-status-badge"><i data-lucide="sparkles" aria-hidden="true"></i>SYNTHETIC DEMO</span><h3>상품별 판매·재고 통계</h3><p>아래 상품을 바꿔 보며 조회 결과와 그래프 변화를 확인할 수 있습니다.</p></div>
+                <div><span class="demo-status-badge"><i data-lucide="sparkles" aria-hidden="true"></i>SYNTHETIC DEMO</span><h3>상품 통합 운영 통계</h3><p>상품을 바꿔 보며 판매·광고·재고·입고 지표가 함께 바뀌는 흐름을 확인할 수 있습니다.</p></div>
                 <div class="demo-update"><span>최근 갱신</span><strong data-demo-updated>—</strong></div>
               </header>
 
@@ -377,17 +377,19 @@
               </form>
 
               <div class="demo-query-status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><strong data-query-status>조회 완료</strong><span data-query-scope>최근 14일 · 전체 옵션 · 3개 판매처</span></div>
-              <div class="demo-kpis" aria-label="조회 결과 핵심 지표"><div><span>기간 판매량</span><strong data-kpi-value="sales">—</strong><small data-kpi-note="sales">선택 조건 합계</small></div><div><span>일 평균 판매</span><strong data-kpi-value="average">—</strong><small data-kpi-note="average">기간 일수 기준</small></div><div><span>현재 재고</span><strong data-kpi-value="stock">—</strong><small data-kpi-note="stock">최신 스냅샷</small></div><div><span>예상 소진</span><strong data-kpi-value="runout">—</strong><small data-kpi-note="runout">최근 판매속도 기준</small></div></div>
+              <div class="demo-source-map" aria-label="통합된 데이터 원천"><strong><i data-lucide="database-zap" aria-hidden="true"></i>연결 데이터</strong><ul><li>판매처 주문</li><li>Meta 광고</li><li>네이버 광고·상위노출</li><li>쿠팡 광고</li><li>사내 재고</li><li>쿠팡 재고</li><li>입고 예정</li></ul></div>
+              <div class="demo-kpis" aria-label="조회 결과 핵심 지표"><div><span>기간 판매량</span><strong data-kpi-value="sales">—</strong><small data-kpi-note="sales">선택 조건 합계</small></div><div><span>기간 매출</span><strong data-kpi-value="revenue">—</strong><small data-kpi-note="revenue">판매처 매출 합계</small></div><div><span>총 광고비</span><strong data-kpi-value="adCost">—</strong><small data-kpi-note="adCost">광고 매체 통합</small></div><div><span>통합 ROAS</span><strong data-kpi-value="roas">—</strong><small data-kpi-note="roas">광고매출 ÷ 광고비</small></div><div><span>사내 재고</span><strong data-kpi-value="stock">—</strong><small data-kpi-note="stock">최신 스냅샷</small></div><div><span>쿠팡 재고</span><strong data-kpi-value="coupangStock">—</strong><small data-kpi-note="coupangStock">로켓재고 기준</small></div><div><span>입고 예정</span><strong data-kpi-value="inbound">—</strong><small data-kpi-note="inbound">도착 예정 물량</small></div><div><span>권장 발주량</span><strong data-kpi-value="reorder">—</strong><small data-kpi-note="reorder">리드타임·안전재고 반영</small></div></div>
 
               <section class="trend-panel" aria-labelledby="trend-title">
-                <div class="panel-heading"><div><span>SALES & STOCK</span><h3 id="trend-title" data-chart-title>스테디 텀블러 600ml 판매·재고 추이</h3></div><div class="chart-legend" aria-label="그래프 범례"><span><i class="legend-bar" aria-hidden="true"></i>판매량</span><span><i class="legend-line" aria-hidden="true"></i>재고</span></div></div>
+                <div class="chart-mode-toolbar"><span>그래프 관점</span><div class="chart-mode-tabs" role="tablist" aria-label="그래프 관점 선택"><button type="button" role="tab" aria-selected="true" data-chart-mode="sales">판매·재고</button><button type="button" role="tab" aria-selected="false" data-chart-mode="ads">광고비·ROAS</button><button type="button" role="tab" aria-selected="false" data-chart-mode="inventory">재고·입고</button></div></div>
+                <div class="panel-heading"><div><span data-chart-kicker>SALES & STOCK</span><h3 id="trend-title" data-chart-title>스테디 텀블러 600ml 판매·재고 추이</h3></div><div class="chart-legend" aria-label="그래프 범례" data-chart-legend></div></div>
                 <div class="chart-shell"><canvas data-product-chart aria-label="선택 상품의 판매량과 재고 변화 그래프" role="img"></canvas><div class="chart-fallback" data-chart-fallback hidden><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i><p>그래프를 표시하지 못했습니다. 아래 표에서 데이터를 확인할 수 있습니다.</p></div></div>
                 <p class="chart-caption" data-chart-caption>판매량과 최신 재고 흐름을 같은 기간에서 비교합니다.</p>
               </section>
 
               <section class="demo-detail" aria-labelledby="demo-table-title">
-                <div class="demo-detail-heading"><div><span>QUERY RESULT</span><h3 id="demo-table-title">일자별 판매·재고</h3></div><a href="samples/product_intelligence_sample.csv" download><i data-lucide="download" aria-hidden="true"></i>합성 CSV</a></div>
-                <div class="demo-table-shell" tabindex="0" aria-label="조회 결과 표. 가로로 스크롤할 수 있습니다."><table class="demo-table"><thead><tr><th>기간</th><th>판매량</th><th>쿠팡</th><th>네이버</th><th>자사몰</th><th>재고</th><th>상태</th></tr></thead><tbody data-demo-table-body></tbody></table></div>
+                <div class="demo-detail-heading"><div><span>QUERY RESULT</span><h3 id="demo-table-title">일자별 통합 데이터</h3></div><a href="samples/product_intelligence_sample.csv" download><i data-lucide="download" aria-hidden="true"></i>합성 CSV</a></div>
+                <div class="demo-table-shell" tabindex="0" aria-label="조회 결과 표. 가로로 스크롤할 수 있습니다."><table class="demo-table"><thead><tr><th>기간</th><th>판매량</th><th>매출</th><th>사내재고</th><th>쿠팡재고</th><th>총광고비</th><th>Meta</th><th>네이버</th><th>상위노출</th><th>쿠팡</th><th>ROAS</th><th>공헌이익</th><th>상태</th></tr></thead><tbody data-demo-table-body></tbody></table></div>
               </section>
             </div>
           </article>
@@ -398,20 +400,20 @@
             <header class="journey-copy">
               <span>03 · AI DECISION SUPPORT</span>
               <h3>오늘 주의해야 할 사항을 AI에게 묻고, 다음 행동까지 확인합니다.</h3>
-              <p>매일 그래프를 다시 훑는 데서 끝내지 않고, 조회 중인 상품과 기간의 데이터를 자비스가 함께 읽어 판매 변화·재고 위험·발주 필요 여부와 오늘의 우선 행동을 답하도록 연결했습니다.</p>
+              <p>매일 그래프를 다시 훑는 데서 끝내지 않고, 조회 중인 상품과 기간의 데이터를 자비스가 함께 읽어 판매 변화·광고 효율·사내 및 쿠팡 재고·입고 후 발주 필요 여부와 오늘의 우선 행동을 답하도록 연결했습니다.</p>
             </header>
             <aside class="jarvis-demo" aria-labelledby="jarvis-demo-title">
               <div class="jarvis-demo-header"><div class="jarvis-mark" aria-hidden="true">J</div><div><span>DATA COPILOT</span><h3 id="jarvis-demo-title">자비스 분석</h3></div><strong>INTERACTIVE DEMO</strong></div>
               <div class="ai-context"><span>현재 분석 상품</span><strong data-ai-product>스테디 텀블러 600ml</strong><small>위 통계 화면의 조회 조건을 함께 사용합니다.</small></div>
               <div class="ai-overview" data-ai-overview><span>핵심 판단</span><strong data-ai-headline>조회 결과를 분석하고 있습니다.</strong><ul data-ai-points></ul></div>
-              <div class="ai-quick-actions" aria-label="자비스 빠른 질문"><button type="button" data-ai-prompt="오늘 주의해야 할 사항이 있어?">오늘의 주의사항</button><button type="button" data-ai-prompt="판매량이 올랐던데 원인을 분석해줘">판매 증가 원인</button><button type="button" data-ai-prompt="재고 소진 위험을 알려줘">재고 위험</button><button type="button" data-ai-prompt="다음 발주 시점과 수량은?">다음 발주</button></div>
+              <div class="ai-quick-actions" aria-label="자비스 빠른 질문"><button type="button" data-ai-prompt="오늘 주의해야 할 사항이 있어?">오늘의 주의사항</button><button type="button" data-ai-prompt="광고비와 ROAS에 이상이 있어?">광고비·ROAS</button><button type="button" data-ai-prompt="쿠팡 재고는 괜찮아?">쿠팡 재고</button><button type="button" data-ai-prompt="입고 예정과 다음 발주를 알려줘">입고·발주</button><button type="button" data-ai-prompt="판매량이 올랐던데 원인을 분석해줘">판매 증가 원인</button><button type="button" data-ai-prompt="이번 주 우선 행동을 추천해줘">행동 추천</button></div>
               <div class="ai-chat" data-ai-chat aria-live="polite"><div class="chat-message assistant"><span>J</span><p>오늘 주의할 변화와 먼저 확인할 업무를 물어보세요.</p></div></div>
               <form class="ai-question-form" data-ai-form><label class="sr-only" for="demo-ai-question">자비스에게 질문</label><input id="demo-ai-question" type="text" data-ai-input placeholder="예: 오늘 주의해야 할 사항이 있어?" autocomplete="off"><button type="submit" aria-label="질문 보내기" title="질문 보내기"><i data-lucide="send" aria-hidden="true"></i></button></form>
               <p class="ai-disclosure"><i data-lucide="shield-check" aria-hidden="true"></i>합성 데이터에 연결된 포트폴리오용 데모 응답입니다.</p>
             </aside>
           </article>
 
-          <p class="data-caption"><i data-lucide="shield-check" aria-hidden="true"></i>상품명·SKU·판매량·재고·추천 내용은 실제 회사 데이터가 아닌 포트폴리오용 합성 예시입니다.</p>
+          <p class="data-caption"><i data-lucide="shield-check" aria-hidden="true"></i>상품명·SKU·판매·광고·재고·입고·추천 내용은 실제 회사 데이터가 아닌 포트폴리오용 합성 예시입니다.</p>
         </div>
       </div>
     </section>
@@ -486,6 +488,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/portfolio.js" defer></script>
-  <script src="js/product-intelligence.js?v=20260826-2" defer></script>
+  <script src="js/product-intelligence.js?v=20260826-4" defer></script>
 </body>
 </html>

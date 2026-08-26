@@ -8,4 +8,4 @@ or production figures.
 - `price_tracking_sample.json`: price collection and retry states
 - `order_recommendations_sample.csv`: human-review order recommendations
 - `review_analysis_sample.json`: own-product and competitor review signals
-- `product_intelligence_sample.csv`: product sales, channel, stock, and status data used by the operations-site demo
+- `product_intelligence_sample.csv`: product sales, revenue, channel ad spend, warehouse and Coupang stock, ROAS, contribution, and status data used by the operations-site demo
