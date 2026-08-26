@@ -22,7 +22,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260826-2">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260826-3">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -147,12 +147,12 @@
                 <div><p class="case-label">DATA PLATFORM · BACKEND · AWS</p><h3>이커머스 통합 데이터 운영 플랫폼</h3></div>
                 <span class="ownership">기획·개발·운영 전담</span>
               </div>
-              <p class="case-summary">쿠팡·네이버·카카오·카페24·광고 매체·재고 시스템 등 서로 다른 데이터를 수집하고 같은 기준으로 정리해, 실무자가 한곳에서 매출·재고·광고·상품 현황을 확인할 수 있는 운영 흐름을 구축했습니다.</p>
+              <p class="case-summary">쿠팡·네이버·카카오·카페24·광고 매체·재고 시스템 등 서로 다른 데이터를 같은 상품 기준으로 통합했습니다. 실무자가 한 화면에서 판매·광고 효율·사내 및 쿠팡 재고·입고 예정 물량을 함께 보고, 광고 점검·재고 이동·발주 우선순위를 결정할 수 있는 운영 흐름을 구축했습니다.</p>
               <div class="human-interface">
                 <i data-lucide="file-spreadsheet" aria-hidden="true"></i>
                 <div>
-                  <strong>자동화 결과를 실무자가 다루는 화면까지</strong>
-                  <p>수집·계산한 결과를 60개 이상의 Google Sheets 탭에 자동 업로드·갱신해, 비개발 실무자도 익숙한 시트에서 최신 지표를 확인하고 필터링·검토할 수 있게 만들었습니다.</p>
+                  <strong>자동화 결과를 실무 판단이 가능한 화면까지</strong>
+                  <p>수집·계산한 결과를 60개 이상의 Google Sheets 탭에 자동 업로드·갱신하고 사내 통계 사이트로 연결했습니다. 비개발 실무자도 익숙한 화면에서 여러 지표를 함께 비교하고 필요한 조치를 검토할 수 있습니다.</p>
                 </div>
               </div>
               <div class="technical-note">
@@ -166,7 +166,7 @@
                     <li>마켓·광고·재고 원천 데이터 수집 및 정규화</li>
                     <li>60개 이상 Google Sheets 탭 자동 업로드·갱신</li>
                     <li>AWS 서버, 도메인, 배치 실행, 백업·복구 환경</li>
-                    <li>사내 통계 사이트와 지표 조회 화면</li>
+                    <li>판매·광고·재고·입고 통합 조회·판단 화면</li>
                     <li>실패 알림, 로그, 재처리 가능한 운영 구조</li>
                   </ul>
                 </div>
@@ -175,7 +175,7 @@
                   <ul class="clean-list">
                     <li>채널별 파일을 찾아 합치고 업로드하던 반복 작업 축소</li>
                     <li>비개발 실무자도 시트에서 최신 지표를 바로 확인</li>
-                    <li>부서별로 달랐던 수치를 같은 기준으로 조회</li>
+                    <li>판매·광고·재고·입고를 함께 보고 업무 우선순위 판단</li>
                     <li>데이터 누락과 처리 실패를 빠르게 확인</li>
                     <li>월 100시간 이상 규모의 반복 처리 자동화</li>
                   </ul>
@@ -347,13 +347,13 @@
           <article class="journey-stage site-journey">
             <header class="journey-copy">
               <span>02 · OPERATIONS SITE</span>
-              <h3>서로 다른 주문·광고·재고 데이터를 상품별 통계로 연결했습니다.</h3>
-              <p>판매처 주문, 광고 계정, 사내 재고, 쿠팡 재고와 입고 예정 데이터를 상품·SKU 기준으로 묶었습니다. 담당자는 파일을 번갈아 열지 않고 필요한 상품을 직접 조회하고 비교할 수 있습니다.</p>
+              <h3>판매·광고·재고·입고를 한 화면에서 보고, 다음 행동까지 결정합니다.</h3>
+              <p>판매처 주문, 광고 계정, 사내 재고, 쿠팡 재고와 입고 예정 데이터를 상품·SKU 기준으로 묶었습니다. 담당자는 파일을 번갈아 열지 않고 여러 지표의 관계와 오늘 먼저 처리할 업무를 한 번에 확인합니다.</p>
             </header>
 
             <div class="intelligence-demo">
               <header class="demo-header">
-                <div><span class="demo-status-badge"><i data-lucide="sparkles" aria-hidden="true"></i>SYNTHETIC DEMO</span><h3>상품 통합 운영 통계</h3><p>상품을 바꿔 보며 판매·광고·재고·입고 지표가 함께 바뀌는 흐름을 확인할 수 있습니다.</p></div>
+                <div><span class="demo-status-badge"><i data-lucide="sparkles" aria-hidden="true"></i>SYNTHETIC DEMO</span><h3>상품 통합 운영·의사결정</h3><p>한 상품의 판매부터 광고 효율, 채널 재고, 입고와 발주 판단까지 한 화면에 모았습니다.</p></div>
                 <div class="demo-update"><span>최근 갱신</span><strong data-demo-updated>—</strong></div>
               </header>
 
@@ -377,8 +377,18 @@
               </form>
 
               <div class="demo-query-status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><strong data-query-status>조회 완료</strong><span data-query-scope>최근 14일 · 전체 옵션 · 3개 판매처</span></div>
-              <div class="demo-source-map" aria-label="통합된 데이터 원천"><strong><i data-lucide="database-zap" aria-hidden="true"></i>연결 데이터</strong><ul><li>판매처 주문</li><li>Meta 광고</li><li>네이버 광고·상위노출</li><li>쿠팡 광고</li><li>사내 재고</li><li>쿠팡 재고</li><li>입고 예정</li></ul></div>
+              <div class="demo-source-map" aria-label="통합된 데이터 원천"><div class="demo-source-map-title"><strong><i data-lucide="database-zap" aria-hidden="true"></i>여러 데이터를 한 화면에 통합</strong><span data-source-summary>3개 판매처 · 4개 광고 항목 · 2개 재고 원천 · 입고 계획</span></div><ul><li>판매처 주문</li><li>Meta 광고</li><li>네이버 광고·상위노출</li><li>쿠팡 광고</li><li>사내 재고</li><li>쿠팡 재고</li><li>입고 예정</li></ul></div>
               <div class="demo-kpis" aria-label="조회 결과 핵심 지표"><div><span>기간 판매량</span><strong data-kpi-value="sales">—</strong><small data-kpi-note="sales">선택 조건 합계</small></div><div><span>기간 매출</span><strong data-kpi-value="revenue">—</strong><small data-kpi-note="revenue">판매처 매출 합계</small></div><div><span>총 광고비</span><strong data-kpi-value="adCost">—</strong><small data-kpi-note="adCost">광고 매체 통합</small></div><div><span>통합 ROAS</span><strong data-kpi-value="roas">—</strong><small data-kpi-note="roas">광고매출 ÷ 광고비</small></div><div><span>사내 재고</span><strong data-kpi-value="stock">—</strong><small data-kpi-note="stock">최신 스냅샷</small></div><div><span>쿠팡 재고</span><strong data-kpi-value="coupangStock">—</strong><small data-kpi-note="coupangStock">로켓재고 기준</small></div><div><span>입고 예정</span><strong data-kpi-value="inbound">—</strong><small data-kpi-note="inbound">도착 예정 물량</small></div><div><span>권장 발주량</span><strong data-kpi-value="reorder">—</strong><small data-kpi-note="reorder">리드타임·안전재고 반영</small></div></div>
+
+              <section class="decision-workbench" aria-labelledby="decision-title">
+                <header class="decision-workbench-heading"><div><span>ONE SCREEN · ONE DECISION</span><h3 id="decision-title">판매부터 발주까지 한 흐름으로 판단합니다.</h3></div><strong class="decision-priority" data-decision-priority>오늘의 1순위 계산 중</strong></header>
+                <div class="decision-flow" aria-label="통합 데이터 판단 흐름">
+                  <article><span>01 · 판매 + 광고</span><strong data-decision-sales-metric>—</strong><p data-decision-sales-action>판매 변화와 광고 효율을 함께 비교합니다.</p></article>
+                  <article><span>02 · 사내 + 쿠팡 재고</span><strong data-decision-stock-metric>—</strong><p data-decision-stock-action>채널별 소진 속도를 함께 비교합니다.</p></article>
+                  <article><span>03 · 입고 + 발주</span><strong data-decision-order-metric>—</strong><p data-decision-order-action>입고 예정 반영 후 추가 발주를 판단합니다.</p></article>
+                </div>
+                <div class="decision-summary"><i data-lucide="list-checks" aria-hidden="true"></i><div><span>여러 데이터를 함께 본 결론</span><strong data-decision-summary>조회 조건을 통합해 오늘의 우선 행동을 정리합니다.</strong></div></div>
+              </section>
 
               <section class="trend-panel" aria-labelledby="trend-title">
                 <div class="chart-mode-toolbar"><span>그래프 관점</span><div class="chart-mode-tabs" role="tablist" aria-label="그래프 관점 선택"><button type="button" role="tab" aria-selected="true" data-chart-mode="sales">판매·재고</button><button type="button" role="tab" aria-selected="false" data-chart-mode="ads">광고비·ROAS</button><button type="button" role="tab" aria-selected="false" data-chart-mode="inventory">재고·입고</button></div></div>
@@ -399,8 +409,8 @@
           <article class="journey-stage ai-journey">
             <header class="journey-copy">
               <span>03 · AI DECISION SUPPORT</span>
-              <h3>오늘 주의해야 할 사항을 AI에게 묻고, 다음 행동까지 확인합니다.</h3>
-              <p>매일 그래프를 다시 훑는 데서 끝내지 않고, 조회 중인 상품과 기간의 데이터를 자비스가 함께 읽어 판매 변화·광고 효율·사내 및 쿠팡 재고·입고 후 발주 필요 여부와 오늘의 우선 행동을 답하도록 연결했습니다.</p>
+              <h3>통합된 데이터를 AI가 함께 읽고, 다음 행동까지 답합니다.</h3>
+              <p>매일 그래프를 다시 훑는 데서 끝내지 않고, 자비스가 같은 조회 조건의 판매 변화·광고 효율·사내 및 쿠팡 재고·입고 일정을 함께 읽습니다. 질문 하나로 이상 징후의 관계와 오늘의 우선 행동을 확인할 수 있습니다.</p>
             </header>
             <aside class="jarvis-demo" aria-labelledby="jarvis-demo-title">
               <div class="jarvis-demo-header"><div class="jarvis-mark" aria-hidden="true">J</div><div><span>DATA COPILOT</span><h3 id="jarvis-demo-title">자비스 분석</h3></div><strong>INTERACTIVE DEMO</strong></div>
@@ -488,6 +498,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/portfolio.js" defer></script>
-  <script src="js/product-intelligence.js?v=20260826-4" defer></script>
+  <script src="js/product-intelligence.js?v=20260826-5" defer></script>
 </body>
 </html>
