@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-08-24T09:00:00+09:00",
+  "synthetic": true,
+  "records": [
+    {
+      "product_id": "DEMO-BUNDLE-001",
+      "tracked_at": "2026-08-24 08:41",
+      "sale_price_krw": 28900,
+      "previous_price_krw": 29900,
+      "change_pct": -3.34,
+      "status": "success",
+      "retry_count": 0
+    },
+    {
+      "product_id": "DEMO-OPTION-014",
+      "tracked_at": "2026-08-24 08:44",
+      "sale_price_krw": 41200,
+      "previous_price_krw": 41200,
+      "change_pct": 0,
+      "status": "recovered",
+      "retry_count": 2
+    },
+    {
+      "product_id": "DEMO-BUNDLE-027",
+      "tracked_at": "2026-08-24 08:48",
+      "sale_price_krw": 63500,
+      "previous_price_krw": 60900,
+      "change_pct": 4.27,
+      "status": "success",
+      "retry_count": 1
+    },
+    {
+      "product_id": "DEMO-SINGLE-106",
+      "tracked_at": "2026-08-24 08:52",
+      "sale_price_krw": null,
+      "previous_price_krw": 17900,
+      "change_pct": null,
+      "status": "previous_value_preserved",
+      "retry_count": 3
+    },
+    {
+      "product_id": "DEMO-OPTION-188",
+      "tracked_at": "2026-08-24 08:55",
+      "sale_price_krw": 22400,
+      "previous_price_krw": 23900,
+      "change_pct": -6.28,
+      "status": "success",
+      "retry_count": 0
+    },
+    {
+      "product_id": "DEMO-BUNDLE-204",
+      "tracked_at": "2026-08-24 08:58",
+      "sale_price_krw": null,
+      "previous_price_krw": 51800,
+      "change_pct": null,
+      "status": "pending_retry",
+      "retry_count": 1
+    }
+  ]
+}

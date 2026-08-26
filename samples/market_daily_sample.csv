@@ -1,0 +1,11 @@
+date,channel,product_code,units,net_sales_krw,ad_spend_krw,inventory_qty,data_status
+2026-08-17,Coupang,DEMO-101,42,1255800,186000,318,complete
+2026-08-17,Naver,DEMO-101,18,538200,72000,318,complete
+2026-08-17,Cafe24,DEMO-205,13,507000,0,144,complete
+2026-08-18,Coupang,DEMO-205,31,1209000,164000,113,complete
+2026-08-18,Kakao,DEMO-330,9,351000,48000,86,complete
+2026-08-18,Naver,DEMO-330,14,546000,61000,86,complete
+2026-08-19,Coupang,DEMO-101,47,1405300,201000,271,complete
+2026-08-19,Cafe24,DEMO-440,8,472000,0,62,complete
+2026-08-19,Naver,DEMO-205,16,624000,75000,97,complete
+2026-08-19,Kakao,DEMO-440,11,649000,57000,51,complete
