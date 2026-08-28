@@ -2,17 +2,17 @@
   "schema_version": 1,
   "source": "local_codex_rollouts",
   "privacy": "aggregate_only",
-  "data_through": "2026-08-27T18:09:10+09:00",
+  "data_through": "2026-08-28T12:40:41+09:00",
   "period": {
     "start": "2026-03-06",
-    "end": "2026-08-27"
+    "end": "2026-08-28"
   },
   "summary": {
-    "lifetime_tokens": 26596608014,
+    "lifetime_tokens": 26616859703,
     "peak_daily_tokens": 6548193255,
-    "active_days": 146,
-    "current_streak_days": 60,
-    "longest_streak_days": 60,
+    "active_days": 147,
+    "current_streak_days": 61,
+    "longest_streak_days": 61,
     "recorded_tasks": 122
   },
   "daily": [
@@ -745,6 +745,11 @@
       "date": "2026-08-27",
       "tokens": 240165152,
       "turns": 1568
+    },
+    {
+      "date": "2026-08-28",
+      "tokens": 20251689,
+      "turns": 135
     }
   ]
 }
