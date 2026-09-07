@@ -98,9 +98,17 @@ Unregister-ScheduledTask -TaskName "DoyoungPortfolioCodexActivity" -Confirm:$fal
 
 ## 테스트
 
+자비스 프로젝트는 업무 효과와 직접 수행 범위를 먼저 보여주고, `설계와 문제 해결`에서 조회 구조와 두 오류 개선 사례를 펼칩니다. 92개 기본 질문과 판매 분석 100문항은 별도 평가셋이며, 개수를 합산하거나 정확도로 표시하지 않습니다.
+
+`#journey-jarvis` 또는 프로젝트의 시연 링크로 합성 데이터 시연에 바로 진입할 수 있습니다. 공개 시연은 브라우저 내 규칙 기반 응답이며 실제 LLM·SQL·사내 DB를 실행하지 않습니다. 판매처별 부분합 대조는 현재 선택한 상품·기간·옵션·판매처의 합성 데이터만 검산합니다. 운영 AI의 검색·답변 성능을 측정한 결과가 아닙니다.
+
+개선 사례에는 운영 중 확인한 문제 유형과 대응 구조만 기재하고, 회사 원천 데이터·내부 경로·실제 질의 로그는 공개하지 않습니다. 제한 답변은 질문을 완전히 해결한 답변과 구분합니다.
+
 ```powershell
 python -m unittest discover -s tests -v
 node --check js/company-portfolio.js
+node --check js/portfolio.js
+node --check js/product-intelligence.js
 ```
 
 Playwright가 설치된 환경에서는 로컬 서버 실행 후 회사별 렌더링·모바일·메뉴·테마·데모를 확인할 수 있습니다.

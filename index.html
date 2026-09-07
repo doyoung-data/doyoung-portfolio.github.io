@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260907-3">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260907-4">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -248,18 +248,26 @@
                 <div><p class="case-label">ENTERPRISE AI AGENT · RAG · NL2SQL · EVAL</p><h3>자비스 사내 AI · 데이터 코파일럿</h3></div>
                 <span class="ownership">사내 실사용 · 고도화 중</span>
               </div>
-              <p class="case-summary">현업 직원이 판매·광고·재고 데이터를 자연어로 질문하면 관련 코드와 업무 지식을 RAG로 찾고, 필요한 수치는 데이터 사전과 조인 규칙을 바탕으로 SQL을 생성해 조회합니다. SQL이나 데이터 위치를 몰라도 실제 조회값과 기준일·근거를 함께 확인할 수 있는 읽기 전용 AI 에이전트로 구축했습니다.</p>
+              <p class="case-summary">판매·광고·재고를 자연어로 조회하는 사내 AI를 기획부터 개발·운영까지 담당했습니다. 업무 기준 검색과 읽기 전용 데이터 조회를 연결하고, 실제 사용 중 발견한 숫자 오류와 답변 중단을 검증·복구 구조 개선으로 이어갔습니다.</p>
               <div class="human-interface">
                 <i data-lucide="messages-square" aria-hidden="true"></i>
                 <div>
-                  <strong>현업 질문을 데이터 조회와 다음 행동으로 연결</strong>
-                  <p>현재 보고 있는 화면과 상품·기간 조건을 질문에 함께 전달하고, 판매 변화·광고 효율·재고·입고를 한 번에 분석해 주의사항과 우선 확인 업무를 답하도록 구성했습니다.</p>
+                  <strong>실무자가 SQL 없이 여러 지표를 함께 확인</strong>
+                  <p>담당자가 직접 상품·기간을 질문하고 판매 변화, 광고비, 현재 재고와 입고 예정을 함께 비교하도록 구현했습니다. 확인된 사실과 추가 확인이 필요한 내용을 나눠 업무 판단을 돕습니다.</p>
                 </div>
               </div>
-              <div class="technical-note">
-                <i data-lucide="shield-check" aria-hidden="true"></i>
-                <div><strong>핵심 난점 · 정확한 답변과 안전한 실행</strong><p>LLM 답변만 믿지 않고 허용 테이블·민감 열·기간·행 수를 검사한 뒤 SELECT 조회만 실행합니다. 최종 합계와 부분합을 대조하고, 확인하지 못한 값은 0으로 만들지 않으며 원인과 추정을 구분합니다.</p></div>
-              </div>
+              <p class="case-role"><strong>직접 담당</strong> 요구사항 정리 · 데이터 연결 · AI/API 개발 · 답변 검증 · 배포·운영</p>
+              <details class="case-engineering" id="jarvis-engineering">
+                <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">ARCHITECTURE</p><h4>업무 기준과 최신 숫자를 서로 다른 경로로 확인</h4></header>
+                  <ol class="agent-flow" aria-label="자비스 조회 및 검증 구조">
+                    <li><span>01 · CONTEXT</span><strong>질문 범위 확정</strong><p>질문 + 화면의 상품·기간<br>용어와 조회 조건 정리</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>02 · RETRIEVAL</span><strong>기준 검색 · 수치 조회</strong><p>코드·문서 RAG → 업무 기준<br>NL2SQL·도구 → 읽기 전용 DB</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>03 · VALIDATION</span><strong>권한과 결과 검증</strong><p>SQL 실행 전 권한·범위 검사<br>조회 후 합계·기간·근거 대조</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>04 · RESPONSE</span><strong>확인 범위를 담은 답변</strong><p>검증된 수치 + 사실·추정 구분<br>미확인 값 보존 · 제한 답변</p></li>
+                  </ol>
+                  <p class="engineering-caption">DB는 최신 수치의 근거, 코드·문서는 집계 방식과 업무 용어의 근거로 사용합니다. 답변을 생성하는 모델과 조회 결과를 검증하는 로직을 분리했습니다.</p>
               <div class="case-columns">
                 <div>
                   <h4>AI 서비스 구현</h4>
@@ -275,17 +283,35 @@
                   <ul class="clean-list">
                     <li>읽기 전용 SQL 검증과 민감 데이터 접근 차단</li>
                     <li>92문항으로 숫자·합계·근거·추정 구분 회귀 평가</li>
-                    <li>모델 답변 중단 시 확보한 데이터 기반 제한 답변</li>
+                    <li>빈 응답·시간 제한을 구분하고 제한 재시도·대체 응답 적용</li>
                     <li>판매 분석 100문항·보안 시나리오 평가셋 구성, 실사용 피드백 반영</li>
                   </ul>
                 </div>
               </div>
-              <p class="case-eval-note">문서 검색은 업무 기준을 찾는 데 사용하고, 최신 수치는 읽기 전용 데이터 조회로 확인합니다. 평가 문항 수는 테스트 범위이며, 통과율이나 답변 정확도를 뜻하지 않습니다.</p>
+                  <header class="engineering-heading"><p class="case-label">PRODUCTION LESSONS</p><h4>실제 실패를 검증 규칙으로 바꾼 두 사례</h4></header>
+                  <div class="engineering-incidents">
+                    <article>
+                      <h5><span>01</span> 조회 성공과 답변 가능은 달랐습니다.</h5>
+                      <dl><div><dt>문제</dt><dd>평가 중 날짜 정보만 조회된 상태에서 모델이 근거 없는 이익 수치를 생성했습니다.</dd></div><div><dt>수정</dt><dd>기준일 같은 조회 정보와 실제 집계 행을 구분하고, 필요한 수치가 없으면 답변을 보류하도록 검증했습니다.</dd></div><div><dt>확인</dt><dd>집계 행이 없는 경우를 재현해 수치를 만들지 않는지 검사했습니다. 누락값을 0으로 바꾸지 않는 규칙도 유지했습니다.</dd></div></dl>
+                    </article>
+                    <article>
+                      <h5><span>02</span> 모델이 멈춰도 확인한 근거는 남깁니다.</h5>
+                      <dl><div><dt>문제</dt><dd>데이터를 조회한 뒤에도 모델의 빈 응답이나 처리 시간 제한으로 답변이 중단됐습니다.</dd></div><div><dt>수정</dt><dd>오류 원인을 구분하고, 제한된 재시도와 최종 응답 시간 확보, 조회 근거를 보존한 대체 답변을 적용했습니다.</dd></div><div><dt>확인</dt><dd>조회된 수치는 유지하되 확인하지 못한 원인·순위는 확정하지 않는지 점검했습니다. 복잡한 질문은 완전한 답변 여부를 별도로 평가합니다.</dd></div></dl>
+                    </article>
+                  </div>
+                  <div class="engineering-evaluation">
+                    <h4>평가는 세 가지를 따로 봅니다.</h4>
+                    <dl><div><dt>검색</dt><dd>질문에 맞는 기준과 문서를 찾았는가</dd></div><div><dt>숫자</dt><dd>기간·합계·부분합이 조회 결과와 일치하는가</dd></div><div><dt>완결성</dt><dd>질문에 모두 답했는가, 미확인 범위를 밝혔는가</dd></div></dl>
+                  </div>
+                  <p class="case-eval-note">92개 기본 질문과 판매 분석 100문항은 별도 평가셋이며 합산하지 않습니다. 평가 문항 수는 테스트 범위이며, 통과율이나 답변 정확도를 뜻하지 않습니다. 제한 답변이 반환된 경우도 질문 전체를 해결한 것으로 보지 않습니다.</p>
+                </div>
+              </details>
+              <a class="case-demo-link" href="#journey-jarvis" data-open-journey="jarvis"><i data-lucide="play" aria-hidden="true"></i>합성 데이터로 질문·근거 확인<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
               <div class="stack-row" aria-label="사용 기술"><span>Python</span><span>FastAPI</span><span>LLM Tool Calling</span><span>Prompt / Context</span><span>RAG</span><span>NL2SQL</span><span>SQL Guardrails</span><span>Quality Eval</span></div>
             </div>
             <aside class="case-proof" aria-label="프로젝트 핵심 지표">
               <div><strong>In use</strong><span>사내 업무 적용</span></div>
-              <div><strong>92</strong><span>회귀 평가 문항</span></div>
+              <div><strong>End to end</strong><span>설계부터 검증·운영</span></div>
               <div><strong>Read only</strong><span>안전한 실데이터 조회</span></div>
             </aside>
           </article>
@@ -635,19 +661,21 @@
               <p>자비스는 화면 문맥과 업무 지식을 먼저 검색하고, 필요한 데이터는 검증된 읽기 전용 SQL로 조회합니다. 판매 변화·광고 효율·사내 및 쿠팡 재고·입고 일정을 함께 읽어 이상 징후와 오늘의 우선 행동을 답합니다.</p>
             </header>
             <aside class="jarvis-demo" aria-labelledby="jarvis-demo-title">
-              <div class="jarvis-demo-header"><div class="jarvis-mark" aria-hidden="true">J</div><div><span>DATA COPILOT</span><h3 id="jarvis-demo-title">자비스 분석</h3></div><strong>INTERACTIVE DEMO</strong></div>
+              <div class="jarvis-demo-header"><div class="jarvis-mark" aria-hidden="true">J</div><div><span>DATA COPILOT</span><h3 id="jarvis-demo-title">자비스 분석</h3></div><strong>SYNTHETIC DEMO</strong></div>
+              <p class="ai-disclosure"><i data-lucide="info" aria-hidden="true"></i>합성 데이터를 브라우저에서 계산하는 규칙 기반 시연입니다. 실제 LLM·사내 DB에는 연결하지 않습니다.</p>
               <div class="ai-context"><span>현재 분석 상품</span><strong data-ai-product>스테디 텀블러 600ml</strong><small>위 통계 화면의 조회 조건을 함께 사용합니다.</small></div>
               <div class="ai-overview" data-ai-overview><span>핵심 판단</span><strong data-ai-headline>조회 결과를 분석하고 있습니다.</strong><ul data-ai-points></ul></div>
-              <div class="ai-quick-actions" aria-label="자비스 빠른 질문"><button type="button" data-ai-prompt="오늘 주의해야 할 사항이 있어?">오늘의 주의사항</button><button type="button" data-ai-prompt="광고비와 ROAS에 이상이 있어?">광고비·ROAS</button><button type="button" data-ai-prompt="쿠팡 재고는 괜찮아?">쿠팡 재고</button><button type="button" data-ai-prompt="입고 예정과 다음 발주를 알려줘">입고·발주</button><button type="button" data-ai-prompt="판매량이 올랐던데 원인을 분석해줘">판매 증가 원인</button><button type="button" data-ai-prompt="이번 주 우선 행동을 추천해줘">행동 추천</button></div>
+              <div class="ai-quick-actions" aria-label="자비스 빠른 질문"><button type="button" data-ai-prompt="오늘 주의해야 할 사항이 있어?">오늘의 주의사항</button><button type="button" data-ai-prompt="광고비와 ROAS에 이상이 있어?">광고비·ROAS</button><button type="button" data-ai-prompt="쿠팡 재고는 괜찮아?">쿠팡 재고</button><button type="button" data-ai-prompt="입고 예정과 다음 발주를 알려줘">입고·발주</button><button type="button" data-ai-prompt="판매량이 올랐던데 원인을 분석해줘">판매 증가 원인</button><button type="button" data-ai-prompt="판매처별 판매 합계를 검산해줘">판매 합계 검산</button></div>
               <div class="ai-chat" data-ai-chat aria-live="polite"><div class="chat-message assistant"><span>J</span><p>오늘 주의할 변화와 먼저 확인할 업무를 물어보세요.</p></div></div>
               <form class="ai-question-form" data-ai-form><label class="sr-only" for="demo-ai-question">자비스에게 질문</label><input id="demo-ai-question" type="text" data-ai-input placeholder="예: 오늘 주의해야 할 사항이 있어?" autocomplete="off"><button type="submit" aria-label="질문 보내기" title="질문 보내기"><i data-lucide="send" aria-hidden="true"></i></button></form>
+              <dl class="demo-evidence" aria-label="합성 데이터 조회 조건과 검산"><div><dt>01 · 조회 조건</dt><dd data-demo-scope></dd></div><div><dt>02 · 판매처별 수량</dt><dd data-demo-subtotals></dd></div><div><dt>03 · 합계 대조</dt><dd data-demo-check></dd></div></dl>
               <div class="agent-guardrails" aria-label="자비스 응답 검증 기준">
-                <div class="agent-guardrails-title"><span>RAG · NL2SQL · GROUNDING</span><strong>검색·SQL·실데이터 근거를 거쳐 답합니다.</strong></div>
+                <div class="agent-guardrails-title"><span>PRODUCTION ARCHITECTURE</span><strong>실제 서비스의 검색·조회·검증 구조</strong></div>
                 <div><span>RETRIEVAL</span><strong>코드 · 업무 지식 · 화면 문맥</strong></div>
                 <div><span>SQL CONTROL</span><strong>데이터 사전 · SELECT 전용 검증</strong></div>
                 <div><span>EVIDENCE</span><strong>기준일 · 누락 보존 · 근거 표시</strong></div>
               </div>
-              <p class="ai-disclosure"><i data-lucide="shield-check" aria-hidden="true"></i>합성 데이터에 연결된 포트폴리오용 데모 응답입니다.</p>
+              <p class="ai-disclosure"><i data-lucide="shield-check" aria-hidden="true"></i>위 검산은 합성 데이터 내 일관성 확인이며, 운영 자비스의 답변 정확도나 검색 성능 측정이 아닙니다.</p>
             </aside>
           </article>
 
@@ -760,8 +788,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="js/company-portfolio.js?v=20260907-3" defer></script>
-  <script src="js/portfolio.js" defer></script>
+  <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
-  <script src="js/product-intelligence.js?v=20260826-6" defer></script>
+  <script src="js/product-intelligence.js?v=20260907-4" defer></script>
 </body>
 </html>

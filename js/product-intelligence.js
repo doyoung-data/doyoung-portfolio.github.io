@@ -1060,6 +1060,13 @@
 
   function answerQuestion(question, output) {
     const normalized = question.replace(/\s/g, "");
+    if (/단종|영업이익|순이익|삭제|비밀번호|회원/.test(normalized)) {
+      return "이 시연에는 해당 업무의 원천 자료나 실행 권한이 없습니다. 확인하지 못한 값은 0으로 답하거나 추정해 채우지 않습니다. 현재 선택한 상품의 판매·광고·재고·입고 데이터 범위에서만 확인할 수 있습니다.";
+    }
+    if (/검산|합계|근거/.test(normalized)) {
+      const evidence = salesEvidence(output);
+      return `${evidence.scope}. ${evidence.subtotals}. ${evidence.check} 이 대조는 합성 데이터 내 일관성 확인이며, 운영 AI의 정확도 평가가 아닙니다.`;
+    }
     if (/오늘|주의|체크|점검|브리핑/.test(normalized)) {
       const trendDirection = output.trendPct >= 0 ? "증가" : "감소";
       const adTrendDirection = output.adCostTrendPct >= 0 ? "증가" : "감소";
@@ -1110,7 +1117,31 @@
       const adDirection = output.adCostTrendPct >= 0 ? "늘어" : "줄어";
       return `최근 7일 일평균 판매량은 ${output.recentAverage.toFixed(1)}개로, 이전 7일보다 ${Math.abs(output.trendPct).toFixed(0)}% ${direction}했습니다. 같은 기간 광고비는 ${Math.abs(output.adCostTrendPct).toFixed(0)}% ${adDirection} 통합 ROAS ${output.totalRoas.toFixed(0)}%를 기록했습니다. ${output.topChannel.label} 판매 비중이 ${output.topChannelShare.toFixed(0)}%로 가장 크므로 광고비, 노출, 가격, 행사 변화를 함께 확인할 수 있지만 이 수치만으로 원인을 단정하지는 않습니다. 판매 증가가 이어지면 쿠팡 재고와 발주 시점도 다시 계산해야 합니다.`;
     }
-    return `${insightPoints(output).join(" ")} 우선순위는 판매 변화 확인 → 광고 효율 점검 → 쿠팡 재고 확인 → 입고·발주 검토 순서입니다.`;
+    return "이 규칙 기반 시연에서 처리하는 질문 범위를 확인하지 못했습니다. 선택한 상품의 판매 합계, 광고비, 재고 또는 입고 예정에 대해 질문해주세요. 범위 밖 질문에는 임의의 분석 결과를 만들지 않습니다.";
+  }
+
+  function salesEvidence(output) {
+    const totals = output.channels.map(function (channel) {
+      return {
+        label: channelLabels[channel],
+        value: output.dailyRecords.reduce(function (sum, record) { return sum + record[channel]; }, 0)
+      };
+    });
+    const sum = totals.reduce(function (total, channel) { return total + channel.value; }, 0);
+    const first = output.dailyRecords[0].date;
+    const last = output.dailyRecords[output.dailyRecords.length - 1].date;
+    return {
+      scope: `${output.product.name} · ${first} ~ ${last} · ${output.options.length}개 옵션 · ${output.channels.length}개 판매처`,
+      subtotals: totals.map(function (channel) { return `${channel.label} ${formatInteger(channel.value)}개`; }).join(" + "),
+      check: `부분합 ${formatInteger(sum)}개 / 기간 총판매 ${formatInteger(output.totalSales)}개 · ${sum === output.totalSales ? "일치" : "불일치 · 확인 필요"}`
+    };
+  }
+
+  function renderDemoEvidence(output) {
+    const evidence = salesEvidence(output);
+    demo.querySelector("[data-demo-scope]").textContent = evidence.scope;
+    demo.querySelector("[data-demo-subtotals]").textContent = evidence.subtotals;
+    demo.querySelector("[data-demo-check]").textContent = evidence.check;
   }
 
   function askJarvis(question) {
@@ -1139,6 +1170,7 @@
     renderChart(output);
     renderTable(output);
     renderAiOverview(output);
+    renderDemoEvidence(output);
     resetChat(output);
   }
 

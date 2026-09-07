@@ -147,10 +147,27 @@
       });
     });
 
+    document.querySelectorAll("[data-open-journey]").forEach(function (link) {
+      link.addEventListener("click", function () {
+        activate(link.dataset.openJourney, true);
+      });
+    });
+
+    function activateHash() {
+      const target = panels.find(function (panel) {
+        return `#${panel.id}` === window.location.hash;
+      });
+      if (target) {
+        activate(target.dataset.journeyPanel, false);
+      }
+    }
+
     const initial = tabs.find(function (tab) {
       return tab.getAttribute("aria-selected") === "true";
     }) || tabs[0];
     activate(initial.dataset.journeyTab, false);
+    activateHash();
+    window.addEventListener("hashchange", activateHash);
   }
 
   setupJourneyTabs();
