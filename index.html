@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="판매·광고·재고 데이터를 통합하고, RAG·NL2SQL 분석 에이전트와 데이터 파이프라인을 운영하는 AI/AX 엔지니어 권도영의 포트폴리오입니다.">
+  <meta name="description" content="현업의 복잡한 문제를 데이터와 LLM·RAG·AI Agent 기반 서비스로 전환하고 운영하는 AI/AX 엔지니어 권도영의 포트폴리오입니다.">
   <meta name="theme-color" content="#f4f7f3">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="권도영 | AI Engineer (Data/Analytics)">
-  <meta property="og:description" content="다중 소스 데이터를 실무 화면과 RAG·NL2SQL 분석 에이전트로 연결하고 운영까지 책임지는 AI/AX 엔지니어">
+  <meta property="og:title" content="권도영 | AI/AX Engineer">
+  <meta property="og:description" content="현업 문제를 데이터 기반 LLM·RAG·AI Agent 서비스로 구현하고 운영까지 책임지는 AI/AX 엔지니어">
   <meta property="og:url" content="https://doyoung-data.github.io/doyoung-portfolio.github.io/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <title>권도영 | AI Engineer (Data/Analytics)</title>
+  <title>권도영 | AI/AX Engineer</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "권도영",
-      "jobTitle": "AI Engineer (Data/Analytics) / AI/AX Engineer",
+      "jobTitle": "AI/AX Engineer",
       "url": "https://doyoung-data.github.io/doyoung-portfolio.github.io/",
       "sameAs": [
         "https://github.com/doyoung-data",
@@ -25,6 +25,11 @@
       "knowsAbout": [
         "Python",
         "AI Application Development",
+        "AI Agent",
+        "Prompt Engineering",
+        "Retrieval-Augmented Generation",
+        "NL2SQL",
+        "Machine Learning",
         "Data Integration",
         "Data Quality",
         "Data Pipeline Automation",
@@ -46,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260831-3">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260907-1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -57,15 +62,15 @@
         <span class="brand-mark" aria-hidden="true">KD</span>
         <span class="brand-copy">
           <strong>권도영</strong>
-          <small>AI/AX · Python · Data</small>
+          <small data-profile-brand>AI/AX · Python · Data</small>
         </span>
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="주요 메뉴" data-nav>
-        <a href="#scope">운영 범위</a>
-        <a href="#work">주요 성과</a>
-        <a href="#experience">경력</a>
-        <a href="#data-lab">업무 데모</a>
+        <a href="#position-fit">직무 적합도</a>
+        <a href="#work">대표 프로젝트</a>
+        <a href="#experience">경력·협업</a>
+        <a href="#data-lab">서비스 데모</a>
         <a href="#contact">연락처</a>
       </nav>
 
@@ -88,17 +93,17 @@
         <div class="hero-copy">
           <div class="hero-heading">
             <div>
-              <p class="eyebrow">AI/AX ENGINEER · DATA PLATFORM · RAG/NL2SQL</p>
+              <p class="eyebrow" data-profile-eyebrow>AI/AX ENGINEER · LLM APPLICATION · DATA PLATFORM</p>
               <h1 id="hero-title">권도영</h1>
             </div>
             <figure class="hero-portrait">
               <img src="images/kwon-doyoung-profile.jpg" alt="권도영 증명사진" width="354" height="472" decoding="async" fetchpriority="high">
             </figure>
           </div>
-          <p class="hero-statement">흩어진 판매·광고·재고 데이터를<br>질문하고 결정할 수 있는 시스템으로 바꿉니다.</p>
-          <p class="hero-description">
-            API·CSV·크롤링으로 수집한 판매·광고·재고 데이터를 상품·SKU 기준으로 통합하고,
-            실무 화면·시트·AI 분석으로 연결합니다. 현재 AI팀 1인 엔지니어로 기획부터 배포·운영까지 담당합니다.
+          <p class="hero-statement" data-profile-statement>현업의 복잡한 문제를 이해하고,<br>실제로 쓰이는 AI 서비스로 바꿉니다.</p>
+          <p class="hero-description" data-profile-description>
+            API·CSV·크롤링으로 흩어진 데이터를 통합하고 LLM·RAG·NL2SQL 기반 에이전트와 업무 시스템으로 연결합니다.
+            현업 부서를 내부 고객으로 두고 문제 정의부터 개발·배포·평가·운영까지 책임지는 AI팀 1인 엔지니어입니다.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#work">
@@ -112,30 +117,62 @@
           </div>
           <p class="hero-note">
             <span class="status-dot" aria-hidden="true"></span>
-            AI/AX Engineer · AI Engineer (Data/Analytics) 포지션을 찾고 있습니다.
+            <span data-profile-note>Enterprise AI Service · AI Agent · Data Platform</span>
           </p>
         </div>
 
         <div class="hero-console" aria-label="개발 영역 요약">
           <div class="console-header">
-            <span>production_scope.yml</span>
+            <span data-profile-console-file>production_scope.yml</span>
             <span class="console-status">RUNNING</span>
           </div>
-          <pre><code><span class="code-key">role</span>: AI/AX engineer · end-to-end owner
-<span class="code-key">scope</span>:
-  - business workflow discovery
-  - data & API integration
-  - RAG & guarded NL2SQL
-  - AWS deployment & operations
-  - user enablement
-<span class="code-key">principle</span>: build → verify → operate</code></pre>
+          <pre><code data-profile-console><span class="code-key">role</span>: AI/AX engineer · end-to-end owner
+<span class="code-key">mission</span>:
+  - discover business problems
+  - ground LLMs in trusted data
+  - ship secure AI services
+  - evaluate & improve quality
+<span class="code-key">evidence</span>: production use · guarded data access</code></pre>
         </div>
       </div>
       <div class="hero-metrics" aria-label="핵심 성과 수치">
         <div><strong>10+</strong><span>연동 데이터 원천</span></div>
         <div><strong>2</strong><span>실사용 AI 서비스</span></div>
-        <div><strong>2,280</strong><span>판매가 추적 상품</span></div>
+        <div><strong>92</strong><span>AI 회귀 평가 문항</span></div>
         <div><strong>60+</strong><span>자동 갱신 시트 탭</span></div>
+      </div>
+    </section>
+
+    <section class="section role-fit-section" id="position-fit" aria-labelledby="position-fit-title">
+      <div class="section-inner role-fit-layout">
+        <div class="role-fit-intro">
+          <p class="section-kicker" data-profile-fit-kicker>RECRUITER SNAPSHOT</p>
+          <h2 id="position-fit-title" data-profile-fit-title>지원 직무와 연결되는<br>경험부터 보여드립니다.</h2>
+          <p data-profile-fit-summary>AI/AX 직무에서 바로 확인할 수 있도록 공고의 핵심 역량과 실제 수행 경험을 연결했습니다.</p>
+        </div>
+        <div class="role-fit-content">
+          <div class="role-fit-list" aria-label="지원 직무 적합 근거">
+            <article>
+              <span class="role-fit-index">01</span>
+              <div><span data-profile-fit-label="0">AI AGENT</span><strong data-profile-fit-heading="0">RAG·NL2SQL 기반 사내 데이터 AI</strong></div>
+              <p data-profile-fit-body="0">업무 지식 검색, 읽기 전용 데이터 조회와 근거 표시를 연결해 현업에서 사용하는 자비스를 구축했습니다.</p>
+            </article>
+            <article>
+              <span class="role-fit-index">02</span>
+              <div><span data-profile-fit-label="1">DATA &amp; BACKEND</span><strong data-profile-fit-heading="1">여러 원천을 연결하는 서비스 기반</strong></div>
+              <p data-profile-fit-body="1">API·CSV·크롤링 데이터를 통합하고 Python·FastAPI·SQL로 업무 화면과 자동화 서비스를 구현했습니다.</p>
+            </article>
+            <article>
+              <span class="role-fit-index">03</span>
+              <div><span data-profile-fit-label="2">OPERATIONS</span><strong data-profile-fit-heading="2">배포 이후까지 책임지는 운영 경험</strong></div>
+              <p data-profile-fit-body="2">AWS 환경, 예약 실행, 로그, 재시도, 백업과 품질 평가를 직접 운영하며 실사용 피드백을 반영했습니다.</p>
+            </article>
+          </div>
+          <div class="role-fit-contribution">
+            <span>CONTRIBUTION</span>
+            <div><strong data-profile-contribution-title>입사 후 기여할 수 있는 일</strong><p data-profile-contribution-body>현업의 문제를 빠르게 구조화하고 데이터와 AI를 연결해, 실제 사용자가 계속 활용할 수 있는 서비스로 만들겠습니다.</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -143,50 +180,50 @@
       <div class="section-inner">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">DATA &amp; AI POSITION FIT</p>
-            <h2 id="scope-title">데이터 플랫폼부터<br>RAG·NL2SQL 분석 에이전트까지</h2>
+            <p class="section-kicker" data-profile-scope-kicker>ENTERPRISE AI DELIVERY</p>
+            <h2 id="scope-title" data-profile-scope-title>현업 문제를 AI 서비스로<br>전환해 운영합니다.</h2>
           </div>
-          <p>다중 원천 수집·통합, 데이터 품질, 실무 화면, AI 분석과 장애 복구를 하나의 운영 흐름으로 구축했습니다.</p>
+          <p data-profile-scope-summary>요구사항을 이해하고, 신뢰할 수 있는 데이터와 LLM을 연결해 사용 가능한 서비스로 배포한 뒤 품질을 계속 개선합니다.</p>
         </div>
 
         <div class="operating-map">
           <article class="operating-lane">
-            <header><span>01 · COLLECT</span><strong>다중 소스 수집</strong></header>
+            <header><span>01 · DISCOVER</span><strong>현업 문제 정의</strong></header>
             <div class="operating-lane-items">
-              <div><strong>판매·주문</strong><p>쿠팡·네이버·카페24·에이블리·지그재그 등 채널별 주문, 판매량, 매출과 상품 정보</p></div>
-              <div><strong>광고·마케팅</strong><p>네이버·GFA·쿠팡 등 매체별 광고비, 광고매출과 운영 현황</p></div>
-              <div><strong>재고·입고</strong><p>사내 재고, 쿠팡 재고, 입고 예정, 리드타임과 발주 상태</p></div>
-              <div><strong>정산·업무</strong><p>마감금액, 원가, 영업일지, 홈택스와 부서별 요청 데이터</p></div>
+              <div><strong>내부 고객 이해</strong><p>마케팅·영업·수요예측 등 실제 사용자의 반복 업무와 의사결정 지점을 먼저 확인</p></div>
+              <div><strong>업무 기준 합의</strong><p>지표 정의, 조회 기간, 예외 상황과 최종 확인 항목을 현업 언어로 정리</p></div>
+              <div><strong>문제 구조화</strong><p>자동화할 단계와 사람이 판단할 단계를 분리하고 데이터·화면·AI 역할을 설계</p></div>
+              <div><strong>효과 확인</strong><p>실사용 피드백과 오류 사례를 다음 개선 항목과 평가 문항으로 반영</p></div>
             </div>
           </article>
 
           <article class="operating-lane">
-            <header><span>02 · MODEL & VERIFY</span><strong>통합·품질 관리</strong></header>
+            <header><span>02 · GROUND &amp; BUILD</span><strong>AI Agent 구현</strong></header>
             <div class="operating-lane-items">
-              <div><strong>공통 상품 기준</strong><p>채널마다 다른 상품코드·옵션·세트·번들을 공통 SKU와 매핑 규칙으로 연결</p></div>
-              <div><strong>날짜·단위 표준화</strong><p>수집 시점, 판매 기준일, 금액·수량 단위를 원천별 변환 규칙으로 정리</p></div>
-              <div><strong>결측·실패 보존</strong><p>NULL·공란·접근 실패를 0으로 덮지 않고 상태와 이전 값을 함께 관리</p></div>
-              <div><strong>재검증·백필</strong><p>원천 합계와 결과를 대조하고 누락 구간은 다시 수집·적재할 수 있게 구성</p></div>
+              <div><strong>Prompt·Context</strong><p>화면 상태, 업무 용어, 답변 기준을 질문과 함께 전달해 업무 문맥을 유지</p></div>
+              <div><strong>RAG</strong><p>코드·업무 지식에서 질문과 관련된 근거를 찾아 답변 컨텍스트로 구성</p></div>
+              <div><strong>NL2SQL·Tool Calling</strong><p>데이터 사전과 조인 규칙을 바탕으로 필요한 실데이터를 읽기 전용 조회</p></div>
+              <div><strong>Grounded Answer</strong><p>기준일·조회값·근거를 답변에 남기고 확인하지 못한 값은 추정과 구분</p></div>
             </div>
           </article>
 
           <article class="operating-lane">
-            <header><span>03 · SERVE</span><strong>실무 화면 제공</strong></header>
+            <header><span>03 · DATA &amp; DELIVER</span><strong>데이터·서비스 배포</strong></header>
             <div class="operating-lane-items">
-              <div><strong>운영 DB</strong><p>반복 조회와 이력 비교에 맞춘 관계형 데이터 구조와 업무별 조회 데이터셋</p></div>
-              <div><strong>Google Sheets</strong><p>다수의 업무 탭을 자동 갱신해 비개발 담당자가 익숙한 방식으로 확인</p></div>
-              <div><strong>사내 통계 사이트</strong><p>판매·광고·재고·입고를 한 화면에서 비교하고 다음 업무를 결정</p></div>
-              <div><strong>관리자·접근 통제</strong><p>회원, 비밀번호, OTP, 세션, 접속·작업 로그를 포함한 운영 기능</p></div>
+              <div><strong>다중 원천 통합</strong><p>API·CSV·크롤링 데이터를 공통 상품·SKU·날짜 기준으로 정규화</p></div>
+              <div><strong>데이터 품질</strong><p>원천 합계 대조, 결측·실패 보존, 재수집과 백필이 가능한 처리 구조</p></div>
+              <div><strong>서비스 구현</strong><p>Python·FastAPI로 AI와 데이터를 화면·Google Sheets·업무 API에 연결</p></div>
+              <div><strong>AWS 운영</strong><p>서버·도메인·권한·예약 실행·백업·복구를 포함한 배포 환경 운영</p></div>
             </div>
           </article>
 
           <article class="operating-lane">
-            <header><span>04 · DECIDE & OPERATE</span><strong>AI 분석·운영 자동화</strong></header>
+            <header><span>04 · EVALUATE &amp; ADOPT</span><strong>검증·운영·확산</strong></header>
             <div class="operating-lane-items">
-              <div><strong>RAG·NL2SQL 코파일럿</strong><p>코드·업무 지식을 검색하고 데이터 사전 기반 SQL을 생성해 읽기 전용으로 검증·실행</p></div>
-              <div><strong>수요예측·발주 AI</strong><p>판매·재고·입고·MOQ를 함께 보고 우선 검토 대상과 수량 근거를 제시</p></div>
-              <div><strong>상품 인텔리전스</strong><p>판매가 이력 추적과 수백~수천 리뷰·경쟁상품 분석 도구 운영</p></div>
-              <div><strong>장애 대응</strong><p>예약 실행, 재시도·이어하기, 알림, 백업·복구와 재처리 흐름 관리</p></div>
+              <div><strong>품질 평가</strong><p>숫자 정확성·합계·근거·추정 구분을 회귀 문항으로 반복 검증</p></div>
+              <div><strong>안전장치</strong><p>허용 테이블·민감 열·기간·행 수를 검사하고 데이터 변경을 차단</p></div>
+              <div><strong>관측·복구</strong><p>로그·실패 알림·재시도·이어하기·백업으로 운영 중 문제를 추적하고 복구</p></div>
+              <div><strong>사용자 정착</strong><p>익숙한 화면과 업무 흐름에 연결하고 사용 피드백을 다음 버전에 반영</p></div>
             </div>
           </article>
         </div>
@@ -197,15 +234,63 @@
       <div class="section-inner">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">SELECTED WORK</p>
-            <h2 id="work-title">회사에 남긴 시스템과 변화</h2>
+            <p class="section-kicker" data-profile-work-kicker>PRODUCTION AI &amp; DATA</p>
+            <h2 id="work-title" data-profile-work-title>AI를 실제 업무에 적용한 경험</h2>
           </div>
-          <p>실사용 여부와 담당 범위를 기준으로 정리했습니다. 회사명과 실제 운영 데이터는 공개 범위에 맞춰 제외했습니다.</p>
+          <p data-profile-work-summary>현업 문제를 정의하고 데이터와 AI를 연결해 서비스로 배포한 뒤, 실사용 피드백과 평가 결과로 개선했습니다.</p>
         </div>
 
         <div class="case-list">
-          <article class="case-study case-featured">
+          <article class="case-study case-featured" data-project-key="jarvis">
             <div class="case-index">01</div>
+            <div class="case-main">
+              <div class="case-title-row">
+                <div><p class="case-label">ENTERPRISE AI AGENT · RAG · NL2SQL · EVAL</p><h3>자비스 사내 AI · 데이터 코파일럿</h3></div>
+                <span class="ownership">사내 실사용 · 고도화 중</span>
+              </div>
+              <p class="case-summary">현업 직원이 판매·광고·재고 데이터를 자연어로 질문하면 관련 코드와 업무 지식을 RAG로 찾고, 필요한 수치는 데이터 사전과 조인 규칙을 바탕으로 SQL을 생성해 조회합니다. SQL이나 데이터 위치를 몰라도 실제 조회값과 기준일·근거를 함께 확인할 수 있는 읽기 전용 AI 에이전트로 구축했습니다.</p>
+              <div class="human-interface">
+                <i data-lucide="messages-square" aria-hidden="true"></i>
+                <div>
+                  <strong>현업 질문을 데이터 조회와 다음 행동으로 연결</strong>
+                  <p>현재 보고 있는 화면과 상품·기간 조건을 질문에 함께 전달하고, 판매 변화·광고 효율·재고·입고를 한 번에 분석해 주의사항과 우선 확인 업무를 답하도록 구성했습니다.</p>
+                </div>
+              </div>
+              <div class="technical-note">
+                <i data-lucide="shield-check" aria-hidden="true"></i>
+                <div><strong>핵심 난점 · 정확한 답변과 안전한 실행</strong><p>LLM 답변만 믿지 않고 허용 테이블·민감 열·기간·행 수를 검사한 뒤 SELECT 조회만 실행합니다. 최종 합계와 부분합을 대조하고, 확인하지 못한 값은 0으로 만들지 않으며 원인과 추정을 구분합니다.</p></div>
+              </div>
+              <div class="case-columns">
+                <div>
+                  <h4>AI 서비스 구현</h4>
+                  <ul class="clean-list">
+                    <li>화면 문맥·업무 용어를 반영한 Prompt·Context 설계</li>
+                    <li>코드·업무 지식 청크 검색과 문맥 랭킹</li>
+                    <li>데이터 사전 기반 NL2SQL과 Tool Calling</li>
+                    <li>빠른 답변과 깊은 분석 경로 구성</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>평가·운영</h4>
+                  <ul class="clean-list">
+                    <li>읽기 전용 SQL 검증과 민감 데이터 접근 차단</li>
+                    <li>92문항으로 숫자·합계·근거·추정 구분 회귀 평가</li>
+                    <li>모델 답변 중단 시 확보한 데이터 기반 제한 답변</li>
+                    <li>실사용 오류와 피드백을 평가 문항으로 환류</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="stack-row" aria-label="사용 기술"><span>Python</span><span>FastAPI</span><span>LLM Tool Calling</span><span>Prompt / Context</span><span>RAG</span><span>NL2SQL</span><span>SQL Guardrails</span><span>Quality Eval</span></div>
+            </div>
+            <aside class="case-proof" aria-label="프로젝트 핵심 지표">
+              <div><strong>In use</strong><span>사내 업무 적용</span></div>
+              <div><strong>92</strong><span>회귀 평가 문항</span></div>
+              <div><strong>Read only</strong><span>안전한 실데이터 조회</span></div>
+            </aside>
+          </article>
+
+          <article class="case-study" data-project-key="data-platform">
+            <div class="case-index">02</div>
             <div class="case-main">
               <div class="case-title-row">
                 <div><p class="case-label">DATA PLATFORM · DATA QUALITY · BACKEND</p><h3>이커머스 통합 데이터 운영 플랫폼</h3></div>
@@ -225,53 +310,30 @@
               </div>
               <div class="case-columns">
                 <div>
-                  <h4>제가 만든 것</h4>
+                  <h4>플랫폼 구현</h4>
                   <ul class="clean-list">
                     <li>마켓·광고·재고 원천 데이터 수집 및 정규화</li>
                     <li>운영 DB와 업무 목적별 조회 데이터셋 구성</li>
                     <li>60개 이상 Google Sheets 탭 자동 업로드·갱신</li>
-                    <li>AWS 서버, 도메인, 배치 실행, 백업·복구 환경</li>
-                    <li>판매·광고·재고·입고 통합 조회·판단 화면</li>
-                    <li>실패 알림, 로그, 재처리 가능한 운영 구조</li>
+                    <li>AWS 서버·도메인·배치·백업·복구 환경</li>
                   </ul>
                 </div>
                 <div>
-                  <h4>업무 효과</h4>
+                  <h4>현업 변화</h4>
                   <ul class="clean-list">
-                    <li>채널별 파일을 찾아 합치고 업로드하던 반복 작업 축소</li>
-                    <li>비개발 실무자도 시트에서 최신 지표를 바로 확인</li>
-                    <li>판매·광고·재고·입고를 함께 보고 업무 우선순위 판단</li>
-                    <li>데이터 누락과 처리 실패를 빠르게 확인</li>
+                    <li>채널별 파일을 합치고 업로드하던 반복 작업 축소</li>
+                    <li>비개발 실무자가 최신 지표를 직접 조회</li>
+                    <li>여러 데이터를 함께 보고 업무 우선순위 판단</li>
+                    <li>데이터 누락과 처리 실패를 빠르게 확인·재처리</li>
                   </ul>
                 </div>
               </div>
               <div class="stack-row" aria-label="사용 기술"><span>Python</span><span>Pandas</span><span>SQL</span><span>FastAPI</span><span>AWS Lightsail</span><span>Google Sheets API</span><span>REST API</span></div>
             </div>
-            <aside class="case-proof" aria-label="프로젝트 핵심 지표">
-              <div><strong>Multi</strong><span>API·CSV·크롤링</span></div>
-              <div><strong>SKU</strong><span>공통 상품 기준</span></div>
-              <div><strong>E2E</strong><span>기획부터 운영</span></div>
-            </aside>
+            <aside class="case-proof"><div><strong>Multi</strong><span>API·CSV·크롤링</span></div><div><strong>60+</strong><span>자동 갱신 업무 탭</span></div><div><strong>E2E</strong><span>기획부터 운영</span></div></aside>
           </article>
 
-          <article class="case-study">
-            <div class="case-index">02</div>
-            <div class="case-main">
-              <div class="case-title-row">
-                <div><p class="case-label">ANALYSIS AGENT · RAG · NL2SQL · EVAL</p><h3>자비스 사내 AI · 데이터 코파일럿</h3></div>
-                <span class="ownership">사내 실사용 · 고도화 중</span>
-              </div>
-              <p class="case-summary">자연어 질문에 맞는 사이트 코드·업무 지식을 RAG로 검색하고, DB 질문은 데이터 사전에서 실제 테이블·열·조인 규칙을 확인한 뒤 SQL을 생성합니다. 생성된 SQL은 읽기 전용 규칙으로 검증·실행하며, 실제 조회값과 근거·기준일을 함께 답하도록 구축했습니다.</p>
-              <div class="case-brief">
-                <p><strong>핵심 구현</strong>코드·문서 청크 검색, 화면 문맥 랭킹, 업무 데이터 사전, 허용 테이블·민감 열·기간·행 수를 검사하는 SQL 검증과 최신 92문항 회귀 평가를 연결했습니다.</p>
-                <p><strong>회사 효과</strong>비개발 직원도 SQL이나 데이터 위치를 몰라도 질문으로 필요한 수치와 기준을 확인해 반복 조회와 설명 시간을 줄입니다.</p>
-              </div>
-              <div class="stack-row"><span>Python</span><span>FastAPI</span><span>LLM Tool Calling</span><span>RAG</span><span>NL2SQL</span><span>SQL Guardrails</span><span>Quality Eval</span></div>
-            </div>
-            <aside class="case-proof"><div><strong>RAG</strong><span>코드·업무 지식 검색</span></div><div><strong>NL2SQL</strong><span>검증 후 실데이터 조회</span></div><div><strong>92</strong><span>최신 회귀 평가 문항</span></div></aside>
-          </article>
-
-          <article class="case-study">
+          <article class="case-study" data-project-key="order-ai">
             <div class="case-index">03</div>
             <div class="case-main">
               <div class="case-title-row">
@@ -336,11 +398,11 @@
     <section class="section experience-section" id="experience" aria-labelledby="experience-title">
       <div class="section-inner experience-layout">
         <div class="experience-heading">
-          <p class="section-kicker">EXPERIENCE</p><h2 id="experience-title">한 역할에서<br>전체 범위를 맡았습니다.</h2><p>2025년 12월부터 이커머스 기업의 AI팀 1인 엔지니어로 개발과 운영을 담당하고 있습니다.</p>
+          <p class="section-kicker">EXPERIENCE &amp; OWNERSHIP</p><h2 id="experience-title">현업과 함께 정의하고,<br>끝까지 운영합니다.</h2><p>2025년 12월부터 이커머스 기업의 AI팀 1인 엔지니어로 내부 고객의 문제 정의부터 서비스 운영까지 담당하고 있습니다.</p>
         </div>
         <div class="experience-content">
           <div class="timeline">
-            <article class="timeline-item current"><div class="timeline-date">2025.12 — 현재</div><div><span class="timeline-state">CURRENT ROLE</span><h3>이커머스 기업 · AI/AX 엔지니어</h3><p>입사 이후 데이터 통합, Python 자동화, AWS 운영, 사내 사이트, 자비스와 발주 AI를 처음부터 구축하고 운영했습니다. AI팀의 1인 엔지니어로 현업 요구 분석부터 개발·배포·장애 대응·개선과 구성원의 AI 활용 지원까지 담당합니다.</p></div></article>
+            <article class="timeline-item current"><div class="timeline-date">2025.12 — 현재</div><div><span class="timeline-state">CURRENT ROLE</span><h3>이커머스 기업 · AI/AX 엔지니어</h3><p>데이터 통합, Python 자동화, AWS 운영, 사내 사이트, 자비스와 발주 AI를 처음부터 구축하고 운영했습니다. AI팀의 1인 엔지니어지만 마케팅·영업·수요예측 등 현업 사용자와 지표·예외·결과 화면을 조율하고, 배포 후 오류와 피드백을 다음 개선에 반영합니다.</p></div></article>
             <article class="timeline-item"><div class="timeline-date">2024.12 — 2025.03</div><div><h3>제조업 기반 빅데이터 분석 실무 심화 · 349시간</h3><p>한국기술사업화진흥협회 과정에서 데이터 파이프라인, 예측 모델, 웹 수집, 분석 서비스 구축을 프로젝트로 수행했습니다.</p></div></article>
             <article class="timeline-item"><div class="timeline-date">2023.12 — 2024.08</div><div><h3>빅데이터 분석가 양성과정 · 952시간</h3><p>한국품질재단 과정에서 Python, SQL, 데이터 수집·정제·시각화, 머신러닝과 분석 프로젝트의 기반을 쌓았습니다.</p></div></article>
             <article class="timeline-item"><div class="timeline-date">2019 — 2025.03</div><div><h3>안동대학교 · 컴퓨터공학 / 정보통계학</h3><p>컴퓨터공학 주전공과 정보통계학 복수전공으로 소프트웨어 개발과 데이터 분석의 기반을 함께 쌓았습니다.</p></div></article>
@@ -360,12 +422,12 @@
 
     <section class="section supporting-work" aria-labelledby="support-title">
       <div class="section-inner">
-        <div class="section-heading compact-heading"><div><p class="section-kicker">BEYOND THE PIPELINE</p><h2 id="support-title">서비스가 실제로 돌아가기 위한 것들</h2></div><p>기능 구현뿐 아니라 접근 통제, 복구, 검증과 사용 환경까지 함께 운영합니다.</p></div>
+        <div class="section-heading compact-heading"><div><p class="section-kicker">CROSS-FUNCTIONAL AX DELIVERY</p><h2 id="support-title">AI가 현업에 정착하기 위한 일</h2></div><p>기능 구현만이 아니라 사용자와의 기준 합의, 안전장치, 운영과 활용 확산까지 맡습니다.</p></div>
         <div class="support-grid">
-          <article><i data-lucide="shield-check" aria-hidden="true"></i><h3>사내 사이트·관리자</h3><p>회원 생성, 비밀번호 변경, OTP 인증, 세션 관리, 접속·작업 로그를 포함한 관리자 기능을 구현했습니다.</p></article>
-          <article><i data-lucide="server-cog" aria-hidden="true"></i><h3>AWS 운영 기반</h3><p>AWS 계정 생성부터 서버·도메인·접근 권한·예약 실행·백업 및 복구 흐름을 직접 구성하고 운영합니다.</p></article>
-          <article><i data-lucide="git-pull-request-arrow" aria-hidden="true"></i><h3>AI-assisted engineering</h3><p>Codex를 문제 분해, 코드 검토, 테스트, PR, 배포 후 재확인에 활용합니다. 생성된 코드보다 검증 가능한 결과와 롤백 가능한 운영을 기준으로 삼습니다.</p></article>
-          <article><i data-lucide="users" aria-hidden="true"></i><h3>사내 AX 확산</h3><p>비개발 직원이 Codex를 업무에 활용할 수 있도록 SSH 연결과 사용 환경을 구성하고 실무 적용을 지원합니다.</p></article>
+          <article><i data-lucide="users" aria-hidden="true"></i><h3>내부 고객과 문제 정의</h3><p>요청 내용을 그대로 개발하지 않고 사용 부서와 지표 기준, 예외 상황, 최종 판단 방식을 맞춘 뒤 화면과 기능으로 구체화합니다.</p></article>
+          <article><i data-lucide="shield-check" aria-hidden="true"></i><h3>Enterprise AI 안전장치</h3><p>읽기 전용 권한, 민감 열 제한, OTP·세션·작업 로그, 근거 표시와 평가 문항으로 데이터와 AI 사용 경계를 관리합니다.</p></article>
+          <article><i data-lucide="server-cog" aria-hidden="true"></i><h3>운영 가능한 서비스</h3><p>AWS 계정부터 서버·도메인·배치·재시도·알림·백업·복구를 구성하고 배포 이후의 장애 대응과 개선까지 책임집니다.</p></article>
+          <article><i data-lucide="workflow" aria-hidden="true"></i><h3>사내 AX 활용 확산</h3><p>비개발 직원이 기존 업무 흐름에서 AI를 사용할 수 있도록 서비스 화면과 사용 환경을 제공하고 Codex 연결·활용도 지원합니다.</p></article>
         </div>
       </div>
     </section>
@@ -373,8 +435,8 @@
     <section class="section architecture-section" id="architecture" aria-labelledby="architecture-title">
       <div class="section-inner">
         <div class="section-heading">
-          <div><p class="section-kicker">END-TO-END OWNERSHIP</p><h2 id="architecture-title">수집에서 의사결정까지 연결합니다.</h2></div>
-          <p>특정 라이브러리보다 데이터가 회사 안에서 움직이는 전체 경로를 설계하고 운영하는 데 집중합니다.</p>
+          <div><p class="section-kicker">END-TO-END ARCHITECTURE</p><h2 id="architecture-title">AI가 답하기까지의<br>전체 경로를 설계합니다.</h2></div>
+          <p>원천 데이터가 정규화·검증되고 업무 화면과 AI의 근거로 사용되는 전체 흐름을 설계하고 운영합니다.</p>
         </div>
         <div class="flow-map" aria-label="데이터 처리 흐름">
           <div class="flow-step"><span>01</span><i data-lucide="plug-zap" aria-hidden="true"></i><h3>Collect</h3><p>API · CSV · 크롤링 · 시트</p></div>
@@ -595,7 +657,7 @@
 
     <section class="section archive-section" aria-labelledby="archive-title">
       <div class="section-inner">
-        <div class="section-heading compact-heading"><div><p class="section-kicker">EARLIER WORK</p><h2 id="archive-title">기반이 된 프로젝트</h2></div><p>데이터 파이프라인, AI 도구와 모델 학습의 기반이 된 프로젝트입니다.</p></div>
+        <div class="section-heading compact-heading"><div><p class="section-kicker">DATA &amp; ML FOUNDATION</p><h2 id="archive-title">AI 서비스의 기반이 된 프로젝트</h2></div><p>데이터 파이프라인, 시계열 예측과 딥러닝 모델 학습의 기반을 쌓은 프로젝트입니다.</p></div>
         <div class="archive-grid">
           <article class="archive-item">
             <img src="images/award_2.jpeg" alt="데이터 파이프라인 기반 리테일 프로젝트 발표 자료" loading="lazy">
@@ -617,10 +679,10 @@
       <div class="section-inner">
         <div class="section-heading compact-heading codex-activity-heading">
           <div>
-            <p class="section-kicker">AI-NATIVE DELIVERY</p>
-            <h2 id="codex-activity-title">AI 도구를 사용하되<br>결과는 검증과 운영으로 증명합니다.</h2>
+            <p class="section-kicker">ENGINEERING DISCIPLINE</p>
+            <h2 id="codex-activity-title">AI로 빠르게 만들고,<br>검증으로 품질을 책임집니다.</h2>
           </div>
-          <p>Codex를 문제 분해와 구현 속도에 활용하고, 테스트·코드 검토·배포 후 재확인으로 결과를 검증합니다. 생성된 코드의 이해와 운영 책임은 직접 맡습니다.</p>
+          <p>Codex를 문제 분해와 구현 속도에 활용하되 테스트·코드 검토·배포 후 재확인으로 품질을 관리합니다. 생성된 코드와 운영 결과에 대한 책임은 직접 맡습니다.</p>
         </div>
 
         <div class="codex-methods" aria-label="AI 활용 개발 과정">
@@ -677,7 +739,7 @@
 
     <section class="section contact-section" id="contact" aria-labelledby="contact-title">
       <div class="section-inner contact-layout">
-        <div><p class="section-kicker">CONTACT</p><h2 id="contact-title">업무를 이해하고,<br>끝까지 운영하는 개발자.</h2><p>AI Engineer (Data/Analytics), AI/AX Engineer 및 데이터 플랫폼·분석 에이전트 포지션을 찾고 있습니다.</p></div>
+        <div><p class="section-kicker">CONTACT</p><h2 id="contact-title" data-profile-contact-title>기업의 문제를 이해하고,<br>운영되는 AI로 해결합니다.</h2><p data-profile-contact-summary>Enterprise AI Service와 AI Agent를 현업 데이터에 연결하는 AI/AX Engineer 포지션을 찾고 있습니다.</p></div>
         <div class="contact-actions">
           <a class="button button-primary" href="mailto:datakdy@gmail.com"><i data-lucide="mail" aria-hidden="true"></i>datakdy@gmail.com</a>
           <button class="button button-secondary" type="button" data-copy-email data-email="datakdy@gmail.com"><i data-lucide="copy" aria-hidden="true"></i>이메일 복사</button>
@@ -696,6 +758,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="js/company-portfolio.js?v=20260907-1" defer></script>
   <script src="js/portfolio.js" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260826-6" defer></script>
