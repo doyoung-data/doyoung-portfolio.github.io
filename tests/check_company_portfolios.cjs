@@ -39,8 +39,14 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       assert.ok(await page.evaluate(() => document.getElementById('work').compareDocumentPosition(document.getElementById('scope')) & Node.DOCUMENT_POSITION_FOLLOWING));
-      assert.ok((await page.locator('[data-project-key="jarvis"]').innerText()).includes('TF-IDF'));
-      assert.ok((await page.locator('[data-project-key="jarvis"]').innerText()).includes('판매 분석 100문항'));
+      const engineering = page.locator('#jarvis-engineering');
+      assert.equal(await engineering.getAttribute('open'), null);
+      await engineering.locator('summary').click();
+      assert.ok((await engineering.innerText()).includes('TF-IDF'));
+      assert.ok((await engineering.innerText()).includes('판매 분석 100문항'));
+      assert.equal(await engineering.locator('.agent-flow > li').count(), 4);
+      assert.equal(await engineering.locator('.engineering-incidents > article').count(), 2);
+      await engineering.locator('summary').click();
       const projectKeys = await page.locator('.case-list > [data-project-key]').evaluateAll(nodes => nodes.map(node => node.dataset.projectKey));
       assert.deepEqual(projectKeys, profile.order);
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
@@ -70,6 +76,13 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
+        await engineering.locator('summary').click();
+        const detailOverflow = await engineering.evaluate(node => {
+          const elements = Array.from(node.querySelectorAll('h4, h5, p, dd, strong, summary'));
+          return document.documentElement.scrollWidth > innerWidth + 1 || elements.some(element => element.scrollWidth > element.clientWidth + 1 && getComputedStyle(element).display !== 'inline');
+        });
+        assert.equal(detailOverflow, false, `${key} @ ${width}: engineering overflow`);
+        await engineering.locator('summary').click();
         if (screenshotDir && [1440, 390].includes(width)) {
           await page.screenshot({ path: path.join(screenshotDir, `${key}-${width}.png`) });
         }
@@ -91,6 +104,18 @@ async function main() {
       const oldTheme = await page.locator('html').getAttribute('data-theme');
       await page.locator('[data-theme-toggle]').click();
       assert.notEqual(await page.locator('html').getAttribute('data-theme'), oldTheme);
+      await engineering.locator('summary').focus();
+      await page.keyboard.press('Enter');
+      assert.notEqual(await engineering.getAttribute('open'), null);
+      if (screenshotDir) {
+        await engineering.screenshot({ path: path.join(screenshotDir, `${key}-engineering-mobile.png`) });
+      }
+      await page.keyboard.press('Enter');
+      await page.locator('[data-open-journey="jarvis"]').click();
+      assert.equal(await page.locator('[data-journey-panel="jarvis"]').isVisible(), true);
+      assert.match(page.url(), /#journey-jarvis$/);
+      await page.locator('[data-ai-prompt="판매처별 판매 합계를 검산해줘"]').click();
+      assert.match(await page.locator('[data-ai-chat] .assistant').last().innerText(), /부분합.*일치/);
       await page.locator('[data-journey-tab="order"]').click();
       assert.equal(await page.locator('[data-journey-panel="order"]').isVisible(), true);
       await page.locator('[data-journey-tab="jarvis"]').click();
@@ -100,6 +125,42 @@ async function main() {
       results.push({ target: key, viewports: 5, menu: 'PASS', theme: 'PASS', demo: 'PASS' });
     }
     assert.equal(summaries.size, 4, 'Project summaries must differ across all four profiles');
+
+    await page.goto(`${baseUrl}#journey-jarvis`, { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('[data-journey-panel="jarvis"]').isVisible(), true);
+    for (const question of ['영업이익이 얼마야?', '오늘 단종된 상품 알려줘', '내일 날씨는?']) {
+      await page.locator('[data-ai-input]').fill(question);
+      await page.locator('[data-ai-form] button').click();
+      assert.match(await page.locator('[data-ai-chat] .assistant').last().innerText(), /원천 자료|범위/);
+    }
+    for (const product of ['tumbler', 'folding-cart', 'neck-band']) {
+      await page.locator('[data-journey-tab="site"]').click();
+      await page.locator(`[data-product-switch="${product}"]`).click();
+      await page.locator('[data-channel][value="own"]').uncheck();
+      await page.locator('[data-demo-form] button[type="submit"]').click();
+      const total = await page.locator('[data-kpi-value="sales"]').innerText();
+      await page.locator('[data-journey-tab="jarvis"]').click();
+      const check = await page.locator('[data-demo-check]').innerText();
+      const subtotals = await page.locator('[data-demo-subtotals]').innerText();
+      const sum = Array.from(subtotals.matchAll(/([\d,]+)개/g)).reduce((value, match) => value + Number(match[1].replaceAll(',', '')), 0);
+      assert.equal(sum, Number(total.replace(/[^\d]/g, '')));
+      assert.ok(check.includes(total));
+      assert.ok(check.endsWith('일치'));
+      assert.ok(!subtotals.includes('자사몰'));
+      assert.ok((await page.locator('[data-demo-scope]').innerText()).includes('2개 판매처'));
+    }
+    if (screenshotDir) {
+      for (const theme of ['light', 'dark']) {
+        if (await page.locator('html').getAttribute('data-theme') !== theme) await page.locator('[data-theme-toggle]').click();
+        for (const width of [1440, 390]) {
+          await page.setViewportSize({ width, height: 1000 });
+          await page.locator('#jarvis-engineering').evaluate(node => { node.open = true; });
+          await page.locator('#jarvis-engineering').screenshot({ path: path.join(screenshotDir, `engineering-${theme}-${width}.png`), style: '.site-header, .skip-link { visibility: hidden !important; }' });
+          await page.locator('.jarvis-demo').screenshot({ path: path.join(screenshotDir, `demo-${theme}-${width}.png`), style: '.site-header, .skip-link { visibility: hidden !important; }' });
+          assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
+        }
+      }
+    }
 
     for (const [query, expected] of [
       ['company=daou-tech', 'daou'], ['target=lg', 'lgcns'], ['target=lotte-innovate', 'lotte'],

@@ -62,6 +62,15 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn("판매 분석 100문항", self.index)
         self.assertIn("통과율이나 답변 정확도를 뜻하지 않습니다", self.index)
 
+    def test_jarvis_engineering_has_cases_scope_and_demo_boundary(self):
+        self.assertEqual(self.index.count('id="jarvis-engineering"'), 1)
+        self.assertIn('data-open-journey="jarvis"', self.index)
+        self.assertIn("실제 실패를 검증 규칙으로 바꾼 두 사례", self.index)
+        self.assertIn("질문 전체를 해결한 것으로 보지 않습니다", self.index)
+        self.assertIn("실제 LLM·사내 DB에는 연결하지 않습니다", self.index)
+        for field in ("scope", "subtotals", "check"):
+            self.assertEqual(self.index.count(f"data-demo-{field}"), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
