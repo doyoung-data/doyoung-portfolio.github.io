@@ -415,6 +415,11 @@ body.menu-open .site-header {
   line-height: 1.85;
 }
 
+html[data-portfolio-target] :is(.hero-statement, .hero-description, .role-fit-intro, .role-fit-list, .role-fit-contribution, .case-summary) {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -710,6 +715,25 @@ html[data-theme="dark"][data-portfolio-target="dbinc"] {
   line-height: 1.8;
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+
+.direction-source:not([hidden]) {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.case-eval-note {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .section {

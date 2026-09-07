@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260907-1">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260907-3">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -170,7 +170,7 @@
           </div>
           <div class="role-fit-contribution">
             <span>CONTRIBUTION</span>
-            <div><strong data-profile-contribution-title>입사 후 기여할 수 있는 일</strong><p data-profile-contribution-body>현업의 문제를 빠르게 구조화하고 데이터와 AI를 연결해, 실제 사용자가 계속 활용할 수 있는 서비스로 만들겠습니다.</p></div>
+            <div><strong data-profile-contribution-title>입사 후 기여할 수 있는 일</strong><p data-profile-contribution-body>현업의 문제를 빠르게 구조화하고 데이터와 AI를 연결해, 실제 사용자가 계속 활용할 수 있는 서비스로 만들겠습니다.</p><a class="direction-source" data-profile-direction-source target="_blank" rel="noopener noreferrer" hidden></a></div>
           </div>
         </div>
       </div>
@@ -265,7 +265,7 @@
                   <h4>AI 서비스 구현</h4>
                   <ul class="clean-list">
                     <li>화면 문맥·업무 용어를 반영한 Prompt·Context 설계</li>
-                    <li>코드·업무 지식 청크 검색과 문맥 랭킹</li>
+                    <li>코드 검색과 TF-IDF 기반 문서 RAG, 문서명·수정일을 포함한 근거 제공</li>
                     <li>데이터 사전 기반 NL2SQL과 Tool Calling</li>
                     <li>빠른 답변과 깊은 분석 경로 구성</li>
                   </ul>
@@ -276,10 +276,11 @@
                     <li>읽기 전용 SQL 검증과 민감 데이터 접근 차단</li>
                     <li>92문항으로 숫자·합계·근거·추정 구분 회귀 평가</li>
                     <li>모델 답변 중단 시 확보한 데이터 기반 제한 답변</li>
-                    <li>실사용 오류와 피드백을 평가 문항으로 환류</li>
+                    <li>판매 분석 100문항·보안 시나리오 평가셋 구성, 실사용 피드백 반영</li>
                   </ul>
                 </div>
               </div>
+              <p class="case-eval-note">문서 검색은 업무 기준을 찾는 데 사용하고, 최신 수치는 읽기 전용 데이터 조회로 확인합니다. 평가 문항 수는 테스트 범위이며, 통과율이나 답변 정확도를 뜻하지 않습니다.</p>
               <div class="stack-row" aria-label="사용 기술"><span>Python</span><span>FastAPI</span><span>LLM Tool Calling</span><span>Prompt / Context</span><span>RAG</span><span>NL2SQL</span><span>SQL Guardrails</span><span>Quality Eval</span></div>
             </div>
             <aside class="case-proof" aria-label="프로젝트 핵심 지표">
@@ -405,7 +406,7 @@
             <article class="timeline-item current"><div class="timeline-date">2025.12 — 현재</div><div><span class="timeline-state">CURRENT ROLE</span><h3>이커머스 기업 · AI/AX 엔지니어</h3><p>데이터 통합, Python 자동화, AWS 운영, 사내 사이트, 자비스와 발주 AI를 처음부터 구축하고 운영했습니다. AI팀의 1인 엔지니어지만 마케팅·영업·수요예측 등 현업 사용자와 지표·예외·결과 화면을 조율하고, 배포 후 오류와 피드백을 다음 개선에 반영합니다.</p></div></article>
             <article class="timeline-item"><div class="timeline-date">2024.12 — 2025.03</div><div><h3>제조업 기반 빅데이터 분석 실무 심화 · 349시간</h3><p>한국기술사업화진흥협회 과정에서 데이터 파이프라인, 예측 모델, 웹 수집, 분석 서비스 구축을 프로젝트로 수행했습니다.</p></div></article>
             <article class="timeline-item"><div class="timeline-date">2023.12 — 2024.08</div><div><h3>빅데이터 분석가 양성과정 · 952시간</h3><p>한국품질재단 과정에서 Python, SQL, 데이터 수집·정제·시각화, 머신러닝과 분석 프로젝트의 기반을 쌓았습니다.</p></div></article>
-            <article class="timeline-item"><div class="timeline-date">2019 — 2025.03</div><div><h3>안동대학교 · 컴퓨터공학 / 정보통계학</h3><p>컴퓨터공학 주전공과 정보통계학 복수전공으로 소프트웨어 개발과 데이터 분석의 기반을 함께 쌓았습니다.</p></div></article>
+            <article class="timeline-item" data-academic-identity><div class="timeline-date">2019 — 2025.03</div><div><h3>안동대학교 · 컴퓨터공학 / 정보통계학</h3><p>컴퓨터공학 주전공과 정보통계학 복수전공으로 소프트웨어 개발과 데이터 분석의 기반을 함께 쌓았습니다.</p></div></article>
           </div>
           <div class="credentials" aria-labelledby="credentials-title">
             <div class="credentials-title"><i data-lucide="badge-check" aria-hidden="true"></i><h3 id="credentials-title">자격·교육</h3></div>
@@ -413,7 +414,7 @@
               <li><strong>Google Analytics Certification</strong><span>Google · 2024.11</span></li>
               <li><strong>SQLD</strong><span>한국데이터산업진흥원 · 2024.04</span></li>
               <li><strong>ADsP</strong><span>한국데이터산업진흥원 · 2023.09</span></li>
-              <li><strong>Tableau 데이터 시각화 과정</strong><span>안동대학교 · 2023.06</span></li>
+              <li data-academic-identity><strong>Tableau 데이터 시각화 과정</strong><span>안동대학교 · 2023.06</span></li>
             </ul>
           </div>
         </div>
@@ -758,7 +759,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20260907-1" defer></script>
+  <script src="js/company-portfolio.js?v=20260907-3" defer></script>
   <script src="js/portfolio.js" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260826-6" defer></script>

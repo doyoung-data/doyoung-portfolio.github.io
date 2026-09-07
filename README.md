@@ -13,8 +13,33 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 - LG CNS AI(AX): https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=lgcns
 - 롯데이노베이트 AI 서비스 엔지니어: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=lotte
 - DB Inc. S/W엔지니어(AX): https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=dbinc
+- 다우기술 AI 개발: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=daou
 
-각 주소는 첫 화면의 지원 문구, 직무 적합 근거, 기여 방향, 프로젝트 우선순위와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다.
+각 주소는 첫 화면, 직무 적합 근거, 기여 방향, 대표 프로젝트 설명·순서와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다. 다른 지원 회사로 이동하는 메뉴는 노출하지 않습니다.
+
+| 지원 직무 | 강조 내용 | 대표 프로젝트 순서 |
+| --- | --- | --- |
+| LG CNS AI(AX) | 현업 문제 정의, AI 구현, 근거 검증과 품질 개선 | 자비스 → 데이터 플랫폼 → 발주 AI |
+| 롯데이노베이트 AI 서비스 | REST API, 데이터 파이프라인, 인증과 AWS 운영 | 데이터 플랫폼 → 자비스 → 발주 AI |
+| DB Inc. AX | Agent 도구 호출, 읽기 전용 검증, 사람의 최종 판단 | 자비스 → 발주 AI → 데이터 플랫폼 |
+| 다우기술 AI 개발 | 커머스 상품 기준 통합, 사내 업무 AI, 사용자 피드백 | 자비스 → 데이터 플랫폼 → 발주 AI |
+
+롯데용 화면에서는 학교·학과와 교내 과정 항목을 제거합니다. 이는 해당 화면의 표기 조정이며, 연결된 외부 GitHub·블로그까지 익명화하지는 않습니다. 실제 첨부 문서와 지원서도 별도로 블라인드 기준을 확인해야 합니다.
+
+기존 경험을 회사별로 해석하되 GCP·Vertex AI·Kubernetes·모델 서빙 등 미확인 기술을 수행 경험에 추가하지 않습니다. 발주 AI는 추천·검토 지원이며 최종 발주 자동 실행으로 표현하지 않습니다. `92문항`은 기존 평가 문항 수이며 통과율이나 정확도를 뜻하지 않습니다.
+
+직무 참고: [LG CNS 채용 안내](https://stat.yonsei.ac.kr/stat/board/job.do?articleNo=478661&mode=view), [롯데 공식 공고](https://recruit.lotte.co.kr/apply/announcement/detail/21933850?compcd=30007), [DB Inc. 공식 공고](https://dbgroup.recruiter.co.kr/career/jobs/125826), [다우기술 공식 직무 소개](https://blog.naver.com/daoustory/224384496875).
+
+### 2026 방향 반영 기준
+
+기업 소개가 포트폴리오를 대신하지 않도록 회사 방향은 기여 문단 한 곳에만 반영했습니다. 회사별 화면은 직무 요약 다음에 대표 프로젝트가 먼저 나오고, 상세 개발 과정이 이어집니다.
+
+- LG CNS: [2026 신년사 보도](https://v.daum.net/v/20260102155844904)의 프로젝트 실행 역량과 [공식 AX Fair 2026](https://www.lgcns.com/kr/moa/event/detail.245)의 현장 적용 방향을 참고했습니다. 사이트에는 공식 행사 자료를 연결합니다.
+- 롯데이노베이트: [2026 롯데그룹 신년사](https://www.lotte.co.kr/pr/newsView.do?srchNewsSeq=1697)의 AI 내재화·실행 방향을 참고했습니다. 계열사 대표의 신년사로 표기하지 않습니다.
+- DB Inc.: 2026 신년사 원문을 확인하지 못해 [공식 AI Agent 서비스](https://agent.dbinc.co.kr/)와 공고를 참고했습니다.
+- 다우기술: 2026 신년사 원문을 확인하지 못해 [공식 AX개발팀 직무 소개](https://blog.naver.com/daoustory/224384496875)를 참고했습니다.
+
+2026-09-07 코드 점검 기준, 자비스의 문서 검색은 TF-IDF와 제목·본문 일치 점수를 사용하며 문서명·수정일을 컨텍스트로 제공합니다. 임베딩 모델 기반 검색이나 Vector DB 운영 경험으로 확대해 표현하지 않습니다. 기본 92문항과 판매 분석 100문항은 별도 평가셋이며, 중복 제거한 총 문항 수나 전체 통과율로 합산하지 않습니다. 신규 개선 제안은 구현·검증 전까지 수행 실적으로 공개하지 않습니다.
 
 ## 주요 내용
 
@@ -31,7 +56,7 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 
 ## 공개 원칙
 
-회사명, 계정, 실제 상품, 매출, 재고, 내부 URL과 운영 소스는 포함하지 않습니다. 화면에 표시되는 상품명과 수치는 포트폴리오용 합성 데이터입니다.
+재직 회사명, 계정, 실제 상품, 매출, 재고, 내부 URL과 운영 소스는 포함하지 않습니다. 지원 대상 회사명은 맞춤 주소에서만 표시합니다. 데모 화면의 상품명과 수치는 포트폴리오용 합성 데이터입니다.
 
 ## 로컬 실행
 
@@ -77,4 +102,12 @@ Unregister-ScheduledTask -TaskName "DoyoungPortfolioCodexActivity" -Confirm:$fal
 python -m unittest discover -s tests -v
 node --check js/company-portfolio.js
 ```
+
+Playwright가 설치된 환경에서는 로컬 서버 실행 후 회사별 렌더링·모바일·메뉴·테마·데모를 확인할 수 있습니다.
+
+```powershell
+node tests/check_company_portfolios.cjs
+```
+
+`PORTFOLIO_TEST_URL`로 테스트 주소, `PORTFOLIO_BROWSER_CHANNEL`로 설치된 브라우저(`msedge` 등), `PORTFOLIO_SCREENSHOTS`로 선택적 스크린샷 출력 폴더를 지정할 수 있습니다.
 
