@@ -156,51 +156,56 @@
     daou: {
       company: "다우기술",
       role: "AI 개발",
-      title: "권도영 | 다우기술 AI 개발 지원 포트폴리오",
-      description: "이커머스 현업의 데이터 통합, 사내 AI Agent와 업무 자동화 서비스를 직접 구축·운영한 권도영의 다우기술 AI 개발 지원 포트폴리오입니다.",
-      brand: "다우기술 · AI 개발",
-      eyebrow: "다우기술 AI 개발 · 지원 포트폴리오",
-      statement: "판매자의 복잡한 업무를 이해하고,<br>데이터와 AI로 연결합니다.",
-      heroDescription: "이커머스 기업 AI팀의 1인 개발자로 판매·광고·재고 데이터를 통합하고, 자비스와 발주 검토 AI를 구축했습니다. 실무자가 상품과 지표를 직접 비교하고 다음 업무를 판단할 수 있도록 시트·통계 사이트·AI를 연결했습니다.",
-      note: "직접 수행 · 커머스 데이터 · 사내 AI · 업무 자동화",
+      title: "권도영 | 다우기술 AI 개발 신입 지원 포트폴리오",
+      description: "데이터·AI 전문교육을 바탕으로 사내 AI와 데이터 서비스를 기획·개발·배포하고, 현업 피드백과 답변 검증으로 개선한 권도영의 다우기술 AI 개발 신입 지원 포트폴리오입니다.",
+      brand: "다우기술 · AI 개발 신입",
+      eyebrow: "다우기술 AI 개발 신입 · 지원 포트폴리오",
+      statement: "기획부터 배포까지,<br>현업이 쓰는 AI를 만듭니다.",
+      heroDescription: "이커머스 기업 AI팀의 1인 개발자로 현업의 요구를 정리하고, 데이터 통합부터 자비스·발주 검토 AI의 개발과 AWS 배포·운영까지 맡았습니다. 사용 중 발견한 숫자 오류와 답변 중단을 평가 문항으로 재현하고, 데이터 처리와 응답 검증을 개선했습니다.",
+      note: "직접 수행 · 요구사항 정리 → 데이터·AI 개발 → 배포 → 검증·개선",
       consoleFile: "daou_ai_development_fit.yml",
-      console: '<span class="code-key">현업</span>  판매 · 마케팅 · 재고 · 발주\n<span class="code-key">데이터</span>  판매처별 상품·옵션 기준 통합\n<span class="code-key">AI</span>  자연어 조회 · 근거 · 검토안\n<span class="code-key">적용</span>  업무 화면과 사용자 피드백',
+      console: '<span class="code-key">이해</span>  현업의 질문 · 지표 · 예외\n<span class="code-key">구현</span>  데이터 통합 · AI · 업무 화면\n<span class="code-key">검증</span>  숫자 대조 · 근거 · 실패 재현\n<span class="code-key">운영</span>  AWS · 권한 · 로그 · 피드백',
       fitKicker: "DAOU TECH · POSITION FIT",
-      fitTitle: "커머스 현장의 문제를<br>AI 기능으로 연결한 경험",
-      fitSummary: "상품 기준이 다른 판매처 데이터를 연결하고, 담당자의 반복 조회와 비교·검토를 돕는 서비스를 만들었습니다.",
+      fitTitle: "기본기에서<br>실무와 운영까지",
+      fitSummary: "전문교육에서 익힌 데이터·AI 기본기를 사내 서비스로 구현했습니다. 배포 후에는 실제 질문과 오류를 바탕으로 품질을 개선했습니다.",
       fitItems: [
         {
-          label: "사내 업무 AI",
-          heading: "업무 데이터에 답하는 자비스",
-          body: "판매·광고·재고 질문을 업무 지식 검색과 실데이터 조회로 연결했습니다. 답변의 근거와 기준일을 제공하고 오류 사례를 반복 검증했습니다."
+          label: "기획부터 배포까지",
+          heading: "데이터·AI·사용자 화면을 직접 연결",
+          body: "여러 자료를 대조하던 판매·광고·재고 업무를 자비스와 통계 화면으로 연결했습니다. Python·FastAPI 개발과 AWS 환경 구성부터 배포 후 오류 대응까지 담당했습니다."
         },
         {
-          label: "커머스 데이터 이해",
-          heading: "상품·옵션·번들의 서로 다른 기준 통합",
-          body: "채널별 상품코드와 옵션·세트 구성을 매핑하고 판매·광고비·재고·입고를 함께 조회하도록 구성했습니다. 수집 자동화보다 어려웠던 기준 통합을 직접 해결했습니다."
+          label: "데이터와 답변 품질",
+          heading: "모델 응답을 원천 데이터와 대조",
+          body: "상품·옵션·기간 기준을 맞추고, 답변의 합계·부분합·근거를 검증했습니다. 누락값은 0과 구분하고, 답변 중단 시 확인한 수치만 제공하도록 보강했습니다."
         },
         {
-          label: "사용자 중심 개발",
-          heading: "실무자가 직접 쓰는 화면과 도구",
-          body: "통계 사이트와 Google Sheets에 지표를 제공하고, 발주 검토 AI·가격 추적·리뷰 분석 도구를 개발했습니다. 현업 피드백을 기능과 예외 처리에 반영했습니다."
+          label: "기본기와 협업",
+          heading: "교육에서 익히고 현업과 함께 검증",
+          body: "952시간·349시간의 빅데이터 전문교육에서 Python·SQL·머신러닝·파이프라인을 학습했습니다. 실무에서는 마케팅·영업·수요예측 담당자와 지표·예외 기준을 맞추고 피드백을 반영했습니다."
         }
       ],
       contributionTitle: "다우기술에서 기여하고 싶은 방향",
-      contributionBody: "판매·광고·재고 업무의 데이터가 왜 어긋나는지 직접 해결해온 경험을 활용하겠습니다. 다우오피스·사방넷 등 업무·커머스 서비스의 사용자 문제를 이해하고, 실제 업무를 돕는 AI 기능 개발과 품질 개선에 기여하겠습니다.",
-      directionSource: { label: "참고 · 다우기술 AX개발팀 직무 소개", url: "https://blog.naver.com/daoustory/224384496875" },
-      scopeKicker: "COMMERCE & BUSINESS AI",
-      scopeTitle: "현업의 문제를 이해하고,<br>사용자가 쓰는 기능으로 만듭니다.",
-      scopeSummary: "상품 기준과 업무 예외를 데이터 처리 규칙으로 정리하고, AI의 답변이 실제 화면과 검토 업무로 이어지도록 구현했습니다.",
+      contributionBody: "사내에서 사용자 요구를 AI 기능으로 바꿔온 경험을 AX개발팀의 B2B 서비스 프로젝트로 넓히고 싶습니다. 서비스별 업무와 데이터 기준을 먼저 배우고, 모델·백엔드 담당자와 구현·검증 기준을 맞추겠습니다. 맡은 기능은 배포 후 피드백까지 확인하며 개선하겠습니다.",
+      directionSource: { label: "참고 · AX개발팀 면접관 인터뷰", url: "https://blog.naver.com/daoustory/224389961466" },
+      supportingSource: { label: "참고 · AI 개발 선배 인터뷰", url: "https://blog.naver.com/daoustory/224388659565" },
+      experienceTitle: "교육에서 쌓은 기본기,<br>현업과 함께 쌓은 경험",
+      experienceSummary: "컴퓨터공학·정보통계학과 두 전문교육 과정에서 개발·분석의 기반을 쌓았습니다. 2025년 12월부터 이를 사내 서비스에 적용하며 데이터·응답 오류를 직접 확인하고 개선하고 있습니다.",
+      foundationTitle: "데이터 처리부터 모델 학습까지 쌓은 기본기",
+      foundationSummary: "파이프라인·시계열 예측·객체 탐지 프로젝트에서 데이터를 다루고 모델 결과를 확인하는 과정을 익혔습니다. 교육 프로젝트와 사내 운영 경험은 구분해 정리했습니다.",
+      scopeKicker: "BUILD · VERIFY · OPERATE",
+      scopeTitle: "한 번의 구현에서<br>운영과 개선으로 이어갑니다.",
+      scopeSummary: "요구사항과 업무 예외를 먼저 정리하고, 데이터·AI·화면을 연결했습니다. 이후에는 권한·로그·백업을 관리하고 실제 사용 중 발견한 문제를 검증 규칙에 반영했습니다.",
       workKicker: "DAOU TECH · RELEVANT EXPERIENCE",
-      workTitle: "커머스 데이터에서 사내 AI까지",
-      workSummary: "자비스, 상품·채널 데이터 통합, 발주 검토를 중심으로 이커머스 현업에 적용한 개발 경험을 정리했습니다.",
-      contactTitle: "다우기술의 업무·커머스 서비스에<br>사용자가 체감하는 AI를 더하겠습니다.",
-      contactSummary: "현업의 반복 작업과 데이터 문제를 이해한 경험으로, 실무에 적용할 AI 기능을 개발하고 사용자 피드백을 반영하겠습니다.",
+      workTitle: "실제 사용과 오류에서 배운 세 프로젝트",
+      workSummary: "자비스의 응답 검증, 서로 다른 데이터 기준의 통합, 담당자가 최종 판단하는 발주 검토를 직접 구현했습니다.",
+      contactTitle: "다우기술에서 함께 배우며,<br>맡은 AI 기능을 끝까지 개선하겠습니다.",
+      contactSummary: "모르는 부분은 묻고 직접 검증하겠습니다. 현업과 소통하며 서비스를 운영해온 경험을 바탕으로, 모델·백엔드 동료와 함께 사용자가 믿고 활용할 수 있는 AI를 만들겠습니다.",
       projectOrder: ["jarvis", "data-platform", "order-ai"],
       projectSummaries: {
-        jarvis: "마케팅·영업·수요예측 담당자가 여러 자료를 찾아보던 업무를 자연어 데이터 조회로 연결했습니다. 판매·광고비·재고를 질문하면 업무 지식과 실제 조회값을 함께 활용해 답하도록 구현했습니다. 사용자의 화면 문맥을 반영하고 근거·기준일·예외를 제시하며 고도화하고 있습니다.",
-        "data-platform": "판매처마다 다른 상품코드·옵션·세트 구성을 공통 기준으로 연결한 이커머스 데이터 플랫폼입니다. 판매·광고비·사내 및 쿠팡 재고·입고 예정 물량을 한 화면에서 비교하도록 구현했습니다. 실무자가 익숙한 Google Sheets에도 결과를 자동 제공해 반복 정리 작업을 줄였습니다.",
-        "order-ai": "판매 흐름과 재고·입고 예정·배송 기간·최소 주문수량을 함께 확인하는 발주 검토 AI를 개발했습니다. 담당자가 자료를 모으는 대신 추천량과 근거·주의 상품부터 검토하도록 구성하고, 업무 예외와 최종 판단은 사람이 확인하도록 적용했습니다."
+        jarvis: "담당자가 판매·광고·재고를 자연어로 묻는 사내 AI를 기획·개발·배포했습니다. 운영 중 숫자 오류와 빈 응답을 경험하며 모델 연결뿐 아니라 데이터 기준과 결과 검증이 중요함을 배웠습니다. 합계 대조·읽기 전용 권한·근거 표시·제한 답변을 보강했고, 복잡한 질문의 완결성은 별도로 검증하며 개선 중입니다.",
+        "data-platform": "같은 상품도 판매처마다 코드·옵션·세트 구성이 달라 수집만으로는 비교할 수 없었습니다. 공통 SKU·기간 기준을 정리하고 누락·실패와 실제 0을 구분해 DB에 연결했습니다. 판매·광고비·재고·입고 정보를 통계 화면과 Google Sheets에 함께 제공해 담당자가 직접 비교하도록 구현했습니다.",
+        "order-ai": "현업의 발주 검토를 돕기 위해 판매·재고·입고 예정·배송 기간·최소 주문수량을 함께 반영하는 AI를 처음부터 구축했습니다. 추천량과 판단 근거·예외 상품을 제시하고 최종 결정은 담당자가 내리도록 적용했습니다. 현업 피드백으로 검토 기준을 조정하며 고도화하고 있습니다."
       }
     }
   };
@@ -313,6 +318,17 @@
       sourceLink.href = profile.directionSource.url;
       sourceLink.hidden = false;
     }
+    const supportingLink = document.querySelector("[data-profile-supporting-source]");
+    if (supportingLink && profile.supportingSource) {
+      supportingLink.textContent = profile.supportingSource.label;
+      supportingLink.href = profile.supportingSource.url;
+      supportingLink.hidden = false;
+    }
+
+    setHtml("[data-profile-experience-title]", profile.experienceTitle);
+    setText("[data-profile-experience-summary]", profile.experienceSummary);
+    setText("[data-profile-foundation-title]", profile.foundationTitle);
+    setText("[data-profile-foundation-summary]", profile.foundationSummary);
 
     setText("[data-profile-scope-kicker]", profile.scopeKicker);
     setHtml("[data-profile-scope-title]", profile.scopeTitle);

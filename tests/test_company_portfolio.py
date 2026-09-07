@@ -71,6 +71,18 @@ class CompanyPortfolioTests(unittest.TestCase):
         for field in ("scope", "subtotals", "check"):
             self.assertEqual(self.index.count(f"data-demo-{field}"), 1)
 
+    def test_daou_interview_content_preserves_new_grad_and_evidence_scope(self):
+        daou = self.script.split("    daou: {", 1)[1].split("  const aliases", 1)[0]
+        self.assertIn("AI 개발 신입", daou)
+        for post_id in ("224388659565", "224389961466"):
+            self.assertIn(f"https://blog.naver.com/daoustory/{post_id}", daou)
+        for evidence in ("952시간·349시간", "복잡한 질문의 완결성", "마케팅·영업·수요예측"):
+            self.assertIn(evidence, daou)
+        for unsupported in ("LLM 게이트웨이를 구축", "모델 서빙을 구축", "정확도 100%", "비용을 절감했습니다"):
+            self.assertNotIn(unsupported, daou)
+        for field in ("experience-title", "experience-summary", "foundation-title", "foundation-summary", "supporting-source"):
+            self.assertEqual(self.index.count(f"data-profile-{field}"), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

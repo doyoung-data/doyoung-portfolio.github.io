@@ -727,6 +727,10 @@ html[data-theme="dark"][data-portfolio-target="dbinc"] {
   text-underline-offset: 3px;
 }
 
+.direction-source + .direction-source:not([hidden]) {
+  margin-inline-start: 16px;
+}
+
 .case-eval-note {
   margin: 20px 0 0;
   color: var(--muted);

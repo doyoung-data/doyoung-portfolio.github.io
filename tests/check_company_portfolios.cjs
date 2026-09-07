@@ -38,6 +38,20 @@ async function main() {
       assert.ok((await page.locator('[data-profile-description]').innerText()).includes('1인 개발자'));
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
+      const supportingSource = page.locator('[data-profile-supporting-source]');
+      assert.equal(await supportingSource.isVisible(), key === 'daou');
+      if (key === 'daou') {
+        assert.ok((await page.title()).includes('AI 개발 신입'));
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
+        assert.equal(await supportingSource.getAttribute('href'), 'https://blog.naver.com/daoustory/224388659565');
+        assert.match(await page.locator('[data-profile-fit-body="2"]').innerText(), /952시간·349시간/);
+        assert.match(await page.locator('[data-profile-experience-title]').innerText(), /교육에서 쌓은 기본기/);
+        assert.match(await page.locator('[data-profile-foundation-title]').innerText(), /모델 학습/);
+        assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /복잡한 질문의 완결성/);
+      } else {
+        assert.match(await page.locator('[data-profile-experience-title]').innerText(), /현업과 함께 정의하고/);
+        assert.equal(await page.locator('[data-profile-foundation-title]').innerText(), 'AI 서비스의 기반이 된 프로젝트');
+      }
       assert.ok(await page.evaluate(() => document.getElementById('work').compareDocumentPosition(document.getElementById('scope')) & Node.DOCUMENT_POSITION_FOLLOWING));
       const engineering = page.locator('#jarvis-engineering');
       assert.equal(await engineering.getAttribute('open'), null);
@@ -84,6 +98,7 @@ async function main() {
         assert.equal(detailOverflow, false, `${key} @ ${width}: engineering overflow`);
         await engineering.locator('summary').click();
         if (screenshotDir && [1440, 390].includes(width)) {
+          await page.evaluate(() => window.scrollTo(0, 0));
           await page.screenshot({ path: path.join(screenshotDir, `${key}-${width}.png`) });
         }
       }
@@ -173,6 +188,7 @@ async function main() {
       if (!expected) {
         assert.equal(await page.locator('[data-academic-identity]').count(), 2);
         assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), false);
+        assert.equal(await page.locator('[data-profile-supporting-source]').isVisible(), false);
       }
     }
     assert.deepEqual(errors, []);
