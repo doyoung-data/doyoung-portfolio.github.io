@@ -48,6 +48,13 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertEqual(self.index.count("data-academic-identity"), 2)
         self.assertIn("blindRecruitment: true", self.script)
 
+    def test_graduation_month_is_distinct_from_training_end_month(self):
+        self.assertIn(
+            'data-academic-identity><div class="timeline-date">2019 — 2025.02</div>',
+            self.index,
+        )
+        self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
+
     def test_every_profile_has_project_specific_summaries(self):
         self.assertEqual(self.script.count("projectSummaries: {"), 4)
 
