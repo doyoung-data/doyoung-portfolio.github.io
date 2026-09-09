@@ -9,7 +9,8 @@ const profiles = {
   lgcns: { company: 'LG CNS', order: ['jarvis', 'data-platform', 'order-ai'] },
   lotte: { company: '롯데이노베이트', order: ['data-platform', 'jarvis', 'order-ai'] },
   dbinc: { company: 'DB Inc.', order: ['jarvis', 'order-ai', 'data-platform'] },
-  daou: { company: '다우기술', order: ['jarvis', 'data-platform', 'order-ai'] }
+  daou: { company: '다우기술', order: ['jarvis', 'data-platform', 'order-ai'] },
+  sempio: { company: '샘표', order: ['data-platform', 'order-ai', 'jarvis'] }
 };
 
 async function main() {
@@ -39,7 +40,7 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
-      assert.equal(await supportingSource.isVisible(), key === 'daou');
+      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio'].includes(key));
       if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
@@ -48,6 +49,16 @@ async function main() {
         assert.match(await page.locator('[data-profile-experience-title]').innerText(), /교육에서 쌓은 기본기/);
         assert.match(await page.locator('[data-profile-foundation-title]').innerText(), /모델 학습/);
         assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /복잡한 질문의 완결성/);
+      } else if (key === 'sempio') {
+        assert.ok((await page.title()).includes('플랫폼 개발자'));
+        assert.match(await page.locator('[data-profile-experience-title]').innerText(), /설계를 바꾼 경험/);
+        assert.match(await page.locator('[data-profile-foundation-title]').innerText(), /웹 서비스와 데이터 처리/);
+        assert.match(await page.locator('.hero-metrics').innerText(), /Web · API/);
+        assert.ok(!(await page.locator('.hero-metrics').innerText()).includes('92'));
+        assert.equal(await supportingSource.getAttribute('href'), 'https://sempio.recruiter.co.kr/career/jobs/127143');
+        assert.equal(await page.locator('.operating-lane:nth-child(2) header strong').innerText(), '데이터·웹 시스템 개발');
+        assert.equal(await page.locator('[data-profile-current-role]').innerText(), '이커머스 기업 · AI팀 매니저');
+        assert.match(await page.locator('[data-profile-scope-summary]').innerText(), /Codex.*결과 검증/);
       } else {
         assert.match(await page.locator('[data-profile-experience-title]').innerText(), /현업과 함께 정의하고/);
         assert.equal(await page.locator('[data-profile-foundation-title]').innerText(), 'AI 서비스의 기반이 된 프로젝트');
@@ -66,6 +77,7 @@ async function main() {
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
+      assert.equal(await page.locator('[data-profile-only="sempio"]').isVisible(), key === 'sempio');
       if (key === 'lotte') {
         assert.ok(!/안동대학교|정보통계학|주전공|복수전공/.test(await page.locator('body').innerText()));
       }
@@ -90,6 +102,14 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
+        if (key === 'sempio') {
+          const platformDetail = page.locator('#platform-engineering');
+          await platformDetail.locator('summary').click();
+          assert.match(await platformDetail.innerText(), /기존 시트를 선호하던 일부 직원/);
+          assert.match(await platformDetail.innerText(), /상품 식별정보·가격·수집시간/);
+          assert.equal(await platformDetail.evaluate(node => Array.from(node.querySelectorAll('h4, h5, dd')).some(element => element.scrollWidth > element.clientWidth + 1)), false);
+          await platformDetail.locator('summary').click();
+        }
         await engineering.locator('summary').click();
         const detailOverflow = await engineering.evaluate(node => {
           const elements = Array.from(node.querySelectorAll('h4, h5, p, dd, strong, summary'));
@@ -106,6 +126,16 @@ async function main() {
       if (screenshotDir) {
         await page.setViewportSize({ width: 1440, height: 1000 });
         await page.locator('#position-fit').screenshot({ path: path.join(screenshotDir, `${key}-fit.png`) });
+        if (key === 'sempio') {
+          await page.locator('[data-project-key="data-platform"]').screenshot({ path: path.join(screenshotDir, 'sempio-platform.png') });
+          await page.setViewportSize({ width: 390, height: 844 });
+          const platformDetail = page.locator('#platform-engineering');
+          await platformDetail.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          assert.notEqual(await platformDetail.getAttribute('open'), null);
+          await platformDetail.screenshot({ path: path.join(screenshotDir, 'sempio-platform-mobile.png') });
+          await page.keyboard.press('Enter');
+        }
         await page.setViewportSize({ width: 390, height: 844 });
         await page.locator('[data-project-key="jarvis"]').evaluate(node => window.scrollTo(0, node.getBoundingClientRect().top + window.scrollY - 90));
         await page.screenshot({ path: path.join(screenshotDir, `${key}-jarvis-mobile.png`) });
@@ -137,9 +167,15 @@ async function main() {
       assert.equal(await page.locator('[data-journey-panel="jarvis"]').isVisible(), true);
       await page.locator('[data-journey-tab="site"]').click();
       assert.equal(await page.locator('[data-journey-panel="site"]').isVisible(), true);
+      if (key === 'sempio') {
+        await page.locator('[data-journey-tab="jarvis"]').click();
+        await page.locator('[data-open-journey="site"]').click();
+        assert.equal(await page.locator('[data-journey-panel="site"]').isVisible(), true);
+        assert.match(page.url(), /target=sempio#journey-site$/);
+      }
       results.push({ target: key, viewports: 5, menu: 'PASS', theme: 'PASS', demo: 'PASS' });
     }
-    assert.equal(summaries.size, 4, 'Project summaries must differ across all four profiles');
+    assert.equal(summaries.size, Object.keys(profiles).length, 'Project summaries must differ across profiles');
 
     await page.goto(`${baseUrl}#journey-jarvis`, { waitUntil: 'networkidle' });
     assert.equal(await page.locator('[data-journey-panel="jarvis"]').isVisible(), true);
@@ -180,6 +216,7 @@ async function main() {
     for (const [query, expected] of [
       ['company=daou-tech', 'daou'], ['target=lg', 'lgcns'], ['target=lotte-innovate', 'lotte'],
       ['target=db', 'dbinc'], ['target=%20DAOU%20', 'daou'],
+      ['company=sempio-platform', 'sempio'], ['target=%20SEMPIO%20', 'sempio'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {
@@ -192,7 +229,7 @@ async function main() {
       }
     }
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 11, pageErrors: errors }, null, 2));
+    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 13, pageErrors: errors }, null, 2));
   } finally {
     await browser.close();
   }
