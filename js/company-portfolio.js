@@ -2,6 +2,95 @@
   "use strict";
 
   const profiles = {
+    sempio: {
+      company: "샘표",
+      role: "플랫폼 개발자(정규직)",
+      title: "권도영 | 샘표 플랫폼 개발자 지원 포트폴리오",
+      description: "현업 요구사항 분석부터 웹 기반 업무 시스템, 데이터·API 연동, AWS 배포와 유지보수까지 직접 수행한 권도영의 샘표 플랫폼 개발자 지원 포트폴리오입니다.",
+      brand: "샘표 · 플랫폼 개발자",
+      eyebrow: "샘표 플랫폼 개발자(정규직) · 지원 포트폴리오",
+      statement: "현업의 업무를 이해하고,<br>매일 쓰는 시스템으로 만듭니다.",
+      heroDescription: "이커머스 기업 AI팀의 1인 개발자로 통계 사이트와 데이터 연동 시스템을 구축·운영했습니다. 현업 요구사항을 조회·집계 로직과 화면으로 구현하고, AWS 배포·오류 복구까지 담당했습니다. 같은 데이터 기반에 AI 조회와 발주 검토 기능을 연결했습니다.",
+      note: "직접 수행 · 요구사항 분석 → 시스템 설계·개발 → 배포·유지보수",
+      consoleFile: "sempio_platform_delivery.yml",
+      console: '<span class="code-key">요구</span>  담당자가 확인할 지표와 업무 기준\n<span class="code-key">구현</span>  데이터·API 연동 + 판매처별 화면\n<span class="code-key">검증</span>  원천 대조 + 저장 결과 재확인\n<span class="code-key">운영</span>  AWS + 예약 실행 + 부분 실패 복구',
+      heroFacts: [
+        { value: "10+", label: "연동 데이터 원천" },
+        { value: "60+", label: "자동 갱신 시트 탭" },
+        { value: "Web · API", label: "업무 화면과 외부 데이터 연동" },
+        { value: "AWS", label: "직접 배포·운영·유지보수" }
+      ],
+      fitKicker: "SEMPIO · PLATFORM DEVELOPMENT",
+      fitTitle: "업무 이해에서<br>시스템 운영까지",
+      fitSummary: "실무자가 무엇을 확인하고 판단하는지 파악한 뒤, 데이터 구조·조회 로직·화면으로 구체화했습니다.",
+      fitItems: [
+        { label: "요구사항과 웹 개발", heading: "사용자의 업무에 맞춰 바꾼 통계 사이트", body: "통합 조회를 선호하지 않는 담당자의 의견을 듣고, 확인 지표와 이슈의 위치를 파악해 판매처별 전용 페이지를 구현했습니다." },
+        { label: "데이터·API 연동", heading: "원천부터 업무 화면까지 이어지는 데이터", body: "판매처마다 다른 상품·옵션 기준을 맞추고 Python·SQL로 API·CSV·크롤링 데이터를 연결했습니다. DB·시트·통계 화면에 같은 기준을 적용했습니다." },
+        { label: "배포와 유지보수", heading: "오류 이후에도 이어갈 수 있는 운영 구조", body: "AWS 서버와 예약 실행을 관리했습니다. 수집·저장 실패를 분리하고 상태 보존, 미완료 항목 재처리와 저장 결과 대조로 복구 흐름을 보완했습니다." }
+      ],
+      contributionTitle: "샘표에서 기여하고 싶은 방향",
+      contributionBody: "판매·재고 업무를 시스템으로 구현한 경험을 바탕으로, 샘표의 현업 요구사항을 이해하고 웹 기반 업무 시스템의 개발·유지보수에 기여하고 싶습니다. 제조·구매 등 새롭게 접할 업무 기준은 담당자에게 배우고, 팀의 개발 표준과 검토 절차에 맞춰 기존 시스템과 안정적으로 연결하겠습니다.",
+      directionSource: { label: "참고 · 샘표 공식 플랫폼 개발 직무 소개", url: "https://sempio.recruiter.co.kr/career/jobs" },
+      supportingSource: { label: "지원 공고 · 플랫폼 개발자(정규직)", url: "https://sempio.recruiter.co.kr/career/jobs/127143" },
+      experienceTitle: "직접 묻고,<br>설계를 바꾼 경험",
+      experienceSummary: "개발은 혼자 담당했지만 요구사항과 판단 기준은 현업과 함께 정리했습니다. 익숙한 시트를 유지하면서 더 편한 조회 화면을 제공하는 방식으로 사용자의 선택을 넓혔습니다.",
+      foundationTitle: "웹 서비스와 데이터 처리의 기반을 쌓은 프로젝트",
+      foundationSummary: "FastAPI 백엔드·프론트엔드를 직접 구현한 챗봇, 팀장으로 수행한 데이터 파이프라인 프로젝트와 모델 학습 경험입니다. 교육 프로젝트와 사내 운영 실적은 구분합니다.",
+      scopeKicker: "REQUIREMENTS · BUILD · OPERATE",
+      scopeTitle: "화면을 만드는 일에서<br>계속 쓰이게 하는 일까지",
+      scopeSummary: "현업의 확인 항목을 데이터·API·화면으로 옮기고, 배포 이후에는 처리 결과와 사용자 피드백을 다시 확인했습니다. Codex를 활용한 코드 분석·구현에도 원천 대조와 결과 검증을 적용합니다.",
+      scopeLanes: [
+        { label: "01 · REQUIREMENTS", title: "요구사항 분석", items: [
+          ["업무 목적 확인", "기존 시트를 보는 이유, 추적 지표와 이슈를 찾는 위치를 담당자에게 질문"],
+          ["집계 기준 합의", "상품·옵션·세트 구성, 기간·단위·누락값 처리 기준을 현업과 확인"],
+          ["화면 범위 구분", "전체 현황을 보는 사용자와 개별 판매처 담당자의 조회 목적을 구분"],
+          ["기존 흐름 유지", "시트도 자동화해 지원하고 두 도구를 비교·선택할 수 있는 환경 제공"]
+        ] },
+        { label: "02 · DESIGN & BUILD", title: "데이터·웹 시스템 개발", items: [
+          ["데이터 연결", "Python·SQL로 API·CSV·크롤링 원천을 공통 상품 기준에 연결"],
+          ["조회·집계 로직", "판매·광고·재고·입고 정보를 업무 목적별 조회 데이터셋으로 구성"],
+          ["사용자 화면", "통합 조회와 판매처별 전용 페이지를 구현하고 현업 의견을 반영"],
+          ["서비스 연동", "통계 사이트·Google Sheets·AI에서 데이터를 활용하도록 연결"]
+        ] },
+        { label: "03 · DEPLOY & VERIFY", title: "배포와 결과 검증", items: [
+          ["AWS 환경", "계정·서버·도메인과 예약 실행을 구성하고 배포 이후 운영까지 담당"],
+          ["원천 대조", "데이터의 기준일·단위·합계와 부분합을 확인하고 누락과 실제 0을 구분"],
+          ["저장 결과 확인", "가격 저장 후 상품 식별정보·가격·수집시간을 다시 읽어 대조"],
+          ["사용 경계", "회원·인증·세션 등 운영 기능과 AI의 읽기 전용 데이터 조회 적용"]
+        ] },
+        { label: "04 · MAINTAIN & IMPROVE", title: "유지보수와 기능 확장", items: [
+          ["실패 원인 구분", "데이터 수집 중단과 저장 오류를 나눠 확인하고 처리 상태를 기록"],
+          ["부분 실패 복구", "확보한 결과를 보존하고 미완료 항목부터 다시 진행하는 흐름 보완"],
+          ["사용자 피드백", "일부 직원의 사이트 활용과 추가 요청을 후속 기능 개선으로 연결"],
+          ["AI 기능 확장", "기존 데이터에 자연어 조회·발주 검토를 추가하고 최종 판단은 담당자가 수행"]
+        ] }
+      ],
+      workKicker: "SEMPIO · RELEVANT EXPERIENCE",
+      workTitle: "업무 시스템을 구축하고 확장한 경험",
+      workSummary: "통계 사이트와 데이터 연동을 중심으로, 현업 피드백·운영 복구·AI 기능 확장까지 직접 수행했습니다.",
+      contactTitle: "샘표의 업무를 이해하고,<br>현장에서 쓰이는 시스템을 만들겠습니다.",
+      contactSummary: "요구사항을 데이터와 화면으로 구현한 실행력에 동료의 전문성과 개발 표준을 더해, 구축 이후의 운영까지 책임지는 플랫폼 개발자로 성장하겠습니다.",
+      projectOrder: ["data-platform", "order-ai", "jarvis"],
+      projectSummaries: {
+        "data-platform": "판매·광고·재고 데이터를 수집·통합하고 담당자가 직접 조회하는 사내 통계 사이트를 구축했습니다. 현업과 상품·옵션·기간 기준을 정리한 뒤 DB·API·화면·Google Sheets를 연결했습니다. 통합 화면이 불편하다는 의견은 판매처별 전용 페이지와 조회·집계 로직 개선에 반영했습니다.",
+        "order-ai": "판매·재고·입고 예정·배송 기간·최소 주문수량을 함께 확인하는 발주 검토 기능을 개발했습니다. 여러 자료를 대조하던 업무를 추천량·판단 근거·예외 상품으로 정리하고, 담당자가 검토 후 최종 결정하도록 기존 업무 흐름에 연결했습니다.",
+        jarvis: "구축한 데이터 기반을 자연어 조회로 확장했습니다. 업무 기준은 문서 검색으로, 최신 수치는 읽기 전용 DB 조회로 확인합니다. 합계·부분합과 답변 근거를 검증하고, 응답이 중단되면 확인한 데이터만 제한적으로 제공합니다. 복잡한 질문의 완결성은 별도 평가하며 개선 중입니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "COLLABORATION · RELIABILITY",
+        "#support-title": "업무 시스템이 현장에 정착하기 위한 일",
+        "[data-profile-support-summary]": "요구사항 조율, 접근 관리, 오류 대응과 사용자 피드백까지 개발 범위로 다뤘습니다.",
+        "[data-profile-security-title]": "업무 데이터와 접근 관리",
+        "[data-profile-adoption-title]": "현업 피드백과 개선",
+        "[data-profile-adoption-body]": "시트가 편한 이유와 필요한 기능을 묻고 판매처별 페이지로 반영했습니다. 사용 도구를 강제하지 않고, 추가 요청을 바탕으로 기능을 개선했습니다.",
+        "#architecture-title": "데이터가 업무 화면에 도달하는 전체 흐름",
+        "[data-profile-architecture-summary]": "원천 수집·정규화·저장·자동 갱신을 연결해 통계 사이트와 시트에 제공하고, 같은 기반을 AI 조회와 발주 검토로 확장했습니다.",
+        "[data-profile-architecture-use]": "통계 사이트 · 시트 · 발주 검토 · AI 조회",
+        "[data-project-key='data-platform'] h3": "통계 사이트 · 데이터 연동 플랫폼",
+        "[data-project-key='order-ai'] h3": "판매·재고 기반 발주 검토 지원"
+      }
+    },
     lgcns: {
       company: "LG CNS",
       role: "AI(AX)",
@@ -217,6 +306,7 @@
     "lotte-innovate": "lotte",
     db: "dbinc",
     "db-inc": "dbinc",
+    "sempio-platform": "sempio",
     daoutech: "daou",
     "daou-tech": "daou"
   };
@@ -301,6 +391,30 @@
     setText("[data-profile-note]", profile.note);
     setText("[data-profile-console-file]", profile.consoleFile);
     setHtml("[data-profile-console]", profile.console);
+    if (profile.heroFacts) {
+      document.querySelector(".hero-metrics").setAttribute("aria-label", "플랫폼 개발 수행 범위");
+      profile.heroFacts.forEach(function (fact, index) {
+        setText(`.hero-metrics > div:nth-child(${index + 1}) strong`, fact.value);
+        setText(`.hero-metrics > div:nth-child(${index + 1}) span`, fact.label);
+      });
+    }
+    Object.entries(profile.textOverrides || {}).forEach(function ([selector, value]) {
+      setText(selector, value);
+    });
+    document.querySelectorAll("[data-profile-only]").forEach(function (element) {
+      element.hidden = element.dataset.profileOnly !== key;
+    });
+    if (profile.scopeLanes) {
+      profile.scopeLanes.forEach(function (lane, index) {
+        const selector = `.operating-lane:nth-child(${index + 1})`;
+        setText(`${selector} header span`, lane.label);
+        setText(`${selector} header strong`, lane.title);
+        lane.items.forEach(function (item, itemIndex) {
+          setText(`${selector} .operating-lane-items > div:nth-child(${itemIndex + 1}) strong`, item[0]);
+          setText(`${selector} .operating-lane-items > div:nth-child(${itemIndex + 1}) p`, item[1]);
+        });
+      });
+    }
 
     setText("[data-profile-fit-kicker]", profile.fitKicker);
     setHtml("[data-profile-fit-title]", profile.fitTitle);

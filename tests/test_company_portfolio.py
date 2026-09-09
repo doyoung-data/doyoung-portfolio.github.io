@@ -19,6 +19,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             ("lotte", "롯데이노베이트", "AI 서비스 엔지니어"),
             ("dbinc", "DB Inc.", "S/W엔지니어(AX)"),
             ("daou", "다우기술", "AI 개발"),
+            ("sempio", "샘표", "플랫폼 개발자(정규직)"),
         ):
             with self.subTest(key=key):
                 self.assertIn(f"{key}: {{", self.script)
@@ -56,14 +57,14 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
 
     def test_every_profile_has_project_specific_summaries(self):
-        self.assertEqual(self.script.count("projectSummaries: {"), 4)
+        self.assertEqual(self.script.count("projectSummaries: {"), 5)
 
     def test_unknown_targets_do_not_resolve_object_prototypes(self):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
         self.assertIn("Object.prototype.hasOwnProperty.call(aliases, requested)", self.script)
 
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
-        self.assertEqual(self.script.count("directionSource: {"), 4)
+        self.assertEqual(self.script.count("directionSource: {"), 5)
         self.assertIn("2026 롯데그룹 신년사", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
@@ -89,6 +90,20 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertNotIn(unsupported, daou)
         for field in ("experience-title", "experience-summary", "foundation-title", "foundation-summary", "supporting-source"):
             self.assertEqual(self.index.count(f"data-profile-{field}"), 1)
+
+    def test_sempio_leads_with_platform_delivery_and_confirmed_collaboration(self):
+        sempio = self.script.split("    sempio: {", 1)[1].split("    lgcns: {", 1)[0]
+        self.assertIn('projectOrder: ["data-platform", "order-ai", "jarvis"]', sempio)
+        self.assertIn("판매처별 전용 페이지", sempio)
+        self.assertIn("미완료 항목", sempio)
+        self.assertIn("제조·구매 등 새롭게 접할 업무 기준", sempio)
+        self.assertIn("Codex를 활용한 코드 분석·구현에도 원천 대조와 결과 검증", sempio)
+        self.assertIn('value: "Web · API"', sempio)
+        self.assertIn('id="platform-engineering"', self.index)
+        self.assertIn('data-profile-only="sempio" hidden', self.index)
+        self.assertIn('data-open-journey="site"', self.index)
+        for unsupported in ("SAP 구축", "ERP를 구축했습니다", "Java 실무", "Spring Boot 개발", "전 직원이 전환"):
+            self.assertNotIn(unsupported, sempio)
 
 
 if __name__ == "__main__":

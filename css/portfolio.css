@@ -586,6 +586,34 @@ html[data-portfolio-target="dbinc"] {
   --company-accent: #2458a6;
 }
 
+html[data-portfolio-target="sempio"] {
+  --company-accent: #bd2637;
+  --bg: #f8f9fb;
+  --surface-2: #eef1f4;
+  --line: #d6dce1;
+  --header-bg: rgba(248, 249, 251, 0.95);
+}
+
+html[data-theme="dark"][data-portfolio-target="sempio"] {
+  --company-accent: #ff8791;
+  --bg: #121516;
+  --surface-2: #222829;
+  --line: #394244;
+  --header-bg: rgba(18, 21, 22, 0.95);
+}
+
+html[data-portfolio-target="sempio"] .hero-canvas {
+  opacity: 0.35;
+}
+
+html[data-portfolio-target="sempio"] .hero-heading .eyebrow {
+  color: var(--company-accent);
+}
+
+html[data-portfolio-target="sempio"] .hero-metrics strong {
+  font-size: 24px;
+}
+
 html[data-theme="dark"][data-portfolio-target="lgcns"] {
   --company-accent: #ff7398;
 }

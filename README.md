@@ -14,6 +14,7 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 - 롯데이노베이트 AI 서비스 엔지니어: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=lotte
 - DB Inc. S/W엔지니어(AX): https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=dbinc
 - 다우기술 AI 개발: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=daou
+- 샘표 플랫폼 개발자: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=sempio
 
 각 주소는 첫 화면, 직무 적합 근거, 기여 방향, 대표 프로젝트 설명·순서와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다. 다른 지원 회사로 이동하는 메뉴는 노출하지 않습니다.
 
@@ -23,6 +24,17 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 | 롯데이노베이트 AI 서비스 | REST API, 데이터 파이프라인, 인증과 AWS 운영 | 데이터 플랫폼 → 자비스 → 발주 AI |
 | DB Inc. AX | Agent 도구 호출, 읽기 전용 검증, 사람의 최종 판단 | 자비스 → 발주 AI → 데이터 플랫폼 |
 | 다우기술 AI 개발 신입 | 전문교육 기반, 기획·배포·운영, 데이터·답변 검증, 현업 협업 | 자비스 → 데이터 플랫폼 → 발주 AI |
+| 샘표 플랫폼 개발자 | 현업 요구사항 분석, 웹 업무 시스템, 데이터·API 연동, AWS 운영과 유지보수 | 데이터 플랫폼 → 발주 검토 → 자비스 |
+
+### 샘표 플랫폼 개발자 전용 화면
+
+사이트 주소에 `?target=sempio`를 붙이면 샘표 지원 화면을 확인할 수 있습니다. `?company=sempio-platform`도 같은 화면을 엽니다.
+
+샘표용 첫 화면은 통계 사이트와 데이터 연동 시스템의 구축·운영 경험을 우선하며, AI는 동일한 데이터 기반의 기능 확장으로 배치합니다. 기존 시트를 선호하던 담당자에게 확인 지표·업무 목적을 묻고 판매처별 전용 페이지를 구현한 사례와, 수집·저장 실패를 분리하고 재처리·저장 결과 대조를 적용한 사례를 상세 영역에서 제공합니다. 실사용률·복구 시간·성공률 등의 미측정 수치는 추가하지 않습니다.
+
+참고 자료는 [공식 플랫폼 개발 직무 소개](https://sempio.recruiter.co.kr/career/jobs)와 [플랫폼 개발자(정규직) 공고](https://sempio.recruiter.co.kr/career/jobs/127143)입니다. 지원자가 제공한 공고 상세 이미지에서 요구분석부터 구축·운영까지의 업무, AI 코딩 에이전트의 실제 프로젝트 적용, 웹 개발과 LLM·RAG 구현 경험을 확인했습니다. Codex를 활용한 코드 분석·구현과 결과 검증 경험을 연결하되, 도구 사용량을 개발 역량이나 성과로 단정하지 않습니다. Java·Spring·ERP/SAP 구축 등의 미확인 실무 경험은 추가하지 않으며, 제조·구매 업무 이해와 팀 개발 표준 적용은 입사 후 기여 방향으로 구분합니다.
+
+기존 네 회사 화면은 그대로 유지하며 샘표 전용 상세 내용은 다른 회사 및 기본 화면에서 숨깁니다. 기본 92문항·판매 분석 100문항 등 AI 평가의 한계 표시는 샘표 화면에서도 유지합니다.
 
 롯데용 화면에서는 학교·학과와 교내 과정 항목을 제거합니다. 이는 해당 화면의 표기 조정이며, 연결된 외부 GitHub·블로그까지 익명화하지는 않습니다. 실제 첨부 문서와 지원서도 별도로 블라인드 기준을 확인해야 합니다.
 
