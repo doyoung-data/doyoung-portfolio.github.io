@@ -40,7 +40,7 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
-      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio'].includes(key));
+      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte'].includes(key));
       if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
@@ -59,6 +59,12 @@ async function main() {
         assert.equal(await page.locator('.operating-lane:nth-child(2) header strong').innerText(), '데이터·웹 시스템 개발');
         assert.equal(await page.locator('[data-profile-current-role]').innerText(), '이커머스 기업 · AI팀 매니저');
         assert.match(await page.locator('[data-profile-scope-summary]').innerText(), /Codex.*결과 검증/);
+      } else if (key === 'lotte') {
+        assert.match(await page.locator('[data-profile-experience-title]').innerText(), /서비스 설계/);
+        assert.match(await page.locator('[data-profile-work-summary]').innerText(), /2025\.12.*2026\.03.*2026\.07/);
+        assert.match(await page.locator('.hero-metrics').innerText(), /FastAPI/);
+        assert.equal(await supportingSource.getAttribute('href'), 'https://recruit.lotte.co.kr/apply/announcement/detail/21933850?compcd=30007');
+        assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /\/press\/list\/0\/931$/);
       } else {
         assert.match(await page.locator('[data-profile-experience-title]').innerText(), /현업과 함께 정의하고/);
         assert.equal(await page.locator('[data-profile-foundation-title]').innerText(), 'AI 서비스의 기반이 된 프로젝트');
@@ -77,7 +83,8 @@ async function main() {
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
-      assert.equal(await page.locator('[data-profile-only="sempio"]').isVisible(), key === 'sempio');
+      assert.equal(await page.locator('[data-profile-only="sempio lotte"]').isVisible(), ['sempio', 'lotte'].includes(key));
+      assert.equal(await page.locator('[data-profile-only="lotte"]').first().isVisible(), key === 'lotte');
       if (key === 'lotte') {
         assert.ok(!/안동대학교|정보통계학|주전공|복수전공/.test(await page.locator('body').innerText()));
       }
@@ -102,7 +109,7 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
-        if (key === 'sempio') {
+        if (['sempio', 'lotte'].includes(key)) {
           const platformDetail = page.locator('#platform-engineering');
           await platformDetail.locator('summary').click();
           assert.match(await platformDetail.innerText(), /기존 시트를 선호하던 일부 직원/);

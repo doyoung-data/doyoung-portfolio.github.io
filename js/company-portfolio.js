@@ -149,10 +149,16 @@
       brand: "롯데이노베이트 · AI 서비스",
       eyebrow: "롯데이노베이트 AI 서비스 엔지니어 · 지원 포트폴리오",
       statement: "AI 기능을 API로 연결하고,<br>데이터와 운영을 책임집니다.",
-      heroDescription: "AI팀의 1인 개발자로 Python·FastAPI 기반 사내 서비스와 데이터 파이프라인을 구축했습니다. AWS 계정·서버 구성부터 인증·관리자 기능, 예약 실행·장애 대응과 AI 품질 개선까지 담당했습니다.",
+      heroDescription: "AI팀의 1인 개발자로 판매·광고·재고 데이터를 연결하고, Python·FastAPI 기반 업무 화면과 자연어 조회 AI를 구축했습니다. 현업 요구사항 정리부터 AWS 배포·운영까지 맡았으며, 수집·저장 실패와 AI의 숫자 오류를 확인하고 복구 흐름을 개선했습니다.",
       note: "직접 수행 · REST API · 데이터 파이프라인 · AWS 운영",
       consoleFile: "lotte_ai_service_fit.yml",
       console: '<span class="code-key">수집</span>  API · CSV · 크롤링\n<span class="code-key">가공</span>  상품 매핑 · 결측 구분 · 검증\n<span class="code-key">제공</span>  REST API · 업무 화면 · AI\n<span class="code-key">운영</span>  인증 · 로그 · 재시도 · 백업',
+      heroFacts: [
+        { value: "10+", label: "연동 데이터 원천" },
+        { value: "60+", label: "자동 갱신 시트 탭" },
+        { value: "FastAPI", label: "업무 데이터와 AI 서비스 연결" },
+        { value: "AWS", label: "서버 구성부터 배포·운영" }
+      ],
       fitKicker: "LOTTE INNOVATE · POSITION FIT",
       fitTitle: "백엔드·데이터·운영을<br>하나로 연결한 경험",
       fitSummary: "데이터가 수집된 뒤 사용자의 화면과 AI 답변에 도달하기까지, 서비스의 각 단계를 직접 구현했습니다.",
@@ -160,36 +166,77 @@
         {
           label: "백엔드 개발",
           heading: "Python·FastAPI 기반 사내 AI 서비스",
-          body: "사내 데이터·AI 기능을 API와 업무 화면에 연결했습니다. 회원 등록·비밀번호 변경·OTP 인증·세션과 로그 조회 기능도 구현했습니다."
+          body: "사용자의 질문과 화면의 상품·기간 조건을 받아 문서 검색·DB 조회·답변으로 연결했습니다. 조회는 읽기 전용으로 제한하고, 회원·인증·세션 등 서비스 운영 기능도 구현했습니다."
         },
         {
           label: "파이프라인 구축",
           heading: "수집부터 실무 화면까지 이어지는 데이터",
-          body: "API·CSV·크롤링 데이터를 공통 SKU와 날짜 기준으로 통합하고 DB, Google Sheets와 사내 통계 화면까지 자동 연결했습니다."
+          body: "현업과 상품·옵션·집계 기준을 맞춘 뒤 API·CSV·크롤링 데이터를 DB로 통합했습니다. Google Sheets와 통계 사이트에 연결하고, 담당자 의견을 판매처별 전용 페이지에 반영했습니다."
         },
         {
           label: "운영과 품질",
           heading: "AWS 운영과 AI 품질 고도화",
-          body: "서버·도메인·예약 실행·로그·재시도·백업을 관리하고, 원천 데이터 대조와 AI 회귀 평가로 오류를 확인하고 개선했습니다."
+          body: "AWS 서버·예약 실행·로그·백업을 관리했습니다. 미완료 작업 재처리, 저장 결과 대조, AI 합계 검증과 응답 중단 시 제한 답변으로 실패 상황에 대응했습니다."
         }
       ],
       contributionTitle: "롯데이노베이트에서 기여하고 싶은 방향",
-      contributionBody: "롯데그룹의 AI 내재화와 실행 중심 방향을, 현업이 계속 사용하는 서비스로 연결하고 싶습니다. 요구사항을 API·데이터 파이프라인으로 구현하고, 배포 후 오류 대응과 사용자 피드백까지 맡아 업무 적용을 지원하겠습니다.",
-      directionSource: { label: "참고 · 2026 롯데그룹 신년사", url: "https://www.lotte.co.kr/pr/newsView.do?srchNewsSeq=1697" },
+      contributionBody: "롯데백화점 ‘브랜드 AI’ 사례에서 유통 데이터를 업무 맥락에 맞춰 연결하고, 사내 시스템 연계와 운영까지 구현한 점에 주목했습니다. 판매·광고·재고 데이터를 업무 화면과 AI로 연결한 경험을 바탕으로, 고객의 요구를 API·데이터 파이프라인으로 구현하고 배포 이후 품질을 개선하는 AI 서비스 엔지니어로 기여하고 싶습니다.",
+      directionSource: { label: "공식 사례 · 롯데백화점 브랜드 AI 구축", url: "https://www.lotteinnovate.com/ko/company/news/press/list/0/931" },
+      supportingSource: { label: "지원 공고 · AI 서비스 엔지니어(AI서비스팀)", url: "https://recruit.lotte.co.kr/apply/announcement/detail/21933850?compcd=30007" },
+      experienceTitle: "현업의 확인 방식을 듣고,<br>서비스 설계를 바꿨습니다.",
+      experienceSummary: "통합 화면을 선호하지 않는 담당자에게 시트가 편한 이유와 필요한 기능을 직접 물었습니다. 판매처별 전용 페이지를 만들고 기존 시트도 자동화하자, 일부 직원이 사이트를 사용하기 시작하고 추가 기능을 요청했습니다.",
+      foundationTitle: "서비스 구현의 기본기를 쌓은 프로젝트",
+      foundationSummary: "교육 프로젝트에서는 RAG·프롬프트·FastAPI·프론트엔드를 직접 연결한 챗봇과 팀장으로 수행한 데이터 파이프라인을 경험했습니다. 교육 실습과 사내 운영 경험은 구분합니다.",
       scopeKicker: "AI SERVICE ENGINEERING",
       scopeTitle: "AI 서비스를 백엔드·데이터·운영까지<br>하나의 흐름으로 만듭니다.",
-      scopeSummary: "비즈니스 요구를 이해한 뒤 데이터 파이프라인과 AI 기능을 API로 구현하고, 배포 이후의 품질 검증과 장애 대응까지 수행합니다.",
+      scopeSummary: "정상 실행뿐 아니라 누락·실패·응답 중단을 고려해 서비스를 구현했습니다. 데이터의 정확성, AI 답변의 근거, 질문 전체에 대한 답변 완결성을 나눠 검증합니다.",
+      scopeLanes: [
+        { label: "01 · BUSINESS & DATA", title: "업무 기준과 데이터", items: [
+          ["업무 목적 확인", "담당자가 보는 지표, 예외 상황과 최종 판단 기준을 직접 질문"],
+          ["원천 연결", "API·CSV·크롤링 데이터의 상품·옵션·날짜·단위를 공통 기준으로 정리"],
+          ["데이터 보존", "미수집·실패·누락과 실제 0을 구분하고 미확인 상태를 유지"],
+          ["조회 경로", "DB에 적재한 데이터를 Google Sheets·통계 화면·AI에서 활용"]
+        ] },
+        { label: "02 · API & SERVICE", title: "백엔드와 AI 연결", items: [
+          ["FastAPI", "업무 데이터 조회와 AI 응답을 웹 화면에서 사용할 수 있도록 연결"],
+          ["RAG · NL2SQL", "문서·코드는 업무 기준, 읽기 전용 DB는 변하는 숫자의 근거로 구분"],
+          ["질문 문맥", "사용자의 질문에 화면의 상품·기간 조건을 함께 전달"],
+          ["접근 관리", "회원·OTP·세션과 읽기 전용 SQL 검증으로 사용 경계 관리"]
+        ] },
+        { label: "03 · DEPLOY & RECOVER", title: "배포와 예외 처리", items: [
+          ["AWS 운영", "서버·도메인·예약 실행·로그·백업 구성과 배포 이후 관리"],
+          ["실패 단계 구분", "수집 중단과 시트 저장 오류를 분리하고 처리 상태를 보존"],
+          ["미완료 작업 재처리", "확보한 결과를 유지하며 재개하고 저장값을 다시 읽어 대조"],
+          ["응답 중단 대응", "빈 응답·시간 제한을 구분하고 확보한 근거만 제한적으로 제공"]
+        ] },
+        { label: "04 · QUALITY & FEEDBACK", title: "품질 검증과 현업 적용", items: [
+          ["숫자 검증", "답변의 기준일·단위·전체 합계·부분합을 실제 조회 결과와 대조"],
+          ["회귀 평가", "실패 질문을 다시 평가하며 수정 전후의 결과와 미해결 범위를 확인"],
+          ["답변 완결성", "제한 답변 반환을 질문 전체 해결과 구분해 평가"],
+          ["현업 피드백", "판매처별 페이지와 조회 로직을 개선하고 추가 요구사항을 반영"]
+        ] }
+      ],
       workKicker: "LOTTE INNOVATE · RELEVANT EXPERIENCE",
       workTitle: "데이터 기반을 만들고 AI로 확장한 경험",
-      workSummary: "데이터 플랫폼을 먼저 구축하고, 같은 기반을 자비스와 발주 검토 서비스에 연결했습니다.",
+      workSummary: "2025.12 데이터 자동화에서 시작해 2026.03 통계 사이트, 2026.07 자연어 조회 AI로 확장했습니다. 기능별 개발 시점을 구분하고 현재도 운영·개선하고 있습니다.",
       contactTitle: "롯데이노베이트에서<br>계속 사용되는 AI 서비스를 만들겠습니다.",
       contactSummary: "AI 기능을 API와 데이터 파이프라인으로 서비스화하고, 배포 후 품질과 운영까지 책임지는 AI 서비스 엔지니어로 성장하겠습니다.",
       blindRecruitment: true,
       projectOrder: ["data-platform", "jarvis", "order-ai"],
       projectSummaries: {
-        "data-platform": "API·CSV·크롤링 수집에서 정규화·DB 적재·화면 제공까지 데이터 파이프라인을 구현했습니다. 서로 다른 상품·옵션 기준을 매핑하고 결측과 실패를 보존했으며, AWS 예약 실행·로그·재시도·백업을 구성해 배포 이후 운영까지 담당했습니다.",
-        jarvis: "Python·FastAPI 기반 사내 서비스에 자연어 데이터 조회·분석 기능을 연결했습니다. 화면의 상품·기간 조건을 AI에 전달하고, 읽기 전용 SQL과 도구 호출로 확인한 값을 답하도록 구성했습니다. 모델 응답 중단과 수치 오류를 평가·검증하고 대체 응답 경로를 보강했습니다.",
+        "data-platform": "판매처마다 상품코드·옵션·세트 구성이 달라 지표를 바로 합칠 수 없었습니다. 현업과 집계 기준을 정리하고 Python·SQL로 수집·변환·DB 적재·시트 갱신을 연결했습니다. 같은 기반으로 통계 사이트를 구축하고, 담당자별 조회 목적에 맞춰 판매처별 전용 페이지를 개발했습니다.",
+        jarvis: "판매·광고·재고를 자연어로 조회하는 사내 AI 서비스입니다. FastAPI 기반 서비스에서 문서 RAG는 업무 기준을, NL2SQL·Tool Calling은 최신 수치를 확인하도록 연결했습니다. 답변의 숫자 불일치와 중단 사례를 재현하고, 합계 대조·읽기 전용 조회·근거를 보존한 제한 답변으로 개선했습니다.",
         "order-ai": "판매·재고·입고 데이터를 발주 추천량과 우선 검토 대상으로 가공하는 기능을 구현했습니다. 최소 주문수량·배송 기간·입고 예정 등 업무 제약을 반영하고, 담당자가 근거를 확인한 뒤 발주 여부를 결정하도록 사내 업무에 연결했습니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "BUSINESS COMMUNICATION · SERVICE RELIABILITY",
+        "#support-title": "개발 이후에도 사용자와 결과를 확인합니다.",
+        "[data-profile-support-summary]": "현업과 기준을 합의하고, 예외 상황을 복구하며, 실제 사용 결과를 다음 개선으로 연결했습니다.",
+        "[data-profile-adoption-title]": "사용자 의견을 설계에 반영",
+        "[data-profile-adoption-body]": "익숙한 시트의 확인 순서를 담당자에게 묻고 판매처별 화면과 집계 로직에 반영했습니다. 기존 시트도 유지해 선택권을 제공했습니다.",
+        "[data-project-key='data-platform'] h3": "데이터 파이프라인 · 통계 사이트",
+        "[data-project-key='order-ai'] .case-brief p:nth-child(2)": "업무 적용 · 추천량·판단 근거·예외 상품을 한 흐름에서 검토하도록 지원합니다. 발주 확정은 담당자가 수행하며, 시간 단축이나 예측 정확도의 정량 성과는 별도로 검증해야 합니다."
       }
     },
     dbinc: {
@@ -402,7 +449,7 @@
       setText(selector, value);
     });
     document.querySelectorAll("[data-profile-only]").forEach(function (element) {
-      element.hidden = element.dataset.profileOnly !== key;
+      element.hidden = !element.dataset.profileOnly.split(/\s+/).includes(key);
     });
     if (profile.scopeLanes) {
       profile.scopeLanes.forEach(function (lane, index) {
