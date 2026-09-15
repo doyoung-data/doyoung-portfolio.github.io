@@ -63,9 +63,16 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
         self.assertIn("Object.prototype.hasOwnProperty.call(aliases, requested)", self.script)
 
+    def test_crawler_volume_uses_consistent_supported_lower_bound(self):
+        self.assertIn("2,000개 이상 가격 추적", self.index)
+        self.assertIn("2,000개 이상의 상품·번들 판매가", self.index)
+        self.assertIn("<strong>2,000+</strong><span>상품·번들</span>", self.index)
+        for stale_count in ("2,280", "2280", "2,500개 이상", "2500개 이상"):
+            self.assertNotIn(stale_count, self.index + self.script)
+
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
         self.assertEqual(self.script.count("directionSource: {"), 5)
-        self.assertIn("2026 롯데그룹 신년사", self.script)
+        self.assertIn("롯데백화점 브랜드 AI 구축", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
         self.assertIn("통과율이나 답변 정확도를 뜻하지 않습니다", self.index)
@@ -100,10 +107,25 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn("Codex를 활용한 코드 분석·구현에도 원천 대조와 결과 검증", sempio)
         self.assertIn('value: "Web · API"', sempio)
         self.assertIn('id="platform-engineering"', self.index)
-        self.assertIn('data-profile-only="sempio" hidden', self.index)
+        self.assertIn('data-profile-only="sempio lotte" hidden', self.index)
         self.assertIn('data-open-journey="site"', self.index)
         for unsupported in ("SAP 구축", "ERP를 구축했습니다", "Java 실무", "Spring Boot 개발", "전 직원이 전환"):
             self.assertNotIn(unsupported, sempio)
+
+    def test_lotte_targets_service_delivery_without_inventing_cloud_experience(self):
+        lotte = self.script.split("    lotte: {", 1)[1].split("    dbinc: {", 1)[0]
+        for evidence in ("판매처별 전용 페이지", "미완료 작업 재처리", "합계 대조", "답변 완결성"):
+            self.assertIn(evidence, lotte)
+        for date in ("2025.12", "2026.03", "2026.07"):
+            self.assertIn(date, lotte)
+        self.assertIn("/company/news/press/list/0/931", lotte)
+        self.assertIn("/announcement/detail/21933850?compcd=30007", lotte)
+        self.assertIn('value: "FastAPI"', lotte)
+        self.assertIn("교육 실습과 사내 운영 경험은 구분", lotte)
+        self.assertEqual(self.index.count('data-profile-only="lotte"'), 2)
+        self.assertIn('profileOnly.split(/\\s+/).includes(key)', self.script)
+        for unsupported in ("Kubernetes 운영", "Docker 배포", "L.Cloud 구축", "온톨로지를 구축", "정확도 100%"):
+            self.assertNotIn(unsupported, lotte)
 
 
 if __name__ == "__main__":
