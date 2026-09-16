@@ -10,7 +10,8 @@ const profiles = {
   lotte: { company: '롯데이노베이트', order: ['data-platform', 'jarvis', 'order-ai'] },
   dbinc: { company: 'DB Inc.', order: ['jarvis', 'order-ai', 'data-platform'] },
   daou: { company: '다우기술', order: ['jarvis', 'data-platform', 'order-ai'] },
-  sempio: { company: '샘표', order: ['data-platform', 'order-ai', 'jarvis'] }
+  sempio: { company: '샘표', order: ['data-platform', 'order-ai', 'jarvis'] },
+  hanwha: { company: '한화금융', order: ['data-platform', 'jarvis', 'order-ai'] }
 };
 
 async function main() {
@@ -40,7 +41,7 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
-      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte'].includes(key));
+      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha'].includes(key));
       if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
@@ -65,6 +66,14 @@ async function main() {
         assert.match(await page.locator('.hero-metrics').innerText(), /FastAPI/);
         assert.equal(await supportingSource.getAttribute('href'), 'https://recruit.lotte.co.kr/apply/announcement/detail/21933850?compcd=30007');
         assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /\/press\/list\/0\/931$/);
+      } else if (key === 'hanwha') {
+        assert.match(await page.title(), /AI\/데이터 Engineer/);
+        assert.match(await page.locator('[data-profile-experience-summary]').innerText(), /SQLD·ADsP/);
+        assert.match(await page.locator('[data-profile-foundation-title]').innerText(), /실무로 확장/);
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /금융 상품과 업무 절차.*배우고/);
+        assert.match(await page.locator('[data-profile-work-summary]').innerText(), /2025\.12.*2026\.03.*2026\.07/);
+        assert.equal(await supportingSource.getAttribute('href'), 'https://www.hanwhain.com/portal/apply/recruit/detail?rtSeq=19498');
+        assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /평가하며 개선 중/);
       } else {
         assert.match(await page.locator('[data-profile-experience-title]').innerText(), /현업과 함께 정의하고/);
         assert.equal(await page.locator('[data-profile-foundation-title]').innerText(), 'AI 서비스의 기반이 된 프로젝트');
@@ -83,7 +92,7 @@ async function main() {
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
-      assert.equal(await page.locator('[data-profile-only="sempio lotte"]').isVisible(), ['sempio', 'lotte'].includes(key));
+      assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha"]').isVisible(), ['sempio', 'lotte', 'hanwha'].includes(key));
       assert.equal(await page.locator('[data-profile-only="lotte"]').first().isVisible(), key === 'lotte');
       if (key === 'lotte') {
         assert.ok(!/안동대학교|정보통계학|주전공|복수전공/.test(await page.locator('body').innerText()));
@@ -109,7 +118,7 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
-        if (['sempio', 'lotte'].includes(key)) {
+        if (['sempio', 'lotte', 'hanwha'].includes(key)) {
           const platformDetail = page.locator('#platform-engineering');
           await platformDetail.locator('summary').click();
           assert.match(await platformDetail.innerText(), /기존 시트를 선호하던 일부 직원/);
@@ -224,6 +233,7 @@ async function main() {
       ['company=daou-tech', 'daou'], ['target=lg', 'lgcns'], ['target=lotte-innovate', 'lotte'],
       ['target=db', 'dbinc'], ['target=%20DAOU%20', 'daou'],
       ['company=sempio-platform', 'sempio'], ['target=%20SEMPIO%20', 'sempio'],
+      ['company=hanwha-finance', 'hanwha'], ['target=hanwhalife', 'hanwha'], ['target=%20HANWHA%20', 'hanwha'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {
@@ -236,7 +246,7 @@ async function main() {
       }
     }
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 13, pageErrors: errors }, null, 2));
+    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 16, pageErrors: errors }, null, 2));
   } finally {
     await browser.close();
   }

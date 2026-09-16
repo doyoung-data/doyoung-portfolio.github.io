@@ -15,6 +15,7 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 - DB Inc. S/W엔지니어(AX): https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=dbinc
 - 다우기술 AI 개발: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=daou
 - 샘표 플랫폼 개발자: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=sempio
+- 한화금융 AI/데이터 Engineer: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=hanwha
 
 각 주소는 첫 화면, 직무 적합 근거, 기여 방향, 대표 프로젝트 설명·순서와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다. 다른 지원 회사로 이동하는 메뉴는 노출하지 않습니다.
 
@@ -25,6 +26,17 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 | DB Inc. AX | Agent 도구 호출, 읽기 전용 검증, 사람의 최종 판단 | 자비스 → 발주 AI → 데이터 플랫폼 |
 | 다우기술 AI 개발 신입 | 전문교육 기반, 기획·배포·운영, 데이터·답변 검증, 현업 협업 | 자비스 → 데이터 플랫폼 → 발주 AI |
 | 샘표 플랫폼 개발자 | 현업 요구사항 분석, 웹 업무 시스템, 데이터·API 연동, AWS 운영과 유지보수 | 데이터 플랫폼 → 발주 검토 → 자비스 |
+| 한화금융 AI/데이터 Engineer | 데이터 파이프라인·표준화, RAG·Agent 백엔드, 업무 대시보드, 현업 연계와 검증 | 데이터 플랫폼 → 자비스 → 발주 검토 |
+
+### 한화금융 AI/데이터 Engineer 전용 화면
+
+`?target=hanwha` 또는 `?company=hanwha-finance`로 엽니다. 기존 회사 화면의 내용과 순서는 유지합니다.
+
+2026-09-16 [한화금융 공식 채용 사이트](https://www.recruit-hanwhafinance.com/)의 신사업 > AI/데이터(Modeler/Engineer) 직무 상세와 인재상·H-FIT 안내를 확인했습니다. Engineer의 데이터 파이프라인·플랫폼 운영, RAG·Agent 백엔드, BI 대시보드·데이터 표준화와 현업 연계에 맞춰 기존 수행 경험을 재배치했습니다. 우대 자격인 SQLD·ADsP는 기존 취득 사실을 유지합니다.
+
+공식 안내가 강조하는 실제 경험, 고민·판단·성장 과정을 데이터 기준 조율, 시트 사용자 인터뷰와 판매처별 화면 개선, 숫자 오류 검증, 수집·저장 실패 복구 사례로 보여줍니다. 인재상 용어를 반복하거나 평가 점수·합격 가능성을 주장하지 않습니다. 공개 설명회 홍보를 확인했으나 녹화 본문은 검증하지 않았으므로, 현직자 발언이나 설명회 팁을 확인한 것처럼 인용하지 않습니다.
+
+금융 도메인 실무, MLOps 플랫폼 구축, 모델 학습·서빙 자동화, 전사 거버넌스 수립, 임베딩·Vector DB 운영을 새 수행 실적으로 추가하지 않습니다. 금융 업무·개인정보 처리와 팀 개발 기준은 입사 후 학습·기여 방향입니다. TF-IDF 문서 검색과 별도 평가셋, 합성 데이터 데모의 범위 표시는 그대로 유지합니다.
 
 ### 샘표 플랫폼 개발자 전용 화면
 
