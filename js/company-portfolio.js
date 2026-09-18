@@ -2,6 +2,95 @@
   "use strict";
 
   const profiles = {
+    hyundai: {
+      company: "현대엘리베이터",
+      role: "데이터/AI개발 · 신입",
+      title: "권도영 | 현대엘리베이터 데이터/AI개발 지원 포트폴리오",
+      description: "상품 단위 데이터 모델링·수집·적재, 현업의 공통 판단 기준, 사내 AI의 근거 검증과 AWS 운영 경험을 정리한 권도영의 현대엘리베이터 데이터/AI개발 지원 포트폴리오입니다.",
+      brand: "현대엘리베이터 · 데이터/AI개발",
+      eyebrow: "현대엘리베이터 · 데이터/AI개발 신입",
+      statement: "흩어진 데이터를 연결해,<br>현업이 판단하는 서비스로 만듭니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 판매·광고·재고 데이터와 업무 화면, 사내 AI를 연결했습니다. 상품 식별 기준과 조회 로직을 설계하고 수집·적재부터 AWS 운영까지 담당했습니다. 직원이 여러 판매처를 한 번에 비교하고, 서로 다른 부서가 같은 데이터를 보며 협의하도록 구현했습니다.",
+      note: "직접 수행 · 현업 요구 → 데이터 설계·구현 → 검증·운영",
+      consoleFile: "hyundai_data_ai_delivery.yml",
+      console: '<span class="code-key">구조화</span>  상품·옵션 식별자 / 현재·이력\n<span class="code-key">제공</span>    판매·광고·재고 → 공통 업무 화면\n<span class="code-key">검증</span>    원천 대조 / AI 숫자·근거 확인\n<span class="code-key">운영</span>    AWS / 실패 복구 / 사용자 피드백',
+      heroFacts: [
+        { value: "1인", label: "개발·배포·운영 담당" },
+        { value: "상품 단위", label: "판매·광고·재고 통합" },
+        { value: "92", label: "AI 기본 평가 문항" },
+        { value: "AWS", label: "직접 배포·운영" }
+      ],
+      fitKicker: "HYUNDAI ELEVATOR · DATA / AI DEVELOPMENT",
+      fitTitle: "데이터의 구조부터<br>사용자의 판단까지",
+      fitSummary: "데이터 모델링·적재·품질 관리, 데이터 기반 AI 서비스, 운영 시스템 연계를 실제 업무 경험으로 연결합니다.",
+      fitItems: [
+        { label: "데이터 모델링·품질", heading: "상품·옵션의 관계와 이력을 분리해 관리", body: "상품코드·SKU·바코드·판매옵션의 연결 관계를 정리하고 현재 마스터와 날짜별 이력을 구분했습니다. API·CSV·크롤링 수집과 DB 적재를 연결하고 누락·실패를 실제 0과 구분했습니다." },
+        { label: "현업 요구와 서비스 개발", heading: "같은 상품을 한 화면에서 비교하는 업무", body: "판매처별 판매량·광고비·재고를 함께 조회하도록 구현했습니다. 광고팀과 발주 담당팀에도 공통 데이터를 제공해 광고 조정과 추가 발주 필요성을 검토할 기준을 마련했습니다." },
+        { label: "AI 검증·운영 시스템 연계", heading: "조회된 근거와 답변 가능한 범위를 확인", body: "자비스에서 문서 RAG와 읽기 전용 DB 조회를 분리했습니다. 날짜 정보만으로 이익 수치를 만들던 실패를 재현하고 검증 로직을 보완했습니다. AWS 운영에서는 저장 결과 대조와 미완료 항목 재처리를 적용했습니다." }
+      ],
+      contributionTitle: "현대엘리베이터에서 기여하고 싶은 방향",
+      contributionBody: "먼저 현업의 업무 흐름과 설비·부품·점검 데이터의 생성·사용 기준을 배우겠습니다. 상품 단위 통합과 운영 경험을 바탕으로 데이터 관계·갱신 주기·품질을 확인하고 기존 시스템과 연결하겠습니다. 반복적인 조회를 AI 기능으로 확장하되 실제 질문과 실패 사례로 결과를 검증하겠습니다.",
+      directionSource: { label: "공식 공고 · 현대그룹 신입 매니저 채용", url: "https://careers.hyundaigroup.com/jobs/RC20260828033768" },
+      supportingSource: { label: "직무 참고 · 데이터 개발 현직자 인터뷰", url: "https://careers.hyundaigroup.com/people-bigdata" },
+      experienceTitle: "같은 데이터를 보고,<br>업무 기준을 함께 맞췄습니다.",
+      experienceSummary: "통합 조회가 필요한 직원과 기존 시트를 선호하는 담당자의 목적을 구분했습니다. 판매처별 화면과 시트 자동화를 병행하고, 사용 안내 요청에는 실제 화면을 함께 보며 설명했습니다. 개발은 혼자 맡았지만 요구사항과 판단 기준은 현업과 확인했습니다.",
+      foundationTitle: "전공·교육에서 익히고, 실무에서 검증한 기반",
+      foundationSummary: "컴퓨터공학·정보통계학, 데이터·AI 전문교육과 팀 프로젝트에서 개발·분석의 기반을 쌓았습니다. 모델 학습·시계열 예측 프로젝트와 사내 데이터·AI 운영 경험은 구분해 보여드립니다.",
+      scopeKicker: "MODEL · PIPELINE · SERVICE · QUALITY",
+      scopeTitle: "데이터가 업무에 쓰이는<br>전체 흐름을 연결합니다.",
+      scopeSummary: "수집 자체보다 데이터가 어떤 판단에 쓰이는지 먼저 확인합니다. Codex 등 개발 도구를 활용하되 설계 선택, 원천 대조와 실제 결과 검증을 함께 수행했습니다.",
+      scopeLanes: [
+        { label: "01 · MODEL", title: "데이터 기준과 관계", items: [
+          ["식별자 연결", "상품코드·SKU·바코드·판매옵션의 관계와 세트 단위 정리"],
+          ["현재와 이력", "현재 마스터와 날짜별 변경 이력을 구분해 관리"],
+          ["조회 목적", "전체 상품 판단과 개별 판매처 확인에 필요한 데이터를 구분"],
+          ["품질 기준", "기준일·집계 단위·누락·실패 상태를 실제 0과 구분"]
+        ] },
+        { label: "02 · PIPELINE", title: "수집·적재·제공", items: [
+          ["원천 수집", "API·CSV·크롤링을 연결해 직원의 반복 다운로드·적재 작업 축소"],
+          ["정제와 저장", "Python·SQL 기반 변환과 공통 식별자 매핑을 DB 적재에 반영"],
+          ["운영 시스템 연계", "통계 사이트와 Google Sheets에 같은 기준의 지표 제공"],
+          ["실패 복구", "확보한 결과와 처리 상태를 보존하고 미완료 항목부터 재처리"]
+        ] },
+        { label: "03 · SERVICE", title: "현업 판단과 AI", items: [
+          ["상품 통합 조회", "여러 판매처의 판매·광고·재고를 한 상품 기준으로 비교"],
+          ["공통 지표", "광고팀과 발주 담당팀이 같은 데이터로 협의할 기준 제공"],
+          ["자비스 조회", "업무 기준은 문서 RAG, 최신 수치는 NL2SQL·Tool Calling"],
+          ["사람의 판단", "재고·발주 검토 자료를 제공하되 광고·발주를 자동 확정하지 않음"]
+        ] },
+        { label: "04 · VERIFY & OPERATE", title: "검증과 지속 개선", items: [
+          ["AI 검증", "조회 성공과 수치 근거 유무를 구분하고 실패 사례를 재현"],
+          ["결과 확인", "원천과 DB·화면의 합계, 저장한 가격·식별정보·수집시간 대조"],
+          ["AWS 운영", "배포·예약 실행·로그·백업과 오류 대응까지 담당"],
+          ["사용 안내", "이용 가이드 요청을 받고 AI 안내와 실제 화면 설명을 병행"]
+        ] }
+      ],
+      workKicker: "HYUNDAI ELEVATOR · RELEVANT EXPERIENCE",
+      workTitle: "데이터 통합, 업무 활용, AI 검증의 세 가지 경험",
+      workSummary: "자동화 2025.12, 통계 사이트 2026.03, 자비스 2026.07부터 개발·개선했습니다. 먼저 실제로 바뀐 업무를 보여드리고, 각 프로젝트에서 설계 선택과 검증 범위를 설명합니다.",
+      contactTitle: "현장의 업무를 배우고,<br>근거가 있는 데이터·AI 서비스를 만들겠습니다.",
+      contactSummary: "현업 요구를 데이터 구조와 화면으로 구현하고 운영 중 오류를 개선해온 경험을 현대엘리베이터 데이터/AI개발 직무로 이어가고 싶습니다. 새로운 도메인은 담당자에게 배우고, 검증 가능한 단위로 구현하겠습니다.",
+      projectOrder: ["data-platform", "jarvis", "order-ai"],
+      projectSummaries: {
+        "data-platform": "하나의 상품을 판단하려면 판매처별 판매량·광고비·재고를 각각 찾아야 했습니다. Python·SQL로 상품·옵션 식별자를 연결하고 데이터 수집·적재와 통합 조회 화면을 구현했습니다. 현재 마스터와 날짜별 이력을 구분하고, 여러 판매처를 한곳에서 비교하도록 했습니다. API와 자동화로 CSV 다운로드·적재 업무도 줄였습니다.",
+        jarvis: "업무 기준은 문서 RAG로, 변동하는 판매·재고 수치는 NL2SQL·Tool Calling을 통한 읽기 전용 DB 조회로 확인하도록 구성했습니다. 날짜만 조회됐는데 이익 수치를 생성한 오류를 발견해 실제 집계 행의 유무를 검증하도록 보완했습니다. 조회 결과를 재생한 오프라인 테스트로 해당 오류의 차단을 확인했고, 복잡한 질문의 완결성은 별도로 개선 중입니다.",
+        "order-ai": "판매·재고·입고 예정과 배송 기간·최소 주문수량을 반영한 발주 검토 자료를 제공합니다. 광고팀과 발주 담당팀이 공통 데이터를 보며 재고 부족 가능성과 광고 조정·추가 발주 필요성을 협의할 기준을 마련했습니다. 추천이나 예측을 실제 결과로 확정하지 않으며 최종 광고·발주 결정은 담당자가 내립니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "DATA QUALITY · USER FEEDBACK",
+        "#support-title": "데이터의 정확성과 실제 사용을 함께 확인",
+        "[data-profile-support-summary]": "접근 범위와 데이터 기준, 사용자에게 전달되는 결과까지 확인했습니다.",
+        "[data-profile-adoption-title]": "사용 방법을 함께 보며 개선 의견을 확인",
+        "[data-profile-adoption-body]": "설문에서 이용 가이드가 필요하다는 의견을 받았습니다. 자비스의 사용 안내뿐 아니라 직원과 실제 화면을 함께 보며 설명했고, 새로운 기능 아이디어와 문의사항을 받았습니다.",
+        "#architecture-title": "수집·모델링에서 업무 화면과 AI까지",
+        "[data-profile-architecture-summary]": "공통 상품 기준과 집계 로직을 통계 사이트·업무 시트·AI 조회에 연결했습니다. 같은 데이터를 여러 업무에서 활용하되 누락과 추정은 확인된 값과 구분합니다.",
+        "[data-project-key='data-platform'] h3": "상품 단위 통합 데이터 · 업무 플랫폼",
+        "[data-project-key='data-platform'] .human-interface strong": "판매처별로 찾던 정보를 한 상품 기준으로 비교",
+        "[data-project-key='data-platform'] .human-interface p": "각 판매처의 판매량과 광고비, 재고를 한곳에서 확인하도록 했습니다. 한 판매처의 판매 부진만으로 상품 전체를 판단하지 않도록 다른 판매처의 실적도 함께 제공합니다.",
+        "[data-profile-order-effect-body]": "광고팀과 발주 담당팀이 서로 다른 자료와 구두 전달에만 의존하지 않고 같은 데이터를 바탕으로 협의할 수 있도록 지원했습니다. 광고비 조정과 발주 확정은 담당자가 판단합니다."
+      }
+    },
     hanwha: {
       company: "한화금융",
       role: "AI/데이터 · Engineer",
@@ -433,6 +522,8 @@
   };
 
   const aliases = {
+    "hyundai-elevator": "hyundai",
+    hyundaielevator: "hyundai",
     "hanwha-finance": "hanwha",
     hanwhalife: "hanwha",
     lg: "lgcns",

@@ -21,6 +21,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             ("daou", "다우기술", "AI 개발"),
             ("sempio", "샘표", "플랫폼 개발자(정규직)"),
             ("hanwha", "한화금융", "AI/데이터 · Engineer"),
+            ("hyundai", "현대엘리베이터", "데이터/AI개발 · 신입"),
         ):
             with self.subTest(key=key):
                 self.assertIn(f"{key}: {{", self.script)
@@ -58,7 +59,7 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
 
     def test_every_profile_has_project_specific_summaries(self):
-        self.assertEqual(self.script.count("projectSummaries: {"), 6)
+        self.assertEqual(self.script.count("projectSummaries: {"), 7)
 
     def test_unknown_targets_do_not_resolve_object_prototypes(self):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
@@ -72,7 +73,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertNotIn(stale_count, self.index + self.script)
 
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
-        self.assertEqual(self.script.count("directionSource: {"), 6)
+        self.assertEqual(self.script.count("directionSource: {"), 7)
         self.assertIn("롯데백화점 브랜드 AI 구축", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
@@ -108,7 +109,7 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn("Codex를 활용한 코드 분석·구현에도 원천 대조와 결과 검증", sempio)
         self.assertIn('value: "Web · API"', sempio)
         self.assertIn('id="platform-engineering"', self.index)
-        self.assertIn('data-profile-only="sempio lotte hanwha" hidden', self.index)
+        self.assertIn('data-profile-only="sempio lotte hanwha hyundai" hidden', self.index)
         self.assertIn('data-open-journey="site"', self.index)
         for unsupported in ("SAP 구축", "ERP를 구축했습니다", "Java 실무", "Spring Boot 개발", "전 직원이 전환"):
             self.assertNotIn(unsupported, sempio)
@@ -139,6 +140,20 @@ class CompanyPortfolioTests(unittest.TestCase):
         for unsupported in ("MLOps를 구축", "금융 AI를 운영", "전사 거버넌스를 수립", "Vector DB", "정확도 100%"):
             self.assertNotIn(unsupported, hanwha)
         self.assertIn('"hanwha-finance": "hanwha"', self.script)
+
+    def test_hyundai_connects_data_modeling_to_observed_workflow_changes(self):
+        hyundai = self.script.split("    hyundai: {", 1)[1].split("    hanwha: {", 1)[0]
+        self.assertIn('projectOrder: ["data-platform", "jarvis", "order-ai"]', hyundai)
+        for evidence in ("상품·옵션", "현재 마스터", "날짜별 이력", "실제 0", "오프라인 테스트", "실제 화면", "최종 광고·발주 결정"):
+            self.assertIn(evidence, hyundai)
+        self.assertIn("생성·사용 기준을 배우겠습니다", hyundai)
+        self.assertIn("https://careers.hyundaigroup.com/jobs/RC20260828033768", hyundai)
+        self.assertIn("https://careers.hyundaigroup.com/people-bigdata", hyundai)
+        for unsupported in ("28%", "만족도가 상승", "만족도가 높아", "예지보전을 구축", "Vector DB", "정확도 100%"):
+            self.assertNotIn(unsupported, hyundai)
+        self.assertIn('"hyundai-elevator": "hyundai"', self.script)
+        self.assertEqual(self.index.count('id="hyundai-data-modeling"'), 1)
+        self.assertIn('class="hyundai-outcomes" data-profile-only="hyundai" hidden', self.index)
 
 
 if __name__ == "__main__":

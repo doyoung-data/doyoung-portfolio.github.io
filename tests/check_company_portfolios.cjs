@@ -11,7 +11,8 @@ const profiles = {
   dbinc: { company: 'DB Inc.', order: ['jarvis', 'order-ai', 'data-platform'] },
   daou: { company: '다우기술', order: ['jarvis', 'data-platform', 'order-ai'] },
   sempio: { company: '샘표', order: ['data-platform', 'order-ai', 'jarvis'] },
-  hanwha: { company: '한화금융', order: ['data-platform', 'jarvis', 'order-ai'] }
+  hanwha: { company: '한화금융', order: ['data-platform', 'jarvis', 'order-ai'] },
+  hyundai: { company: '현대엘리베이터', order: ['data-platform', 'jarvis', 'order-ai'] }
 };
 
 async function main() {
@@ -41,7 +42,7 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
-      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha'].includes(key));
+      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai'].includes(key));
       if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
@@ -74,6 +75,15 @@ async function main() {
         assert.match(await page.locator('[data-profile-work-summary]').innerText(), /2025\.12.*2026\.03.*2026\.07/);
         assert.equal(await supportingSource.getAttribute('href'), 'https://www.hanwhain.com/portal/apply/recruit/detail?rtSeq=19498');
         assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /평가하며 개선 중/);
+      } else if (key === 'hyundai') {
+        assert.match(await page.title(), /데이터\/AI개발/);
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://careers.hyundaigroup.com/jobs/RC20260828033768');
+        assert.equal(await supportingSource.getAttribute('href'), 'https://careers.hyundaigroup.com/people-bigdata');
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /생성·사용 기준을 배우겠습니다/);
+        assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /오프라인 테스트/);
+        assert.match(await page.locator('[data-profile-adoption-body]').innerText(), /실제 화면.*아이디어/);
+        assert.match(await page.locator('[data-profile-order-effect-body]').innerText(), /담당자가 판단/);
+        assert.equal(await page.locator('.hyundai-outcomes > dl > div').count(), 3);
       } else {
         assert.match(await page.locator('[data-profile-experience-title]').innerText(), /현업과 함께 정의하고/);
         assert.equal(await page.locator('[data-profile-foundation-title]').innerText(), 'AI 서비스의 기반이 된 프로젝트');
@@ -92,7 +102,8 @@ async function main() {
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
-      assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha"]').isVisible(), ['sempio', 'lotte', 'hanwha'].includes(key));
+      assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai'].includes(key));
+      assert.equal(await page.locator('.hyundai-outcomes').isVisible(), key === 'hyundai');
       assert.equal(await page.locator('[data-profile-only="lotte"]').first().isVisible(), key === 'lotte');
       if (key === 'lotte') {
         assert.ok(!/안동대학교|정보통계학|주전공|복수전공/.test(await page.locator('body').innerText()));
@@ -110,7 +121,7 @@ async function main() {
       for (const width of [1440, 1024, 768, 390, 320]) {
         await page.setViewportSize({ width, height: 1000 });
         const overflow = await page.evaluate(() => {
-          const selectors = '.hero-statement, .hero-description, .role-fit-list strong, .role-fit-list p, .role-fit-contribution p, .direction-source, .case-eval-note, .case-summary, .brand, .hero-console';
+          const selectors = '.hero-statement, .hero-description, .hero-metrics strong, .role-fit-list strong, .role-fit-list p, .role-fit-contribution p, .direction-source, .case-eval-note, .case-summary, .brand, .hero-console, .hyundai-outcomes h4, .hyundai-outcomes dt, .hyundai-outcomes dd';
           return {
             page: document.documentElement.scrollWidth > innerWidth + 1,
             text: Array.from(document.querySelectorAll(selectors)).filter(node => node.getBoundingClientRect().width > 0 && node.scrollWidth > node.clientWidth + 1).map(node => node.className || node.tagName)
@@ -118,13 +129,27 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
-        if (['sempio', 'lotte', 'hanwha'].includes(key)) {
+        if (['sempio', 'lotte', 'hanwha', 'hyundai'].includes(key)) {
           const platformDetail = page.locator('#platform-engineering');
           await platformDetail.locator('summary').click();
           assert.match(await platformDetail.innerText(), /기존 시트를 선호하던 일부 직원/);
           assert.match(await platformDetail.innerText(), /상품 식별정보·가격·수집시간/);
           assert.equal(await platformDetail.evaluate(node => Array.from(node.querySelectorAll('h4, h5, dd')).some(element => element.scrollWidth > element.clientWidth + 1)), false);
           await platformDetail.locator('summary').click();
+        }
+        if (key === 'hyundai') {
+          const modeling = page.locator('#hyundai-data-modeling');
+          await modeling.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          assert.notEqual(await modeling.getAttribute('open'), null);
+          assert.equal(await modeling.locator('.agent-flow > li').count(), 4);
+          assert.equal(await modeling.evaluate(node => Array.from(node.querySelectorAll('p, h4, h5, strong')).some(element => element.scrollWidth > element.clientWidth + 1)), false);
+          if (screenshotDir && [1440, 390].includes(width)) {
+            await page.locator('.hyundai-outcomes').screenshot({ path: path.join(screenshotDir, `hyundai-outcomes-${width}.png`), style: '.site-header, .skip-link { visibility: hidden !important; }' });
+          }
+          await modeling.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          assert.equal(await modeling.getAttribute('open'), null);
         }
         await engineering.locator('summary').click();
         const detailOverflow = await engineering.evaluate(node => {
@@ -234,6 +259,7 @@ async function main() {
       ['target=db', 'dbinc'], ['target=%20DAOU%20', 'daou'],
       ['company=sempio-platform', 'sempio'], ['target=%20SEMPIO%20', 'sempio'],
       ['company=hanwha-finance', 'hanwha'], ['target=hanwhalife', 'hanwha'], ['target=%20HANWHA%20', 'hanwha'],
+      ['company=hyundai-elevator', 'hyundai'], ['target=hyundaielevator', 'hyundai'], ['target=%20HYUNDAI%20', 'hyundai'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {
@@ -243,10 +269,11 @@ async function main() {
         assert.equal(await page.locator('[data-academic-identity]').count(), 2);
         assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), false);
         assert.equal(await page.locator('[data-profile-supporting-source]').isVisible(), false);
+        assert.equal(await page.locator('.hyundai-outcomes').isVisible(), false);
       }
     }
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 16, pageErrors: errors }, null, 2));
+    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 19, pageErrors: errors }, null, 2));
   } finally {
     await browser.close();
   }

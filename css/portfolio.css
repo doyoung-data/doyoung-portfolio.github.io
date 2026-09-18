@@ -1167,6 +1167,23 @@ html[data-theme="dark"][data-portfolio-target="dbinc"] {
 .engineering-incidents dl > div { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 12px; margin-top: 9px; font-size: 13px; line-height: 1.8; }
 .engineering-incidents dt { color: var(--accent-strong); font-weight: 700; }
 .engineering-incidents dd { color: var(--muted); margin: 0; }
+
+.hyundai-outcomes { margin: 24px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.hyundai-outcomes h4 { margin: 5px 0 18px; font-size: 17px; line-height: 1.6; }
+.hyundai-outcomes > dl { margin: 0; }
+.hyundai-outcomes > dl > div { display: grid; grid-template-columns: 100px minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); }
+.hyundai-outcomes dt { font-size: 13px; font-weight: 700; color: var(--text); }
+.hyundai-outcomes dd { margin: 0; min-width: 0; font-size: 13px; line-height: 1.8; color: var(--muted); word-break: keep-all; overflow-wrap: anywhere; }
+.hyundai-outcomes dd span { display: block; margin-bottom: 4px; font-size: 11px; font-weight: 700; color: var(--muted); }
+.hyundai-outcomes dd:last-child span { color: var(--accent-strong); }
+.hyundai-outcomes .engineering-incidents article > p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; word-break: keep-all; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .hyundai-outcomes > dl > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; }
+  .hyundai-outcomes dt { grid-column: 1 / -1; }
+}
+@media (max-width: 430px) {
+  .hyundai-outcomes > dl > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
 .engineering-evaluation { border-top: 1px solid var(--line); padding-top: 22px; margin-bottom: 20px; }
 .engineering-evaluation h4 { font-size: 14px; margin-bottom: 14px; }
 .engineering-evaluation dl > div { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; padding: 8px 0; font-size: 13px; border-bottom: 1px solid var(--line); }

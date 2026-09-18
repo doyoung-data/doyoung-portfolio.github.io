@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260909-sempio">
+  <link rel="stylesheet" href="css/portfolio.css?v=20260918-hyundai">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -258,6 +258,7 @@
               </div>
               <p class="case-role"><strong>직접 담당</strong> 요구사항 정리 · 데이터 연결 · AI/API 개발 · 답변 검증 · 배포·운영</p>
               <p class="case-role" data-profile-only="lotte" hidden><strong>개발·운영 기간</strong> 2026.07 — 현재 · 기존 통계 사이트에 AI 조회 기능 추가</p>
+              <p class="case-eval-note" data-profile-only="hyundai" hidden>검증 범위 · 실제 조회 결과를 재생한 오프라인 테스트로 근거 없는 이익 수치의 차단을 확인했습니다. 오류 재현·차단에 한정한 검증이며, 복합 질문의 답변 완결성은 별도로 개선하고 있습니다.</p>
               <details class="case-engineering" id="jarvis-engineering">
                 <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -357,7 +358,32 @@
                 </div>
               </div>
               <p class="case-role" data-profile-only="lotte" hidden><strong>개발·운영 기간</strong> 데이터 자동화 2025.12 — 현재 · 통계 사이트 2026.03 — 현재</p>
-              <div data-profile-only="sempio lotte hanwha" hidden>
+              <div class="hyundai-outcomes" data-profile-only="hyundai" hidden>
+                <header><p class="case-label">BEFORE / AFTER · 업무 변화</p><h4>직원이 정보를 확인하는 방식이 달라졌습니다.</h4></header>
+                <dl>
+                  <div><dt>상품 단위 조회</dt><dd><span>이전</span>판매처별 판매량·광고비·재고를 각각 찾아 비교</dd><dd><span>이후</span>한 상품의 여러 판매처 지표를 한 화면에서 확인</dd></div>
+                  <div><dt>부진재고 검토</dt><dd><span>이전</span>담당 판매처의 실적만으로 상품 전체를 판단하기 쉬움</dd><dd><span>이후</span>통합 판매·재고 지표를 함께 보며 부진 여부를 검토</dd></div>
+                  <div><dt>광고·발주 협의</dt><dd><span>이전</span>서로 다른 자료를 보고 상품별 상황을 구두로 전달</dd><dd><span>이후</span>같은 재고·판매·예측 데이터를 기준으로 협의</dd></div>
+                </dl>
+                <p class="engineering-caption">통합 조회와 공통 지표를 제공해 달라진 업무입니다. 광고 집행과 최종 발주는 담당자가 결정합니다.</p>
+                <details class="case-engineering" id="hyundai-data-modeling">
+                  <summary><span><i data-lucide="database" aria-hidden="true"></i>데이터 모델링과 품질 관리</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                  <div class="engineering-content">
+                    <ol class="agent-flow" aria-label="데이터 수집부터 업무 제공까지의 개념도">
+                      <li><span>01 · SOURCE</span><strong>원천 수집</strong><p>API · CSV · 크롤링<br>판매 · 광고 · 재고</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                      <li><span>02 · IDENTITY</span><strong>식별자 매핑</strong><p>상품코드 · SKU · 바코드<br>판매옵션 · 세트 단위</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                      <li><span>03 · MODEL</span><strong>현재와 이력</strong><p>현재 마스터와 날짜별 이력<br>누락 · 실패 · 실제 0 구분</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                      <li><span>04 · SERVE</span><strong>업무에 제공</strong><p>통계 사이트 · 업무 시트<br>AI 조회 · 발주 검토</p></li>
+                    </ol>
+                    <div class="engineering-incidents">
+                      <article><h5><span>설계</span>현재 정보와 과거 기준을 구분했습니다.</h5><p>현재 상품 마스터와 날짜별 이력 테이블을 분리했습니다. 판매옵션 식별자와 상품코드·SKU·바코드의 연결, 세트 수량과 검증 상태, 동기화 시점을 관리해 조회 기준을 확인할 수 있도록 했습니다.</p></article>
+                      <article><h5><span>검증</span>수집 성공만으로 정상 적재를 판단하지 않았습니다.</h5><p>원천 데이터와 DB·시트에 전달된 값을 대조하고, 수집·저장 실패는 실제 가격 0과 구분했습니다. 상품 식별정보·가격·수집시간을 다시 읽어 전달 결과를 확인했습니다.</p></article>
+                    </div>
+                    <p class="engineering-caption">공개용 개념도입니다. 회사의 실제 테이블명·상품 식별자·원본 데이터는 공개하지 않습니다.</p>
+                  </div>
+                </details>
+              </div>
+              <div data-profile-only="sempio lotte hanwha hyundai" hidden>
                 <p class="case-role"><strong>직접 담당</strong> 현업 인터뷰 · 데이터 구조와 조회 로직 · 웹 화면 · API 연동 · AWS 배포·유지보수</p>
                 <details class="case-engineering" id="platform-engineering">
                   <summary><span><i data-lucide="workflow" aria-hidden="true"></i>요구사항 조율과 운영 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
@@ -402,7 +428,7 @@
               <p class="case-summary">최근 판매량뿐 아니라 현재 재고, 입고 예정, 배송 기간, 최소 주문수량, 쿠팡 재고·발주 상태와 과거 결과를 함께 반영해 발주 검토안을 생성합니다. 현재 현업 발주 검토에 사용하며 담당자가 먼저 확인할 상품과 판단 근거를 제공합니다.</p>
               <div class="case-brief">
                 <p><strong>핵심 구현</strong>판매 급증·이력 부족·입고 예정·MOQ가 얽힌 항목은 자동 확정하지 않고 근거와 함께 별도 검토 대상으로 분리했습니다.</p>
-                <p><strong>회사 효과</strong>추천량과 우선 검토 대상을 중심으로 확인해 발주 검토 시간을 줄이고 중복·과다·과소 발주 위험을 낮춥니다.</p>
+                <p><strong>회사 효과</strong><span data-profile-order-effect-body>추천량과 우선 검토 대상을 중심으로 확인해 발주 검토 시간을 줄이고 중복·과다·과소 발주 위험을 낮춥니다.</span></p>
               </div>
               <div class="stack-row"><span>Python</span><span>Pandas</span><span>Forecasting</span><span>Rule Engine</span><span>Human Review</span></div>
             </div>
@@ -819,7 +845,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20260916-hanwha" defer></script>
+  <script src="js/company-portfolio.js?v=20260918-hyundai" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>
