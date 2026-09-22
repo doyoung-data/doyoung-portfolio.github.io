@@ -2,6 +2,93 @@
   "use strict";
 
   const profiles = {
+    nh: {
+      company: "NH투자증권",
+      role: "IT · 신입",
+      title: "권도영 | NH투자증권 IT 지원 포트폴리오",
+      description: "Python·SQL 데이터 처리, FastAPI 업무 시스템, AWS 운영과 오류 복구, 현업 요구사항 조율 경험을 정리한 권도영의 NH투자증권 IT 지원 포트폴리오입니다.",
+      brand: "NH투자증권 · IT",
+      eyebrow: "NH투자증권 · IT 신입 지원",
+      statement: "업무 데이터를 연결하고,<br>사용자에게 전달된 결과까지 확인합니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 Python·SQL 데이터 처리, FastAPI 업무 시스템과 사내 AI, AWS 배포·운영을 담당했습니다. 현업과 상품·지표 기준을 맞추고, 수집 오류와 저장 실패를 분리해 복구했습니다. 개발 이후에도 실제 조회값과 사용자의 업무 흐름을 확인하며 개선했습니다.",
+      note: "직접 수행 · 요구사항 → 데이터·API·화면 → 테스트·운영",
+      consoleFile: "nh_it_delivery.yml",
+      console: '<span class="code-key">개발</span>  Python · SQL · FastAPI\n<span class="code-key">검증</span>  식별자 · 집계 기준 · 저장 결과\n<span class="code-key">운영</span>  AWS · Linux · 로그 · 실패 복구\n<span class="code-key">협업</span>  현업 요구 · 사용자별 화면 · 피드백',
+      heroFacts: [
+        { value: "Python · SQL", label: "수집·정제·조회 구현" },
+        { value: "FastAPI", label: "업무 시스템·AI 연결" },
+        { value: "60+", label: "자동 갱신 업무 시트 탭" },
+        { value: "AWS", label: "배포·운영·오류 대응" }
+      ],
+      fitKicker: "NH INVESTMENT & SECURITIES · IT",
+      fitTitle: "개발부터 운영까지,<br>실제 수행한 경험",
+      fitSummary: "증권시스템 전산 개발·운영 직무에 연결할 기반입니다. 이커머스에서 수행한 개발 경험과 입사 후 학습할 금융업무를 구분했습니다.",
+      fitItems: [
+        { label: "프로그래밍·SQL", heading: "서로 다른 데이터를 일관된 조회 기준으로", body: "Python·SQL로 API·CSV·크롤링 데이터를 처리하고 상품코드·옵션·SKU를 연결했습니다. 현재 정보와 날짜별 이력을 구분하고 누락·수집 실패를 실제 0과 구별해 DB·시트·웹에 제공했습니다." },
+        { label: "시스템 개발·운영", heading: "실패 단계와 전달 결과를 함께 확인", body: "FastAPI로 업무 조회와 AI 기능을 연결하고 AWS·Linux에서 운영했습니다. 수집·저장 실패를 분리하고 확보한 결과를 보존해 미완료 항목부터 재처리했습니다. 저장 후 식별정보·가격·수집시간도 다시 대조했습니다." },
+        { label: "요구사항·검증", heading: "현업의 확인 방식과 오류 사례를 설계에 반영", body: "시트를 선호하는 담당자에게 확인 지표와 순서를 묻고 판매처별 페이지를 만들었습니다. 자비스에서는 날짜만 조회하고 이익을 생성한 오류를 재현해 실제 수치 근거가 없으면 답변을 보류하도록 보완했습니다." }
+      ],
+      contributionTitle: "NH투자증권에서 이어갈 개발 방향",
+      contributionBody: "나무 PLUG가 시세·잔고·주문 기능을 외부 프로그램과 연결하는 방향에 관심이 있습니다. API 연동과 데이터 검증 경험을 바탕으로 맡은 증권시스템의 입력·저장·조회 흐름을 익히겠습니다. 금융 거래·잔고·결제 구조와 회사의 보안·변경관리 기준은 입사 후 배우며, 동료와 정상·예외 조건을 검토해 개발하겠습니다.",
+      directionSource: { label: "공식 공고 · 2026 하반기 대졸 신입 IT", url: "https://nhqv.recruiter.co.kr/career/jobs/128898" },
+      supportingSource: { label: "사업 방향 참고 · 나무 PLUG 공식 개발 자료", url: "https://github.com/PLUG-OpenAPI" },
+      experienceTitle: "혼자 개발했지만,<br>업무 기준은 현업과 맞췄습니다.",
+      experienceSummary: "전체 상품을 비교하는 직원과 개별 판매처 담당자의 요구가 달랐습니다. 확인하는 지표와 순서를 듣고 전용 화면과 기존 시트 자동화를 병행했습니다. 직접 화면을 안내한 뒤 받은 추가 기능 요청을 후속 개선에 반영했습니다.",
+      foundationTitle: "프로그래밍·데이터 처리와 팀 프로젝트의 기반",
+      foundationSummary: "컴퓨터공학·정보통계학과 데이터 전문교육에서 기초를 쌓았습니다. 교육 팀 프로젝트의 데이터 모델링·Slack 연동, FastAPI·RAG 챗봇 구현 경험을 사내 서비스 개발·운영과 구분해 정리했습니다.",
+      scopeKicker: "REQUIREMENTS · DEVELOPMENT · VALIDATION · OPERATIONS",
+      scopeTitle: "기능이 실행된 뒤,<br>결과가 맞는지까지 확인합니다.",
+      scopeSummary: "업무 데이터가 만들어지고 전달되는 흐름을 나눠 확인했습니다. 개발 도구를 활용하되 설계 기준과 변경 영향, 데이터 검증 결과는 직접 점검했습니다.",
+      scopeLanes: [
+        { label: "01 · REQUIREMENTS", title: "업무와 처리 조건", items: [
+          ["확인 목적", "현업이 먼저 보는 지표와 판단·조치의 기준을 질문"],
+          ["공통 기준", "상품·옵션·세트 수량과 조회 기간·집계 단위를 조율"],
+          ["사용자 구분", "전체 통합 조회와 판매처별 담당자의 화면을 구분"],
+          ["피드백", "기존 시트도 지원하고 실제 사용 후 요청을 개선에 반영"]
+        ] },
+        { label: "02 · DEVELOPMENT", title: "데이터·API·업무 화면", items: [
+          ["Python·SQL", "수집·정제·적재와 공통 식별자 기반 조회 로직 구현"],
+          ["데이터 구조", "현재 마스터와 날짜별 이력을 구분해 관리"],
+          ["FastAPI", "업무 데이터 조회와 사용자 질문·AI 응답 흐름 연결"],
+          ["외부 연동", "API·CSV·크롤링 원천을 DB·Google Sheets·웹으로 연결"]
+        ] },
+        { label: "03 · VALIDATION", title: "근거와 결과 검증", items: [
+          ["값의 의미", "실제 0과 누락·실패를 구분하고 기준일·단위를 확인"],
+          ["전달 결과", "저장 후 상품 식별정보·가격·수집시간을 다시 읽어 대조"],
+          ["AI 조회 범위", "읽기 전용 조회와 허용 데이터·조회 범위 검사"],
+          ["오류 재현", "수치 근거가 없는 답변을 보류하고 같은 실패 조건을 재검증"]
+        ] },
+        { label: "04 · OPERATIONS", title: "운영·복구·개선", items: [
+          ["AWS·Linux", "서버 배포·예약 실행·로그·백업 관리"],
+          ["실패 단계", "수집과 저장 단계를 구분해 오류 위치를 확인"],
+          ["재처리", "확보한 데이터와 처리 상태를 보존하고 미완료 항목부터 재개"],
+          ["사용 안내", "실제 화면으로 사용법을 설명하고 후속 문의를 확인"]
+        ] }
+      ],
+      workKicker: "NH IT · DEVELOPMENT & OPERATIONS EVIDENCE",
+      workTitle: "업무 시스템 개발, 운영 복구, AI 검증 사례",
+      workSummary: "데이터 자동화는 2025.12, 통계 사이트는 2026.03, 자비스는 2026.07부터 개발·개선했습니다. 직접 구현한 데이터 구조, 단계별 실패 복구, 사용자 피드백을 반영한 사례입니다.",
+      contactTitle: "정확한 데이터와 안정적인 운영으로<br>신뢰받는 금융서비스에 기여하겠습니다.",
+      contactSummary: "Python·SQL과 업무 시스템 운영 경험을 바탕으로 증권업무를 배우겠습니다. 현업 요구를 처리 조건으로 구체화하고 동료의 검토와 테스트를 거쳐 맡은 기능을 개선하겠습니다.",
+      projectOrder: ["data-platform", "jarvis", "order-ai"],
+      projectSummaries: {
+        "data-platform": "판매처별 판매·광고·재고를 따로 확인하던 업무를 공통 상품 기준의 통합 화면으로 연결했습니다. Python·SQL 데이터 처리와 FastAPI 업무 시스템, AWS 배포·운영을 담당했습니다. 수집 중단과 저장 실패를 구분해 미완료 항목을 재처리하고, 저장된 값까지 다시 읽어 확인했습니다.",
+        jarvis: "업무 기준은 문서 RAG, 최신 수치는 NL2SQL·Tool Calling을 통한 읽기 전용 DB 조회로 분리했습니다. 날짜 정보만 조회했는데 이익 수치를 생성한 실패를 발견해 실제 집계 데이터의 유무를 검사하도록 보완했습니다. 오프라인 재현 검증과 92개 기본 회귀 문항을 활용하며, 복잡한 질문의 완결성은 별도로 개선 중입니다.",
+        "order-ai": "판매·재고·입고 예정·배송 기간·최소 주문수량을 함께 조회해 담당자의 발주 검토를 지원했습니다. 광고팀과 발주팀이 같은 데이터를 보며 재고 부족과 추가 발주 필요성을 협의할 기준을 제공했습니다. 추천·예측과 확인된 사실을 구분하며 최종 광고·발주 결정은 담당자가 내립니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "DATA INTEGRITY · USER FEEDBACK",
+        "#support-title": "데이터 정확성과 실제 사용을 함께 확인",
+        "[data-profile-support-summary]": "조회 범위, 데이터 기준, 사용자에게 전달되는 결과를 점검했습니다.",
+        "[data-profile-adoption-title]": "사용자의 확인 순서를 듣고 안내 방식을 보완",
+        "[data-profile-adoption-body]": "설문에서 이용 가이드가 필요하다는 의견을 받았습니다. 직원과 실제 화면을 함께 보며 사용법을 설명하고, 추가 기능 아이디어와 문의를 받아 후속 개선에 반영했습니다.",
+        "#architecture-title": "업무 데이터에서 DB·API·사용자 화면까지",
+        "[data-profile-architecture-summary]": "공통 상품 기준과 집계 로직을 업무 화면·시트·AI 조회에 연결했습니다. 이커머스 업무 시스템에서 직접 개발·운영한 데이터 흐름입니다.",
+        "[data-project-key='data-platform'] h3": "Python·SQL 기반 업무 데이터 플랫폼",
+        "[data-profile-order-effect-body]": "광고팀과 발주팀이 같은 데이터를 기준으로 협의하도록 지원했습니다. 광고 집행과 최종 발주는 담당자가 판단합니다."
+      }
+    },
     hyundai: {
       company: "현대엘리베이터",
       role: "데이터/AI개발 · 신입",
@@ -522,6 +609,8 @@
   };
 
   const aliases = {
+    "nh-investment": "nh",
+    nhqv: "nh",
     "hyundai-elevator": "hyundai",
     hyundaielevator: "hyundai",
     "hanwha-finance": "hanwha",

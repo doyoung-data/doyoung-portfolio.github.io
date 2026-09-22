@@ -17,6 +17,7 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 - 샘표 플랫폼 개발자: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=sempio
 - 한화금융 AI/데이터 Engineer: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=hanwha
 - 현대엘리베이터 데이터/AI개발: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=hyundai
+- NH투자증권 IT: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=nh
 
 각 주소는 첫 화면, 직무 적합 근거, 기여 방향, 대표 프로젝트 설명·순서와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다. 다른 지원 회사로 이동하는 메뉴는 노출하지 않습니다.
 
@@ -29,6 +30,11 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 | 샘표 플랫폼 개발자 | 현업 요구사항 분석, 웹 업무 시스템, 데이터·API 연동, AWS 운영과 유지보수 | 데이터 플랫폼 → 발주 검토 → 자비스 |
 | 한화금융 AI/데이터 Engineer | 데이터 파이프라인·표준화, RAG·Agent 백엔드, 업무 대시보드, 현업 연계와 검증 | 데이터 플랫폼 → 자비스 → 발주 검토 |
 | 현대엘리베이터 데이터/AI개발 | 데이터 모델링·적재·품질, 상품 단위 통합 조회, 현업의 공통 지표, AI 검증과 운영 | 데이터 플랫폼 → 자비스 → 발주 검토 |
+| NH투자증권 IT | Python·SQL, 업무 시스템 개발·운영, 데이터 정합성, 실패 복구, 현업 요구사항 | 데이터 플랫폼 → 자비스 → 발주 검토 |
+
+### NH투자증권 IT 전용 화면
+
+`?target=nh`, `?target=nhqv`, `?company=nh-investment`로 엽니다. 2026년 하반기 신입 IT 공고의 증권시스템 전산 개발·운영 및 프로그래밍·SQL·개발·운영 경험에 맞춰 직접 수행한 사례를 배치했습니다. 나무 PLUG는 회사 사업 방향 참고이며 직접 사용·개발한 실적으로 기재하지 않습니다. 금융 거래·잔고·결제 및 회사의 보안·변경관리 기준은 입사 후 학습 계획으로 구분했습니다. 공개 자료에서 NH의 AI 서류 채점 도입 여부나 배점은 확인하지 못했습니다.
 
 ### 현대엘리베이터 데이터/AI개발 전용 화면
 

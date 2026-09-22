@@ -12,7 +12,8 @@ const profiles = {
   daou: { company: '다우기술', order: ['jarvis', 'data-platform', 'order-ai'] },
   sempio: { company: '샘표', order: ['data-platform', 'order-ai', 'jarvis'] },
   hanwha: { company: '한화금융', order: ['data-platform', 'jarvis', 'order-ai'] },
-  hyundai: { company: '현대엘리베이터', order: ['data-platform', 'jarvis', 'order-ai'] }
+  hyundai: { company: '현대엘리베이터', order: ['data-platform', 'jarvis', 'order-ai'] },
+  nh: { company: 'NH투자증권', order: ['data-platform', 'jarvis', 'order-ai'] }
 };
 
 async function main() {
@@ -42,7 +43,7 @@ async function main() {
       assert.equal(await page.locator('[data-profile-direction-source]').isVisible(), true);
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
-      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai'].includes(key));
+      assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai', 'nh'].includes(key));
       if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
@@ -75,6 +76,15 @@ async function main() {
         assert.match(await page.locator('[data-profile-work-summary]').innerText(), /2025\.12.*2026\.03.*2026\.07/);
         assert.equal(await supportingSource.getAttribute('href'), 'https://www.hanwhain.com/portal/apply/recruit/detail?rtSeq=19498');
         assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /평가하며 개선 중/);
+      } else if (key === 'nh') {
+        assert.match(await page.title(), /NH투자증권 IT/);
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://nhqv.recruiter.co.kr/career/jobs/128898');
+        assert.equal(await supportingSource.getAttribute('href'), 'https://github.com/PLUG-OpenAPI');
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /보안·변경관리.*입사 후/);
+        assert.match(await page.locator('[data-profile-fit-summary]').innerText(), /입사 후 학습할 금융업무/);
+        assert.match(await page.locator('.hero-metrics').innerText(), /Python · SQL/);
+        assert.match(await page.locator('[data-project-key="data-platform"] .case-summary').innerText(), /미완료 항목/);
+        assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /92개 기본 회귀 문항/);
       } else if (key === 'hyundai') {
         assert.match(await page.title(), /데이터\/AI개발/);
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://careers.hyundaigroup.com/jobs/RC20260828033768');
@@ -102,7 +112,7 @@ async function main() {
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
-      assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai'].includes(key));
+      assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai nh"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai', 'nh'].includes(key));
       assert.equal(await page.locator('.hyundai-outcomes').isVisible(), key === 'hyundai');
       assert.equal(await page.locator('[data-profile-only="lotte"]').first().isVisible(), key === 'lotte');
       if (key === 'lotte') {
@@ -129,7 +139,7 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
-        if (['sempio', 'lotte', 'hanwha', 'hyundai'].includes(key)) {
+        if (['sempio', 'lotte', 'hanwha', 'hyundai', 'nh'].includes(key)) {
           const platformDetail = page.locator('#platform-engineering');
           await platformDetail.locator('summary').click();
           assert.match(await platformDetail.innerText(), /기존 시트를 선호하던 일부 직원/);
@@ -260,6 +270,7 @@ async function main() {
       ['company=sempio-platform', 'sempio'], ['target=%20SEMPIO%20', 'sempio'],
       ['company=hanwha-finance', 'hanwha'], ['target=hanwhalife', 'hanwha'], ['target=%20HANWHA%20', 'hanwha'],
       ['company=hyundai-elevator', 'hyundai'], ['target=hyundaielevator', 'hyundai'], ['target=%20HYUNDAI%20', 'hyundai'],
+      ['company=nh-investment', 'nh'], ['target=nhqv', 'nh'], ['target=%20NH%20', 'nh'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {
@@ -273,7 +284,7 @@ async function main() {
       }
     }
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 19, pageErrors: errors }, null, 2));
+    console.log(JSON.stringify({ status: 'PASS', profiles: results, routeChecks: 22, pageErrors: errors }, null, 2));
   } finally {
     await browser.close();
   }
