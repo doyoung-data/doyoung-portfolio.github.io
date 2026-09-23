@@ -18,6 +18,11 @@ https://doyoung-data.github.io/doyoung-portfolio.github.io/
 - 한화금융 AI/데이터 Engineer: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=hanwha
 - 현대엘리베이터 데이터/AI개발: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=hyundai
 - NH투자증권 IT: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=nh
+- CJ올리브네트웍스 Data Engineer: https://doyoung-data.github.io/doyoung-portfolio.github.io/?target=cj
+
+### CJ Data Engineer 제출 버전
+
+`?target=cj` 또는 `?company=cj-olivenetworks`로 엽니다. 데이터 파이프라인을 첫 사례로 배치하고 SKU 집계 단위, 일 배치 결과 대조, 자비스의 상품 후보·조회 기간·누락값 검증을 보강했습니다. 약 2,500개 상품 행은 일별 판매 이력 시트의 규모이며 거래 건수나 전체 처리량이 아닙니다. 실제 상품명·회사 수치·테이블명은 공개하지 않습니다. 팀 단위 파이프라인 CI/CD와 거버넌스는 학습할 영역으로 구분했습니다. 기존 회사별 버전은 유지합니다.
 
 각 주소는 첫 화면, 직무 적합 근거, 기여 방향, 대표 프로젝트 설명·순서와 메타 정보를 해당 회사에 맞게 변경합니다. 기본 주소는 범용 AI/AX 포트폴리오로 유지됩니다. 다른 지원 회사로 이동하는 메뉴는 노출하지 않습니다.
 

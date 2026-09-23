@@ -259,6 +259,25 @@
               <p class="case-role"><strong>직접 담당</strong> 요구사항 정리 · 데이터 연결 · AI/API 개발 · 답변 검증 · 배포·운영</p>
               <p class="case-role" data-profile-only="lotte" hidden><strong>개발·운영 기간</strong> 2026.07 — 현재 · 기존 통계 사이트에 AI 조회 기능 추가</p>
               <p class="case-eval-note" data-profile-only="hyundai" hidden>검증 범위 · 실제 조회 결과를 재생한 오프라인 테스트로 근거 없는 이익 수치의 차단을 확인했습니다. 오류 재현·차단에 한정한 검증이며, 복합 질문의 답변 완결성은 별도로 개선하고 있습니다.</p>
+              <details class="case-engineering" id="cj-query-validation" data-profile-only="cj" hidden>
+                <summary><span><i data-lucide="search-check" aria-hidden="true"></i>상품·기간이 질문의 의도와 맞는지 검증</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">ENTITY · PERIOD · MISSING DATA</p><h4>정확한 데이터도 다른 상품을 조회하면 틀린 답이 됩니다.</h4></header>
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 상품명이 정확하지 않은 질문</h5><dl>
+                      <div><dt>문제</dt><dd>상품 약칭이나 오타가 정확한 상품명과 일치하지 않아, 조회 대상이 없는 결과가 판매량 0처럼 전달되는 경우가 있었습니다.</dd></div>
+                      <div><dt>판단</dt><dd>문서 검색만 보강하기보다 질문 속 표현을 실제 상품 식별자에 연결해야 했습니다. 후보를 찾는 것과 하나를 확정하는 것을 구분했습니다.</dd></div>
+                      <div><dt>구현</dt><dd>공백·기호를 정규화하고 부분 일치·문자열 유사도로 후보를 비교했습니다. 신뢰도가 높은 단일 후보는 다시 조회하고 여러 후보는 사용자에게 확인하도록 했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 상품을 찾아도 기간과 누락값은 별도 문제</h5><dl>
+                      <div><dt>문제</dt><dd>상품명을 보정한 뒤에도 상대 기간의 해석과 조회되지 않은 날짜의 표현을 추가로 확인해야 했습니다.</dd></div>
+                      <div><dt>보완</dt><dd>최근 N일을 KST 기준 시작·종료일로 계산하고, 반환되지 않은 날짜는 데이터 미반환으로 표시했습니다. 누락 이유를 확인하지 않고 판매량 0이나 미수집으로 단정하지 않았습니다.</dd></div>
+                      <div><dt>검증</dt><dd>약칭·오타·복수 후보·기간 질문으로 재검증하고 테스트 환경과 운영 환경에서 알려진 실패 질문의 결과를 대조했습니다. 전체 질문의 정확도를 보장한다는 의미는 아닙니다.</dd></div>
+                    </dl></article>
+                  </div>
+                  <p class="engineering-caption">Codex와 코드 분석·구현을 진행하고 조회 조건과 결과를 직접 대조한 사례입니다. 실제 상품명·판매 수치·내부 DB 정보는 공개하지 않습니다.</p>
+                </div>
+              </details>
               <details class="case-engineering" id="jarvis-engineering">
                 <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -383,7 +402,31 @@
                   </div>
                 </details>
               </div>
-              <div data-profile-only="sempio lotte hanwha hyundai nh" hidden>
+              <details class="case-engineering" id="cj-data-quality" data-profile-only="cj" hidden>
+                <summary><span><i data-lucide="database" aria-hidden="true"></i>SKU 집계 단위와 일 배치 품질 검증</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <ol class="agent-flow" aria-label="CJ 데이터 엔지니어링 사례 흐름">
+                    <li><span>01 · SOURCE</span><strong>원천 수집</strong><p>API · CSV · 크롤링<br>판매 · 광고 · 재고</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>02 · MODEL</span><strong>식별·집계 기준</strong><p>상품 · 옵션 · SKU<br>현재 마스터 · 날짜별 이력</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>03 · QUALITY</span><strong>결합·적재 검증</strong><p>중복 합산 방지<br>누락 · 실패 · 실제 0 구분</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>04 · SERVE</span><strong>업무에 제공</strong><p>시트 · 통계 웹 · AI 조회<br>기준일 · 상품 · 값 대조</p></li>
+                  </ol>
+                  <div class="engineering-incidents">
+                    <article><h5><span>설계</span> 매핑 행 수와 판매 집계 단위는 달랐습니다.</h5><dl>
+                      <div><dt>문제</dt><dd>같은 SKU에 여러 상품 매핑 행이 연결되어, 판매 이력을 바로 결합하면 같은 판매량이 반복 합산될 수 있었습니다.</dd></div>
+                      <div><dt>선택</dt><dd>판매 이력을 삭제하거나 합계만 임의로 보정하지 않고, 매핑을 SKU 단위로 정리한 뒤 날짜별 판매 이력과 결합했습니다.</dd></div>
+                      <div><dt>확인</dt><dd>상품·옵션·세트 수량 기준을 현업과 맞추고 원천과 조회 결과를 대조했습니다. 현재 상품 정보와 과거 판매 이력은 분리해 관리했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>운영</span> 원천에서 화면까지 같은 기준으로 확인했습니다.</h5><dl>
+                      <div><dt>주기</dt><dd>AWS·Linux에서 전일 데이터를 일 배치로 갱신했습니다. 조회 화면에서도 데이터의 기준일과 갱신 상태를 확인했습니다.</dd></div>
+                      <div><dt>검증</dt><dd>실행 종료 여부뿐 아니라 원천·DB·시트·웹의 기준일, 상품 식별정보와 값을 다시 읽어 확인했습니다. 실제 0과 누락·처리 실패를 구분했습니다.</dd></div>
+                      <div><dt>활용</dt><dd>판매·광고·재고를 함께 제공해 부서가 같은 데이터를 보며 협의하도록 했고, CSV를 수동으로 옮기던 반복 작업을 줄였습니다.</dd></div>
+                    </dl></article>
+                  </div>
+                  <p class="engineering-caption">약 2,500개 상품 행은 일별 판매 이력 시트의 갱신 규모입니다. 거래 건수·전체 처리량·성능 개선율을 뜻하지 않습니다. 원본 데이터와 테이블명은 공개하지 않습니다.</p>
+                </div>
+              </details>
+              <div data-profile-only="sempio lotte hanwha hyundai nh cj" hidden>
                 <p class="case-role"><strong>직접 담당</strong> 현업 인터뷰 · 데이터 구조와 조회 로직 · 웹 화면 · API 연동 · AWS 배포·유지보수</p>
                 <details class="case-engineering" id="platform-engineering">
                   <summary><span><i data-lucide="workflow" aria-hidden="true"></i>요구사항 조율과 운영 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
@@ -845,7 +888,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20260922-nh" defer></script>
+  <script src="js/company-portfolio.js?v=20260923-cj" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>

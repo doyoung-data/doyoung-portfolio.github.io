@@ -2,6 +2,95 @@
   "use strict";
 
   const profiles = {
+    cj: {
+      company: "CJ올리브네트웍스",
+      role: "Data Engineer · 신입",
+      title: "권도영 | CJ올리브네트웍스 Data Engineer 지원 포트폴리오",
+      description: "Python·SQL 데이터 파이프라인, 상품 식별자와 집계 단위 설계, AWS 일 배치 운영, AI 조회 결과 검증 경험을 정리한 CJ올리브네트웍스 Data Engineer 지원 포트폴리오입니다.",
+      brand: "CJ올리브네트웍스 · Data Engineer",
+      eyebrow: "CJ올리브네트웍스 · Data Engineer 신입 지원",
+      statement: "흩어진 업무 데이터를,<br>함께 판단할 수 있는 기준으로 연결합니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 Python·SQL 수집·정제·적재와 FastAPI 통계 사이트, AWS·Linux 운영을 담당했습니다. 채널마다 다른 상품·옵션을 연결하고 집계 단위와 누락값을 검증했습니다. 데이터가 시트·웹·AI에 전달된 뒤에도 현업의 질문에 맞는 결과인지 확인했습니다.",
+      note: "직접 수행 · 데이터 구조 → 파이프라인 → 품질 검증 → 업무 제공",
+      consoleFile: "cj_data_engineering.yml",
+      console: '<span class="code-key">수집</span>  API · CSV · 크롤링\n<span class="code-key">정제</span>  Python · SQL · 상품/SKU 매핑\n<span class="code-key">검증</span>  집계 단위 · 기준일 · 누락/실제 0\n<span class="code-key">운영</span>  AWS · Linux · 일 배치 · 결과 대조',
+      heroFacts: [
+        { value: "Python · SQL", label: "수집·정제·적재 구현" },
+        { value: "SKU", label: "상품 식별·집계 기준" },
+        { value: "일 배치", label: "전일 데이터 자동 갱신" },
+        { value: "AWS", label: "배포·운영·오류 대응" }
+      ],
+      fitKicker: "CJ OLIVENETWORKS · DATA ENGINEER",
+      fitTitle: "수집한 데이터가<br>업무에 쓰이기까지",
+      fitSummary: "그룹 데이터 플랫폼 구축·운영 직무에 연결되는 실무 경험입니다. 원천을 연결한 방법, 집계 오류를 막은 판단, 데이터를 사용하는 부서와의 협업을 중심으로 정리했습니다.",
+      fitItems: [
+        { label: "파이프라인·데이터 모델", heading: "원천별 차이를 공통 상품 기준으로 정리", body: "API·CSV·크롤링 원천을 Python·SQL로 처리했습니다. 상품코드·옵션·SKU와 세트 단위를 연결하고 현재 마스터와 날짜별 이력을 분리했습니다. 여러 매핑 행이 같은 SKU에 연결될 때는 SKU 단위로 정리한 뒤 판매 이력과 결합했습니다." },
+        { label: "품질 검증·운영", heading: "배치 종료가 아니라 전달된 값까지 확인", body: "AWS·Linux에서 전일 데이터를 일 배치로 갱신했습니다. 원천·DB·시트·웹의 날짜, 상품, 값을 대조하고 실제 0과 누락·실패를 구분했습니다. 수집과 저장 오류를 나눠 확보한 결과를 보존하고 미완료 항목을 재처리했습니다." },
+        { label: "업무 이해·AI 활용", heading: "같은 데이터와 질문 기준을 현업과 맞추기", body: "판매·광고·재고를 통합해 광고팀과 발주팀에 공통 지표를 제공했습니다. 자비스에서는 상품 약칭·오타가 다른 조회 조건으로 이어지는 문제를 개선했습니다. Codex와 구현을 진행하되 후보 선택, 조회 기간, 누락값과 재검증 결과를 직접 확인했습니다." }
+      ],
+      contributionTitle: "CJ올리브네트웍스에서 확장할 역량",
+      contributionBody: "여러 산업의 업무 데이터를 플랫폼으로 연결하는 DataOps 방향에 관심이 있습니다. 현업의 생성·집계·활용 기준을 먼저 이해하고, 수집·정제와 결과 대조 경험을 데이터 플랫폼 구축·운영에 연결하겠습니다. 팀 단위 파이프라인 CI/CD와 데이터 거버넌스는 더 배워야 할 영역으로 구분하고, 동료의 검토와 운영 기준에 맞춰 역량을 확장하겠습니다.",
+      directionSource: { label: "공식 채용 안내 · 그룹 데이터 플랫폼 구축·운영", url: "https://www.cjolivenetworks.co.kr/news/press_release/detail/863?ca=ALL" },
+      supportingSource: { label: "사업 방향 참고 · AI/Bigdata·DataOps", url: "https://www.cjolivenetworks.co.kr/business/ai_bigdata" },
+      experienceTitle: "부서마다 다른 자료를,<br>같은 상품의 데이터로 연결했습니다.",
+      experienceSummary: "한 판매처의 실적만으로 상품 전체를 판단하던 상황에서 판매·광고·재고를 함께 볼 수 있도록 했습니다. 기존 시트를 선호하는 담당자에게는 자동 갱신을 유지하고, 판매처별 페이지와 추가 기능을 현업의 확인 순서에 맞춰 개선했습니다.",
+      foundationTitle: "전공·교육의 데이터 기반을 실무로 확장",
+      foundationSummary: "컴퓨터공학·정보통계학과 두 차례 데이터 전문교육에서 기초를 쌓았습니다. 팀 프로젝트에서는 브레인스토밍과 강점별 역할 분담을 진행하고 공통 업무의 우선순위를 함께 정했습니다. 교육의 모델 학습·분석 경험과 사내 파이프라인 운영 경험은 구분했습니다.",
+      scopeKicker: "SOURCE · MODEL · QUALITY · DELIVERY",
+      scopeTitle: "데이터가 이동할 때마다,<br>기준과 결과를 확인합니다.",
+      scopeSummary: "어떤 업무 질문에 쓰이는 데이터인지부터 확인했습니다. 수집·정제·적재뿐 아니라 시트·웹·AI 조회에서 상품과 기간, 누락값이 어떻게 전달되는지도 검증했습니다.",
+      scopeLanes: [
+        { label: "01 · SOURCE", title: "수집·갱신", items: [
+          ["원천 연결", "API·CSV·크롤링으로 판매·광고·재고 데이터 수집"],
+          ["일 배치", "AWS·Linux에서 전일 데이터 수집·갱신 운영"],
+          ["실패 분리", "수집 실패와 저장 실패를 나눠 원인 확인"],
+          ["재처리", "확보한 결과와 미완료 상태를 보존해 재개"]
+        ] },
+        { label: "02 · MODEL", title: "식별자·집계 단위", items: [
+          ["공통 상품", "채널별 상품코드·옵션·SKU 연결"],
+          ["수량 기준", "상품과 세트 구성을 현업과 확인"],
+          ["이력 구분", "현재 상품 마스터와 날짜별 이력 분리"],
+          ["중복 방지", "매핑을 SKU 단위로 정리한 뒤 판매 이력 결합"]
+        ] },
+        { label: "03 · QUALITY", title: "값·기간·근거 검증", items: [
+          ["값의 의미", "실제 0과 누락·수집 실패를 구분"],
+          ["결과 대조", "원천·DB·시트·웹의 상품·날짜·값 확인"],
+          ["AI 조회", "상품 후보가 모호하면 확인 요청, 기간은 KST 기준"],
+          ["재검증", "오타·복수 후보·누락 날짜를 테스트 질문에 반영"]
+        ] },
+        { label: "04 · DELIVERY", title: "업무 활용·협업", items: [
+          ["FastAPI", "통합 지표와 판매처별 업무 화면 제공"],
+          ["시트 자동화", "CSV를 내려받아 옮기던 반복 작업 축소"],
+          ["공통 지표", "광고팀·발주팀이 같은 재고·판매 정보로 협의"],
+          ["현업 피드백", "화면 사용 안내와 추가 기능 요청을 개선에 반영"]
+        ] }
+      ],
+      workKicker: "DATA ENGINEERING · IMPLEMENTATION EVIDENCE",
+      workTitle: "데이터 통합·운영과 AI 조회 검증 사례",
+      workSummary: "데이터 자동화는 2025.12, 통계 사이트는 2026.03, 자비스는 2026.07부터 개발·개선했습니다. 구현 결과와 검증 범위를 구분하고, 공개 시연에는 합성 데이터만 사용합니다.",
+      contactTitle: "업무를 이해하고,<br>믿고 사용할 수 있는 데이터를 만들겠습니다.",
+      contactSummary: "Python·SQL 파이프라인과 AWS 운영, 현업과의 기준 조율 경험을 바탕으로 기여하겠습니다. 팀의 설계·검토·배포 절차를 익히며 운영 품질까지 책임지는 데이터 엔지니어로 성장하겠습니다.",
+      projectOrder: ["data-platform", "jarvis", "order-ai"],
+      projectSummaries: {
+        "data-platform": "채널별 API·CSV·크롤링 데이터를 Python·SQL로 정제하고 공통 상품·SKU로 연결했습니다. 매핑과 판매 이력의 집계 단위를 구분해 중복 합산을 방지하고, AWS 일 배치 결과를 시트·웹까지 대조했습니다. 판매·광고·재고를 함께 제공해 부서 간 판단 기준을 맞췄습니다.",
+        jarvis: "문서 RAG와 읽기 전용 DB 조회를 연결했습니다. 조회 성공만으로 답변이 맞는 것은 아니어서 상품 약칭·오타, 모호한 후보와 상대 기간을 검증했습니다. Codex와 함께 후보 탐색·재조회 로직을 개선하고, 여러 후보는 확인을 요청하며 반환되지 않은 날짜를 실제 0과 구분했습니다.",
+        "order-ai": "판매·재고·입고 예정·배송 기간·최소 주문수량을 연결해 발주 검토를 지원했습니다. 광고팀과 발주팀이 같은 데이터를 기준으로 재고 부족과 추가 발주 필요성을 협의하도록 했습니다. 예측과 확인된 사실은 구분하고 최종 광고·발주 결정은 담당자가 내립니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "DATA QUALITY · USER FEEDBACK",
+        "#support-title": "데이터의 정확성과 현업 활용을 함께 확인",
+        "[data-profile-support-summary]": "집계 기준과 조회 조건을 점검하고 실제 업무에서 받은 질문을 개선에 반영했습니다.",
+        "[data-profile-adoption-title]": "사용자가 확인하는 지표와 순서부터 이해",
+        "[data-profile-adoption-body]": "설문에서 이용 가이드가 필요하다는 의견을 받았습니다. 실제 화면을 함께 보며 사용법을 안내하고 추가 기능 아이디어와 문의사항을 받았습니다. 담당자가 먼저 확인하는 지표와 질문을 후속 개선에 반영했습니다.",
+        "#architecture-title": "원천 데이터에서 업무 화면과 AI 조회까지",
+        "[data-profile-architecture-summary]": "Python·SQL 파이프라인과 공통 상품 기준을 DB·시트·FastAPI·AI 조회에 연결했습니다. 실제 운영한 이커머스 데이터 흐름을 공개 가능한 수준으로 정리했습니다.",
+        "[data-project-key='data-platform'] h3": "Python·SQL 업무 데이터 파이프라인",
+        "[data-project-key='data-platform'] .human-interface strong": "판매·광고·재고를 같은 상품 기준으로 비교",
+        "[data-project-key='data-platform'] .human-interface p": "각 판매처의 파일과 시트를 따로 확인하던 업무를 통합 조회로 연결했습니다. 일별 판매 이력 시트의 약 2,500개 상품 행을 자동 갱신합니다. 상품 행 수는 거래 건수나 전체 파이프라인 처리량과 다릅니다.",
+        "[data-profile-order-effect-body]": "광고팀과 발주팀이 같은 데이터를 보며 협의하도록 지원했습니다. 광고 집행과 최종 발주는 담당자가 판단합니다."
+      }
+    },
     nh: {
       company: "NH투자증권",
       role: "IT · 신입",
@@ -609,6 +698,7 @@
   };
 
   const aliases = {
+    "cj-olivenetworks": "cj",
     "nh-investment": "nh",
     nhqv: "nh",
     "hyundai-elevator": "hyundai",
