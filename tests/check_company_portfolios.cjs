@@ -15,7 +15,8 @@ const profiles = {
   hyundai: { company: '현대엘리베이터', order: ['data-platform', 'jarvis', 'order-ai'] },
   nh: { company: 'NH투자증권', order: ['data-platform', 'jarvis', 'order-ai'] },
   cj: { company: 'CJ올리브네트웍스', order: ['data-platform', 'jarvis', 'order-ai'] },
-  kolon: { company: '코오롱베니트', order: ['data-platform', 'order-ai', 'jarvis'] }
+  kolon: { company: '코오롱베니트', order: ['data-platform', 'order-ai', 'jarvis'] },
+  hansol: { company: '한솔PNS', order: ['jarvis', 'data-platform', 'retail-slack'] }
 };
 
 async function main() {
@@ -46,7 +47,20 @@ async function main() {
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
       assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
-      if (key === 'daou') {
+      if (key === 'hansol') {
+        assert.match(await page.title(), /웹개발자\(AI 응용\)/);
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://hansol.careerlink.kr/jobs/RC20260918034904');
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /추가 학습 영역/);
+        assert.match(await page.locator('[data-project-key="retail-slack"]').innerText(), /6인.*팀장/s);
+        assert.equal(await page.locator('[data-project-key="order-ai"]').isVisible(), false);
+        for (const selector of ['#hansol-answer-scope', '#hansol-retail-flow']) {
+          const detail = page.locator(selector);
+          assert.equal(await detail.isVisible(), true);
+          await detail.locator('summary').click();
+          assert.match(await detail.innerText(), /전체/);
+          await detail.locator('summary').click();
+        }
+      } else if (key === 'daou') {
         assert.ok((await page.title()).includes('AI 개발 신입'));
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://blog.naver.com/daoustory/224389961466');
         assert.equal(await supportingSource.getAttribute('href'), 'https://blog.naver.com/daoustory/224388659565');
@@ -132,10 +146,12 @@ async function main() {
       assert.equal(await engineering.locator('.agent-flow > li').count(), 4);
       assert.equal(await engineering.locator('.engineering-incidents > article').count(), 2);
       await engineering.locator('summary').click();
-      const projectKeys = await page.locator('.case-list > [data-project-key]').evaluateAll(nodes => nodes.map(node => node.dataset.projectKey));
+      const projectKeys = await page.locator('.case-list > [data-project-key]:not([hidden])').evaluateAll(nodes => nodes.map(node => node.dataset.projectKey));
       assert.deepEqual(projectKeys, profile.order);
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
-      assert.deepEqual(await page.locator('.case-list > [data-project-key] .case-index').allTextContents(), ['01', '02', '03']);
+      assert.deepEqual(await page.locator('.case-list > [data-project-key]:not([hidden]) .case-index').allTextContents(), ['01', '02', '03']);
+      assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), key === 'hansol');
+      assert.equal(await page.locator('#hansol-answer-scope').isVisible(), key === 'hansol');
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
       assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai nh cj"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
       assert.equal(await page.locator('#cj-data-quality').isVisible(), key === 'cj');
@@ -300,6 +316,7 @@ async function main() {
       ['company=hyundai-elevator', 'hyundai'], ['target=hyundaielevator', 'hyundai'], ['target=%20HYUNDAI%20', 'hyundai'],
       ['company=nh-investment', 'nh'], ['target=nhqv', 'nh'], ['target=%20NH%20', 'nh'],
       ['company=cj-olivenetworks', 'cj'], ['target=%20CJ%20', 'cj'],
+      ['company=hansol-pns', 'hansol'], ['target=hansolpns', 'hansol'], ['target=%20HANSOL%20', 'hansol'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {

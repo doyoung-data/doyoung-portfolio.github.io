@@ -2,6 +2,76 @@
   "use strict";
 
   const profiles = {
+    hansol: {
+      company: "한솔PNS",
+      role: "웹개발자(AI 응용) · 신입",
+      title: "권도영 | 한솔PNS 웹개발자(AI 응용) 포트폴리오",
+      description: "사내 AI 자비스의 문서·DB 연동과 응답 검증, Python·FastAPI 업무 서비스와 AWS 운영, 팀 프로젝트의 Slack 봇 개발 경험을 정리했습니다.",
+      brand: "한솔PNS · AI 응용 개발",
+      eyebrow: "한솔PNS · 웹개발자(AI 응용) 지원",
+      statement: "업무 데이터를 연결해,<br>직원이 사용하는 AI 서비스를 만듭니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 사내 AI '자비스'와 통계 웹을 개발·운영했습니다. 업무 문서와 DB를 LLM에 연결하고, Python·FastAPI로 기능을 구현해 AWS에 배포했습니다. 조회 결과와 답변의 근거를 대조하고 현업의 사용 방식에 맞춰 서비스를 보완했습니다.",
+      note: "직접 수행 · 요구사항 → 데이터·AI 연동 → 검증 → 배포·운영",
+      consoleFile: "ai_application.yml",
+      console: '<span class="code-key">서비스</span>  Python · FastAPI · LLM API\n<span class="code-key">근거</span>    문서 RAG · SQL · Tool Calling\n<span class="code-key">검증</span>    요청 기간 · 조회 범위 · 응답 한계\n<span class="code-key">운영</span>    AWS · Linux · 사용자 피드백',
+      heroFacts: [
+        { value: "FastAPI", label: "사용자 화면·AI·DB 연결" },
+        { value: "RAG · SQL", label: "문서와 최신 수치의 근거" },
+        { value: "AWS · Linux", label: "배포·배치 운영·오류 대응" },
+        { value: "6인 팀", label: "팀장 · Slack 봇 개발" }
+      ],
+      fitKicker: "HANSOL PNS · AI APPLICATION DEVELOPMENT",
+      fitTitle: "AI를 업무에 연결한 경험,<br>검증과 협업까지",
+      fitSummary: "웹개발자(AI 응용)의 사내 AI 애플리케이션 개발, 업무 문서·DB 연동, 팀 프로젝트 수행과 연결되는 경험입니다. 모델 연구 성과보다 직접 구현한 서비스와 운영 중의 판단을 중심으로 정리했습니다.",
+      fitItems: [
+        { label: "AI 애플리케이션", heading: "업무 문서와 DB를 사용자 질문에 연결", body: "자비스에서 업무 기준은 문서 RAG로 검색하고 최신 수치는 읽기 전용 DB에서 조회했습니다. FastAPI와 LLM API·Tool Calling을 연결해 질문부터 근거를 담은 응답까지 구현했습니다." },
+        { label: "검증·배포·운영", heading: "조회된 숫자와 결론의 범위를 따로 확인", body: "일부 데이터를 전체 기간의 결과처럼 답하는 문제를 확인했습니다. 요청·조회·응답의 기간을 대조하고, 검증이 불완전하면 확인한 값과 한계를 안내하도록 보완했습니다. AWS·Linux 배포와 운영 중 오류 대응을 담당했습니다." },
+        { label: "팀 프로젝트·현업 소통", heading: "분석 결과와 사용자의 업무를 연결", body: "6인 리테일 프로젝트의 팀장으로 Python Slack 봇을 개발해 팀원들의 예측·이상 탐지 결과를 조회·알림에 연결했습니다. 실무에서는 부서별 지표와 업무 순서를 듣고 통합 화면·판매처별 페이지·시트 병행을 지원했습니다." }
+      ],
+      contributionTitle: "한솔PNS에서 기여할 부분과 확장할 역량",
+      contributionBody: "그룹사별 업무 용어와 데이터 구조를 먼저 익혀 반복적인 조회·자료 정리 업무를 AI 기능으로 연결하겠습니다. 사내 서비스 개발·운영 경험을 바탕으로 팀의 코드 리뷰와 변경 관리 절차를 익히겠습니다. MCP·AST 기반 정적 분석은 추가 학습 영역이며 실무 구축 경험으로 제시하지 않습니다.",
+      directionSource: { label: "공식 채용 공고 · 웹개발자(AI 응용)", url: "https://hansol.careerlink.kr/jobs/RC20260918034904" },
+      experienceTitle: "같은 데이터도,<br>사용자의 업무 방식에 맞게",
+      experienceSummary: "여러 판매처를 함께 보는 직원은 통합 화면이, 한 판매처를 맡은 직원은 익숙한 시트가 필요했습니다. 확인하는 지표와 업무 순서를 듣고 화면과 시트 자동 갱신을 함께 제공했습니다. 실제 화면을 보며 사용 방법을 안내하고 추가 문의를 개선에 반영했습니다.",
+      foundationTitle: "팀에서 배운 개발을 사내 서비스로 확장",
+      foundationSummary: "컴퓨터공학·정보통계학과 두 차례 데이터 전문교육에서 기초를 쌓았습니다. 리테일 프로젝트에서는 팀원들의 분석 결과를 Python Slack 봇에 연결했고, 이후 현업의 데이터·AI 서비스를 개발·운영했습니다. 교육과 실무 경험은 구분합니다.",
+      scopeKicker: "UNDERSTAND · CONNECT · VERIFY · OPERATE",
+      scopeTitle: "기능을 만든 뒤,<br>사용자가 확인하는 결과까지",
+      scopeSummary: "AI 코딩 도구는 분석·구현을 보조하는 데 사용했습니다. 문제와 검증 기준을 정하고 조회 결과를 직접 대조하는 역할까지 포함한 개발 경험입니다.",
+      scopeLanes: [
+        { label: "01 · UNDERSTAND", title: "업무·요구사항", items: [["사용자", "부서별 확인 지표와 업무 순서 파악"], ["기준", "상품·기간·용어의 의미 확인"], ["화면", "통합 조회와 판매처별 화면 구분"], ["협업", "교육 팀의 강점별 역할·우선순위 조율"]] },
+        { label: "02 · CONNECT", title: "데이터·AI 연동", items: [["데이터", "Python·SQL 수집·정제·통합"], ["문서", "업무 기준을 RAG 검색에 연결"], ["API", "FastAPI·LLM API·Tool Calling 구현"], ["알림", "교육 프로젝트의 예측·이상 결과를 Slack에 연결"]] },
+        { label: "03 · VERIFY", title: "답변·조회 검증", items: [["기간", "요청 범위와 실제 조회 범위 대조"], ["근거", "확인된 값과 미확인 부분 구분"], ["한계", "불완전한 결과를 전체 분석과 구분"], ["재검증", "문제 질문을 다시 입력해 원천 결과와 비교"]] },
+        { label: "04 · OPERATE", title: "배포·사용 지원", items: [["환경", "AWS·Linux 배포·배치 운영"], ["대응", "오류 원인과 저장·조회 결과 확인"], ["안내", "직원과 실제 화면을 보며 사용 방법 설명"], ["개선", "새로운 아이디어와 문의사항 반영"]] }
+      ],
+      workKicker: "AI APPLICATION · DATA SERVICE · TEAM PROJECT",
+      workTitle: "자비스, 데이터 플랫폼, 팀 프로젝트",
+      workSummary: "재직 중 직접 개발·운영한 두 서비스와 교육 과정에서 협업한 프로젝트입니다. 문제, 담당 역할, 구현 방식과 검증 범위를 구분했습니다. 공개 시연에는 합성 데이터만 사용합니다.",
+      contactTitle: "업무를 이해하고,<br>팀과 함께 AI 서비스를 개선하겠습니다.",
+      contactSummary: "데이터·백엔드·AI를 연결한 경험으로 맡은 기능을 구현하고 검증하겠습니다. 그룹사별 요구를 배우며 공통 기능의 재사용과 동료가 이해할 수 있는 문서화를 함께 고민하겠습니다.",
+      projectOrder: ["jarvis", "data-platform", "retail-slack"],
+      excludedProjects: ["order-ai"],
+      projectSummaries: {
+        jarvis: "업무 문서 검색과 최신 DB 조회를 연결한 사내 AI를 개발·운영했습니다. 사용자가 원하는 상품·기간을 확인하고, 일부 조회 결과가 전체 분석처럼 전달되는 문제를 보완했습니다. Codex로 분석·코드 수정을 보조받고 같은 질문을 다시 입력해 답변과 원천 결과를 대조했습니다.",
+        "data-platform": "판매처별 판매·광고·재고를 Python·SQL로 통합하고 FastAPI 통계 사이트와 기존 시트에 제공했습니다. API·자동 수집으로 CSV를 내려받아 옮기던 업무를 줄였습니다. 현업의 확인 순서를 듣고 통합 화면·판매처별 페이지·시트 병행을 지원했습니다.",
+        "retail-slack": "교육 과정에서 6인 팀의 팀장과 Python Slack 봇 개발을 맡아 우수상을 받았습니다. 팀원들이 만든 매출 예측·이상 탐지 결과를 Slack 조회·알림으로 연결했습니다. 분석 결과를 사용자가 확인할 수 있는 하나의 서비스로 완성한 팀 프로젝트입니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "USER FEEDBACK · SAFE DATA ACCESS",
+        "#support-title": "사용자가 실제로 활용할 수 있도록",
+        "[data-profile-support-summary]": "기능 구현과 함께 사용 방법과 결과의 의미를 확인했습니다.",
+        "[data-profile-security-title]": "데이터 조회와 응답의 안전장치",
+        "[data-profile-adoption-title]": "화면을 함께 보며 사용 안내",
+        "[data-profile-adoption-body]": "이용 가이드가 필요하다는 의견을 듣고 실제 화면으로 사용 방법을 안내했습니다. AI만으로 의도를 파악하기 어려운 경우 직접 설명을 병행하고 추가 문의와 아이디어를 받았습니다.",
+        "#architecture-title": "문서·데이터를 AI 응답과 업무 화면으로",
+        "[data-profile-architecture-summary]": "원천을 수집·정제하고 DB·업무 화면·AI 조회에 연결한 개념도입니다. 실제 회사 데이터와 내부 주소는 공개하지 않습니다.",
+        "[data-project-key='jarvis'] h3": "자비스 · 문서와 DB를 연결한 사내 AI",
+        "[data-project-key='data-platform'] h3": "Python·FastAPI 사내 통계 웹과 데이터 파이프라인",
+        "[data-project-key='data-platform'] .human-interface strong": "한 상품의 판매·광고·재고를 같은 기준으로 확인",
+        "[data-project-key='data-platform'] .human-interface p": "광고팀과 발주팀이 같은 자료를 보고 재고와 발주 필요성을 논의하도록 지원했습니다. 최종 광고 집행과 발주 결정은 현업이 담당합니다."
+      }
+    },
     kolon: {
       company: "코오롱베니트",
       role: "데이터플랫폼 엔지니어 · 채용연계형 인턴",
@@ -766,6 +836,8 @@
   };
 
   const aliases = {
+    "hansol-pns": "hansol",
+    hansolpns: "hansol",
     kolonbenit: "kolon",
     "kolon-benit": "kolon",
     "cj-olivenetworks": "cj",
@@ -836,7 +908,7 @@
     });
 
     Array.from(list.children)
-      .filter(function (child) { return child.dataset.projectKey; })
+      .filter(function (child) { return child.dataset.projectKey && !child.hidden; })
       .forEach(function (project, index) {
         project.classList.toggle("case-featured", index === 0);
         const caseIndex = project.querySelector(".case-index");
@@ -878,6 +950,12 @@
     });
     document.querySelectorAll("[data-profile-only]").forEach(function (element) {
       element.hidden = !element.dataset.profileOnly.split(/\s+/).includes(key);
+    });
+    (profile.excludedProjects || []).forEach(function (projectKey) {
+      const project = document.querySelector(`[data-project-key="${projectKey}"]`);
+      if (project) {
+        project.hidden = true;
+      }
     });
     if (profile.scopeLanes) {
       profile.scopeLanes.forEach(function (lane, index) {

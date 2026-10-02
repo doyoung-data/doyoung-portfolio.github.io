@@ -586,6 +586,18 @@ html[data-portfolio-target="dbinc"] {
   --company-accent: #2458a6;
 }
 
+.case-study[hidden] {
+  display: none;
+}
+
+html[data-portfolio-target="hansol"] {
+  --company-accent: #16744d;
+}
+
+html[data-theme="dark"][data-portfolio-target="hansol"] {
+  --company-accent: #6dd6a2;
+}
+
 html[data-portfolio-target="sempio"] {
   --company-accent: #bd2637;
   --bg: #f8f9fb;

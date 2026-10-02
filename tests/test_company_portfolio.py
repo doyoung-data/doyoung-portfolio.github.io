@@ -25,6 +25,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             ("nh", "NH투자증권", "IT · 신입"),
             ("cj", "CJ올리브네트웍스", "Data Engineer · 신입"),
             ("kolon", "코오롱베니트", "데이터플랫폼 엔지니어 · 채용연계형 인턴"),
+            ("hansol", "한솔PNS", "웹개발자(AI 응용) · 신입"),
         ):
             with self.subTest(key=key):
                 self.assertIn(f"{key}: {{", self.script)
@@ -39,7 +40,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertIn(f'data-profile-fit-body="{index}"', self.index)
 
     def test_primary_projects_have_stable_keys(self):
-        for project in ("jarvis", "data-platform", "order-ai"):
+        for project in ("jarvis", "data-platform", "order-ai", "retail-slack"):
             self.assertEqual(
                 self.index.count(f'data-project-key="{project}"'),
                 1,
@@ -62,7 +63,7 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
 
     def test_every_profile_has_project_specific_summaries(self):
-        self.assertEqual(self.script.count("projectSummaries: {"), 10)
+        self.assertEqual(self.script.count("projectSummaries: {"), 11)
 
     def test_unknown_targets_do_not_resolve_object_prototypes(self):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
@@ -76,7 +77,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertNotIn(stale_count, self.index + self.script)
 
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
-        self.assertEqual(self.script.count("directionSource: {"), 10)
+        self.assertEqual(self.script.count("directionSource: {"), 11)
         self.assertIn("롯데백화점 브랜드 AI 구축", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
@@ -91,6 +92,22 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('id="kolon-data-platform" data-profile-only="kolon" hidden', self.index)
         for unsupported in ("중앙값", "만족도 28%", "정확도 100%", "Airflow를 운영", "CDC를 구축"):
             self.assertNotIn(unsupported, kolon)
+
+    def test_hansol_prioritizes_application_validation_and_team_delivery(self):
+        hansol = self.script.split("    hansol: {", 1)[1].split("    kolon: {", 1)[0]
+        self.assertIn('projectOrder: ["jarvis", "data-platform", "retail-slack"]', hansol)
+        self.assertIn('excludedProjects: ["order-ai"]', hansol)
+        self.assertIn('"hansol-pns": "hansol"', self.script)
+        self.assertIn("https://hansol.careerlink.kr/jobs/RC20260918034904", hansol)
+        for evidence in ("FastAPI", "LLM API", "읽기 전용", "조회 범위", "Codex", "6인", "Slack", "추가 학습 영역"):
+            self.assertIn(evidence, hansol)
+        for unsupported in ("정확도 100%", "만족도 28%", "MCP를 구축", "AST를 구현", "모델 전체를 개발"):
+            self.assertNotIn(unsupported, hansol)
+        self.assertIn('id="hansol-answer-scope" data-profile-only="hansol" hidden', self.index)
+        self.assertIn('data-project-key="retail-slack" data-profile-only="hansol" hidden', self.index)
+        self.assertIn("팀원들이 담당한 예측·이상 탐지 모델 전체", self.index)
+        self.assertIn("제한 답변은 전체 분석 완료와 구분", self.index)
+        self.assertIn("child.dataset.projectKey && !child.hidden", self.script)
 
     def test_jarvis_engineering_has_cases_scope_and_demo_boundary(self):
         self.assertEqual(self.index.count('id="jarvis-engineering"'), 1)

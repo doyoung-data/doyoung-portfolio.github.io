@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20260918-hyundai">
+  <link rel="stylesheet" href="css/portfolio.css?v=20261002-hansol">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -278,6 +278,24 @@
                   <p class="engineering-caption">Codex와 코드 분석·구현을 진행하고 조회 조건과 결과를 직접 대조한 사례입니다. 실제 상품명·판매 수치·내부 DB 정보는 공개하지 않습니다.</p>
                 </div>
               </details>
+              <details class="case-engineering" id="hansol-answer-scope" data-profile-only="hansol" hidden>
+                <summary><span><i data-lucide="scan-search" aria-hidden="true"></i>일부 조회 결과를 전체 분석으로 답하던 문제</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">REQUEST → QUERY → ANSWER</p><h4>숫자가 맞아도, 결론을 낼 근거는 부족할 수 있었습니다.</h4></header>
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 문제 정의와 구현 보완</h5><dl>
+                      <div><dt>문제</dt><dd>1년치 데이터를 요청했지만 일부 결과만 조회한 상태에서 전체 기간에 대한 결론을 내렸습니다.</dd></div>
+                      <div><dt>판단</dt><dd>요청 기간, 실제 조회 범위, 답변이 설명하는 범위를 대조했습니다. 데이터가 반환됐다는 사실과 질문 전체에 답할 근거가 충분한지는 구분해야 했습니다.</dd></div>
+                      <div><dt>구현</dt><dd>Codex로 원인 분석과 코드 수정을 보조받았습니다. 기간이 일치하지 않거나 검증이 불완전하면 확인된 값과 한계를 안내하도록 보완했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 재검증과 남은 한계</h5><dl>
+                      <div><dt>대조</dt><dd>같은 질문을 다시 입력하고 답변을 원천 조회 결과와 직접 비교했습니다.</dd></div>
+                      <div><dt>확인</dt><dd>일부 값을 전체 기간의 결론으로 확대하지 않는지, 미확인 범위를 알리는지 점검했습니다. 행 수 제한과 불완전한 응답을 다루는 로직과 테스트를 유지했습니다.</dd></div>
+                      <div><dt>범위</dt><dd>제한 답변은 전체 분석 완료와 구분합니다. 모든 장기간 조회가 성공하거나 AI 정확도가 보장된다는 의미는 아닙니다.</dd></div>
+                    </dl></article>
+                  </div>
+                </div>
+              </details>
               <details class="case-engineering" id="jarvis-engineering">
                 <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -490,6 +508,37 @@
               <div class="stack-row" aria-label="사용 기술"><span>Python</span><span>Pandas</span><span>SQL</span><span>FastAPI</span><span>AWS Lightsail</span><span>Google Sheets API</span><span>REST API</span></div>
             </div>
             <aside class="case-proof"><div><strong>Multi</strong><span>API·CSV·크롤링</span></div><div><strong>60+</strong><span>자동 갱신 업무 탭</span></div><div><strong>E2E</strong><span>기획부터 운영</span></div></aside>
+          </article>
+
+          <article class="case-study" data-project-key="retail-slack" data-profile-only="hansol" hidden>
+            <div class="case-index">03</div>
+            <div class="case-main">
+              <div class="case-title-row">
+                <div><p class="case-label">TEAM PROJECT · PYTHON · SLACK BOT</p><h3>리테일 예측·이상 탐지 결과의 조회·알림 연동</h3></div>
+                <span class="ownership">교육 프로젝트 · 우수상</span>
+              </div>
+              <p class="case-summary">6인 팀의 팀장으로 Python Slack 봇을 개발하고 팀원들의 매출 예측·이상 탐지 결과를 조회·알림으로 연결했습니다.</p>
+              <p class="case-role"><strong>직접 담당</strong> 팀장 · Python Slack 봇 개발 · 분석 결과 연동</p>
+              <div class="case-columns">
+                <div><h4>분석 결과를 사용자에게 전달</h4><ul class="clean-list"><li>Slack에서 예측 매출을 조회하는 기능 구현</li><li>이상 탐지 결과를 알림으로 전달</li><li>팀원들의 분석 결과를 하나의 이용 흐름으로 연결</li></ul></div>
+                <div><h4>팀의 작업을 연결하는 역할</h4><ul class="clean-list"><li>브레인스토밍으로 개발 방향 논의</li><li>팀원들의 강점에 맞춰 주요 업무 분담</li><li>공통 업무의 진행 순서와 우선순위 조율</li></ul></div>
+              </div>
+              <details class="case-engineering" id="hansol-retail-flow">
+                <summary><span><i data-lucide="workflow" aria-hidden="true"></i>팀원들의 분석과 내가 개발한 연동 범위</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <ol class="agent-flow" aria-label="리테일 프로젝트 역할과 결과 연결">
+                    <li><span>01 · TEAM</span><strong>분석·예측</strong><p>팀원들의 매출 예측<br>이상 탐지 결과</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>02 · MY ROLE</span><strong>Python 봇 연동</strong><p>분석 결과를<br>Slack 기능과 연결</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>03 · DELIVERY</span><strong>조회·알림</strong><p>예측 매출 조회<br>이상 징후 알림</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>04 · RESULT</span><strong>팀 결과물 완성</strong><p>교육 프로젝트 발표<br>우수상 수상</p></li>
+                  </ol>
+                  <p class="engineering-caption">교육 과정의 팀 결과물입니다. 팀원들이 담당한 예측·이상 탐지 모델 전체를 제가 개발한 것으로 기재하지 않습니다. 상용 운영 성과나 현업 매출 개선 수치와도 구분합니다.</p>
+                </div>
+              </details>
+              <a class="case-demo-link" href="https://drive.google.com/file/d/1Tf6MGntxhI7f1wFfWQ4iXvNG9T7tV-t6/view?usp=drive_link" target="_blank" rel="noopener noreferrer"><i data-lucide="file-text" aria-hidden="true"></i>팀 프로젝트 발표 자료<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+              <div class="stack-row" aria-label="담당 기능 사용 기술"><span>Python</span><span>Slack Bot</span><span>slack-bolt</span><span>분석 결과 연동</span></div>
+            </div>
+            <aside class="case-proof"><div><strong>6인</strong><span>교육 팀 프로젝트</span></div><div><strong>팀장</strong><span>역할·우선순위 조율</span></div><div><strong>우수상</strong><span>프로젝트 발표회</span></div></aside>
           </article>
 
           <article class="case-study" data-project-key="order-ai">
@@ -919,7 +968,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20261002-kolon" defer></script>
+  <script src="js/company-portfolio.js?v=20261002-hansol" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>
