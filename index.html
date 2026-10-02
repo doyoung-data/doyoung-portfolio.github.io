@@ -426,6 +426,37 @@
                   <p class="engineering-caption">약 2,500개 상품 행은 일별 판매 이력 시트의 갱신 규모입니다. 거래 건수·전체 처리량·성능 개선율을 뜻하지 않습니다. 원본 데이터와 테이블명은 공개하지 않습니다.</p>
                 </div>
               </details>
+              <details class="case-engineering" id="kolon-data-platform" data-profile-only="kolon" hidden>
+                <summary><span><i data-lucide="database" aria-hidden="true"></i>집계 검증·배치 운영·현업 알림 설계</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <ol class="agent-flow" aria-label="데이터 수집부터 현업 제공까지의 흐름">
+                    <li><span>01 · COLLECT</span><strong>원천 수집</strong><p>API · CSV · 크롤링<br>Python · Pandas</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>02 · MODEL</span><strong>집계 단위 정리</strong><p>상품 · 옵션 · SKU<br>일별 판매량 조인</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>03 · VERIFY</span><strong>적재·조회 대조</strong><p>날짜 · 상품 · 수치<br>누락과 실제 0 구분</p><i data-lucide="arrow-right" aria-hidden="true"></i></li>
+                    <li><span>04 · DELIVER</span><strong>업무 제공</strong><p>DB · 시트 · 통계 웹<br>PPM 요약 · 알림</p></li>
+                  </ol>
+                  <div class="engineering-incidents">
+                    <article><h5><span>SQL</span>조인 전에 판매량의 집계 단위를 확인했습니다.</h5><dl>
+                      <div><dt>문제</dt><dd>하나의 SKU에 여러 판매옵션이 연결돼 일별 판매량이 매핑 행마다 반복 합산될 수 있었습니다.</dd></div>
+                      <div><dt>구현</dt><dd>판매량 집계용 매핑을 SKU 단위로 정리한 뒤 판매 이력과 결합했습니다. 모든 원천의 행을 무조건 삭제하거나 합계를 임의로 보정한 것은 아닙니다.</dd></div>
+                      <div><dt>검증</dt><dd>조인 전후 집계 기준과 합계를 대조했습니다. 상품·옵션·세트 구성은 실제 업무를 담당하는 직원에게 확인했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>운영</span>배치 종료와 데이터 정상 반영을 구분했습니다.</h5><dl>
+                      <div><dt>환경</dt><dd>AWS·Linux에서 전일 데이터 수집·적재 배치를 운영했습니다.</dd></div>
+                      <div><dt>점검</dt><dd>원천 자료와 DB·시트·웹의 날짜·상품·수치를 대조하고, 수집 실패나 원천 누락을 실제 판매량 0과 구분했습니다.</dd></div>
+                      <div><dt>활용</dt><dd>통합 데이터는 FastAPI 통계 사이트와 기존 업무 시트로 제공했습니다. 직원이 직접 CSV를 옮기던 반복 업무를 줄였습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>현업</span>낮은 수치보다 먼저 확인할 상품이 중요했습니다.</h5><dl>
+                      <div><dt>제안</dt><dd>쿠팡팀이 매일 상품의 수익성 지표(PPM)를 하나씩 확인한다는 말을 듣고 요약·알림을 제안했습니다.</dd></div>
+                      <div><dt>판단</dt><dd>판매가 부진한 상품을 행사로 소진할 때도 PPM이 낮아질 수 있어, 낮은 값부터 정렬하는 것만으로는 점검 순서를 정하기 어려웠습니다.</dd></div>
+                      <div><dt>변경</dt><dd>알림의 판매량·PPM 조건을 조정해 판매가 활발한 상품의 하락을 우선 확인하도록 했습니다. 판매가 부진한 상품은 알림에서 제외하되 전체 상품 조회·필터와 과거 추이는 유지했습니다.</dd></div>
+                      <div><dt>피드백</dt><dd>운영 중 쿠팡팀으로부터 알림 조건에 대한 추가 의견을 받았습니다. 만족도나 시간 절감률을 측정한 결과로 표현하지 않습니다.</dd></div>
+                    </dl></article>
+                  </div>
+                  <p class="engineering-caption">공개용 개념도이며 회사 원본 데이터·내부 URL·임계값은 포함하지 않습니다. 아래 시연은 합성 데이터로 재현한 화면이며 운영 시스템에 연결하지 않습니다.</p>
+                  <a class="case-demo-link" href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 합성 데이터 시연<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+                </div>
+              </details>
               <div data-profile-only="sempio lotte hanwha hyundai nh cj" hidden>
                 <p class="case-role"><strong>직접 담당</strong> 현업 인터뷰 · 데이터 구조와 조회 로직 · 웹 화면 · API 연동 · AWS 배포·유지보수</p>
                 <details class="case-engineering" id="platform-engineering">
@@ -888,7 +919,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20260923-cj" defer></script>
+  <script src="js/company-portfolio.js?v=20261002-kolon" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>

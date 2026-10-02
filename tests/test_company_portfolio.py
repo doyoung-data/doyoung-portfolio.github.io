@@ -24,6 +24,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             ("hyundai", "현대엘리베이터", "데이터/AI개발 · 신입"),
             ("nh", "NH투자증권", "IT · 신입"),
             ("cj", "CJ올리브네트웍스", "Data Engineer · 신입"),
+            ("kolon", "코오롱베니트", "데이터플랫폼 엔지니어 · 채용연계형 인턴"),
         ):
             with self.subTest(key=key):
                 self.assertIn(f"{key}: {{", self.script)
@@ -61,7 +62,7 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
 
     def test_every_profile_has_project_specific_summaries(self):
-        self.assertEqual(self.script.count("projectSummaries: {"), 9)
+        self.assertEqual(self.script.count("projectSummaries: {"), 10)
 
     def test_unknown_targets_do_not_resolve_object_prototypes(self):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
@@ -75,11 +76,21 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertNotIn(stale_count, self.index + self.script)
 
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
-        self.assertEqual(self.script.count("directionSource: {"), 9)
+        self.assertEqual(self.script.count("directionSource: {"), 10)
         self.assertIn("롯데백화점 브랜드 AI 구축", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
         self.assertIn("통과율이나 답변 정확도를 뜻하지 않습니다", self.index)
+
+    def test_kolon_preserves_data_quality_and_alert_scope(self):
+        kolon = self.script.split("    kolon: {", 1)[1].split("    cj: {", 1)[0]
+        self.assertIn('projectOrder: ["data-platform", "order-ai", "jarvis"]', kolon)
+        for evidence in ("SKU 단위", "원천·DB·시트·웹", "실제 판매량 0", "AWS·Linux", "알림 조건", "앞으로 학습"):
+            self.assertIn(evidence, kolon)
+        self.assertIn('kolonbenit: "kolon"', self.script)
+        self.assertIn('id="kolon-data-platform" data-profile-only="kolon" hidden', self.index)
+        for unsupported in ("중앙값", "만족도 28%", "정확도 100%", "Airflow를 운영", "CDC를 구축"):
+            self.assertNotIn(unsupported, kolon)
 
     def test_jarvis_engineering_has_cases_scope_and_demo_boundary(self):
         self.assertEqual(self.index.count('id="jarvis-engineering"'), 1)

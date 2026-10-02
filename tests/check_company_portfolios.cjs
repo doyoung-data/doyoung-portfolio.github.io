@@ -14,7 +14,8 @@ const profiles = {
   hanwha: { company: '한화금융', order: ['data-platform', 'jarvis', 'order-ai'] },
   hyundai: { company: '현대엘리베이터', order: ['data-platform', 'jarvis', 'order-ai'] },
   nh: { company: 'NH투자증권', order: ['data-platform', 'jarvis', 'order-ai'] },
-  cj: { company: 'CJ올리브네트웍스', order: ['data-platform', 'jarvis', 'order-ai'] }
+  cj: { company: 'CJ올리브네트웍스', order: ['data-platform', 'jarvis', 'order-ai'] },
+  kolon: { company: '코오롱베니트', order: ['data-platform', 'order-ai', 'jarvis'] }
 };
 
 async function main() {
@@ -77,6 +78,15 @@ async function main() {
         assert.match(await page.locator('[data-profile-work-summary]').innerText(), /2025\.12.*2026\.03.*2026\.07/);
         assert.equal(await supportingSource.getAttribute('href'), 'https://www.hanwhain.com/portal/apply/recruit/detail?rtSeq=19498');
         assert.match(await page.locator('[data-project-key="jarvis"] .case-summary').innerText(), /평가하며 개선 중/);
+      } else if (key === 'kolon') {
+        assert.match(await page.title(), /데이터플랫폼 엔지니어/);
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /앞으로 학습/);
+        assert.match(await page.locator('[data-project-key="data-platform"] .case-summary').innerText(), /중복 합산/);
+        const detail = page.locator('#kolon-data-platform');
+        assert.equal(await detail.isVisible(), true);
+        await detail.locator('summary').click();
+        assert.match(await detail.innerText(), /알림에서 제외하되 전체 상품 조회/);
+        await detail.locator('summary').click();
       } else if (key === 'cj') {
         assert.match(await page.title(), /CJ올리브네트웍스 Data Engineer/);
         assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /\/863\?ca=ALL$/);
@@ -129,6 +139,7 @@ async function main() {
       assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
       assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai nh cj"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
       assert.equal(await page.locator('#cj-data-quality').isVisible(), key === 'cj');
+      assert.equal(await page.locator('#kolon-data-platform').isVisible(), key === 'kolon');
       assert.equal(await page.locator('#cj-query-validation').isVisible(), key === 'cj');
       assert.equal(await page.locator('.hyundai-outcomes').isVisible(), key === 'hyundai');
       assert.equal(await page.locator('[data-profile-only="lotte"]').first().isVisible(), key === 'lotte');

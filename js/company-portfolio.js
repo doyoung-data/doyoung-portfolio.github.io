@@ -2,6 +2,74 @@
   "use strict";
 
   const profiles = {
+    kolon: {
+      company: "코오롱베니트",
+      role: "데이터플랫폼 엔지니어 · 채용연계형 인턴",
+      title: "권도영 | 코오롱베니트 데이터플랫폼 엔지니어 포트폴리오",
+      description: "Python·SQL 수집·정제·적재, SKU 집계 검증, AWS·Linux 일 배치 운영과 현업 알림 조건 설계 경험을 정리한 코오롱베니트 지원 포트폴리오입니다.",
+      brand: "코오롱베니트 · 데이터플랫폼",
+      eyebrow: "코오롱베니트 · 데이터플랫폼 엔지니어 지원",
+      statement: "흩어진 데이터를 연결하고,<br>현업에 전달된 값까지 확인합니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 Python·SQL 데이터 파이프라인과 FastAPI 업무 사이트를 만들고 AWS·Linux에서 운영했습니다. 상품·옵션 기준을 맞추고 중복 집계와 누락값을 검증했습니다. 현업이 같은 자료로 판단할 수 있도록 데이터 수집부터 업무 제공까지 연결했습니다.",
+      note: "수집·정제·적재 → 품질 검증 → 업무 제공 → 운영",
+      consoleFile: "data_platform_delivery.yml",
+      console: '<span class="code-key">수집</span>  API · CSV · 크롤링\n<span class="code-key">정제</span>  Python · Pandas · SQL · SKU\n<span class="code-key">검증</span>  집계 단위 · 기준일 · 누락/실제 0\n<span class="code-key">운영</span>  AWS · Linux · 일 배치 · 결과 대조',
+      heroFacts: [
+        { value: "Python · SQL", label: "수집·정제·적재 구현" },
+        { value: "SKU", label: "상품 매핑·집계 검증" },
+        { value: "일 배치", label: "전일 데이터 수집·갱신" },
+        { value: "AWS · Linux", label: "배포·운영·오류 확인" }
+      ],
+      fitKicker: "KOLON BENIT · DATA PLATFORM",
+      fitTitle: "구현한 파이프라인과<br>운영 중 확인한 문제",
+      fitSummary: "데이터플랫폼 엔지니어를 중심으로 수집·적재와 SQL, 데이터 품질 사례를 정리했습니다. AWS·Linux 운영은 인프라 엔지니어(클라우드) 직무와 연결되는 기반 경험입니다.",
+      fitItems: [
+        { label: "수집·정제·적재", heading: "원천별 차이를 공통 상품 기준으로 연결", body: "API·CSV·크롤링 자료를 Python·Pandas로 정제하고 SQL로 통합했습니다. 판매처별 상품코드와 옵션·세트 구성을 현업에게 확인하며 공통 SKU에 연결했습니다." },
+        { label: "SQL·데이터 품질", heading: "매핑 행과 판매 집계의 단위를 구분", body: "하나의 SKU에 여러 판매옵션이 연결될 때 일별 판매량이 반복 집계될 수 있었습니다. 판매량 집계용 매핑을 SKU 단위로 정리한 뒤 조인 전후 집계 기준과 합계를 대조했습니다." },
+        { label: "배치·클라우드 운영", heading: "실행 완료 뒤에도 저장·조회 결과 확인", body: "AWS·Linux에서 전일 데이터 배치를 운영하고 원천·DB·시트·웹의 날짜·상품·수치를 대조했습니다. 수집 실패나 원천 누락을 실제 판매량 0과 구분하고 로그와 처리 상태로 오류 위치를 확인했습니다." }
+      ],
+      contributionTitle: "고객의 데이터 흐름을 이해하는 엔지니어로",
+      contributionBody: "고객 환경에 맞는 플랫폼 구축과 현업 활용을 함께 지원하는 방향에 관심이 있습니다. 입사 후에는 원천 시스템과 적재 흐름을 익히고 팀의 검토·배포 절차에 따라 변경 영향을 확인하겠습니다. Airflow·CDC 기반 연계와 기업 클라우드 설계는 앞으로 학습·확장할 영역이며, 현재의 실무 경험으로 기재하지 않았습니다.",
+      directionSource: { label: "사업 방향 참고 · 코오롱베니트 Data", url: "https://www.kolonbenit.com/business/contentsid/32/index.do" },
+      experienceTitle: "업무 기준은,<br>사용하는 팀과 함께 정했습니다.",
+      experienceSummary: "여러 판매처를 비교하는 직원과 한 판매처를 담당하는 직원의 필요가 달랐습니다. 통합 조회와 판매처별 화면, 기존 시트를 함께 지원했습니다. 쿠팡팀의 확인 업무를 듣고 PPM 요약·알림을 먼저 제안한 뒤 판매량·PPM 알림 조건을 조정했습니다.",
+      foundationTitle: "전공·교육에서 실무 파이프라인으로",
+      foundationSummary: "컴퓨터공학·정보통계학과 두 차례 데이터 전문교육에서 Python·SQL을 익히고 SQLD·ADsP를 취득했습니다. 교육 프로젝트의 분석·예측 경험과 재직 중의 데이터 수집·적재·운영 경험을 구분했습니다.",
+      scopeKicker: "COLLECT · MODEL · VERIFY · OPERATE",
+      scopeTitle: "수집부터 제공까지,<br>단계별로 확인한 기준",
+      scopeSummary: "이커머스 업무에서 직접 구현·운영한 흐름입니다. 회사 원본 데이터와 내부 주소 대신 공개 가능한 개념과 합성 예시를 사용합니다.",
+      scopeLanes: [
+        { label: "01 · COLLECT", title: "원천 수집·정제", items: [["연동", "판매처 API·CSV·크롤링 데이터 수집"], ["정제", "Python·Pandas로 형식과 상품 기준 정리"], ["배치", "전일 데이터를 수집·적재하는 예약 실행"], ["확인", "수집 실패와 원천 누락을 실제 0과 구분"]] },
+        { label: "02 · MODEL", title: "식별·집계 기준", items: [["상품", "판매처 코드와 옵션·세트 구성을 현업과 확인"], ["매핑", "공통 SKU에 원천별 상품 식별자 연결"], ["조인", "판매량 집계용 매핑을 SKU 단위로 정리"], ["대조", "조인 전후의 집계 기준과 합계 검증"]] },
+        { label: "03 · VERIFY", title: "저장·조회 검증", items: [["원천", "데이터 기준일과 상품·수량 확인"], ["저장", "DB·시트에 전달된 결과를 다시 조회"], ["화면", "웹 조회의 날짜·상품·수치를 원천과 대조"], ["상태", "정상 값과 누락·실패 상태의 의미 보존"]] },
+        { label: "04 · OPERATE", title: "운영·업무 제공", items: [["AWS·Linux", "배치·로그 확인과 오류 대응"], ["FastAPI", "통계 사이트로 통합 조회 제공"], ["시트", "기존 업무 시트의 자동 갱신 지원"], ["피드백", "쿠팡팀의 판매량·PPM 알림 조건 의견 반영"]] }
+      ],
+      workKicker: "IMPLEMENTATION · VALIDATION · USER FEEDBACK",
+      workTitle: "데이터 플랫폼을 중심으로 연결한 서비스",
+      workSummary: "데이터 자동화는 2025.12, 통계 사이트는 2026.03부터 개발·개선했습니다. 데이터 플랫폼의 설계·운영과 현업 알림 사례를 먼저 보고, 같은 데이터를 활용한 발주 검토·AI 조회로 이어집니다.",
+      contactTitle: "수집한 데이터가,<br>고객의 업무에 쓰일 때까지",
+      contactSummary: "데이터 처리와 AWS 운영 경험을 바탕으로 고객 시스템의 흐름을 익히겠습니다. 직접 수행한 경험을 기반으로 팀의 설계·검토·배포 절차를 배우고 맡은 파이프라인의 품질을 확인하겠습니다.",
+      projectOrder: ["data-platform", "order-ai", "jarvis"],
+      projectSummaries: {
+        "data-platform": "분산된 판매·광고·재고 자료를 Python·Pandas·SQL로 정제·통합했습니다. SKU 매핑의 집계 단위를 정리해 판매량 중복 합산을 방지하고 AWS 일 배치 결과를 DB·시트·웹까지 대조했습니다. 현업이 한 상품의 여러 지표를 함께 확인하는 통계 사이트를 개발·운영했습니다.",
+        "order-ai": "판매·재고·입고 예정·배송 기간·최소 주문수량을 연결해 발주 검토를 지원했습니다. 광고팀과 발주팀이 같은 자료를 보며 재고 부족과 발주 필요성을 논의할 수 있게 했습니다. 시스템은 검토 자료를 제공하며 광고 집행과 최종 발주는 담당자가 결정합니다.",
+        jarvis: "업무 문서 검색과 읽기 전용 DB 조회를 연결한 사내 AI입니다. 정확한 일부 데이터를 조회해도 질문에 필요한 범위가 부족하면 결론이 달라질 수 있어, 상품·기간·누락 여부와 응답 근거를 확인했습니다. 데이터 플랫폼을 사용자 질문으로 확장한 사례이며 복합 질문의 완결성은 별도로 개선 중입니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "DATA QUALITY · OPERATIONS",
+        "#support-title": "정확한 데이터와 현업 활용을 함께 확인",
+        "[data-profile-support-summary]": "수집·적재의 기준뿐 아니라 사용자가 무엇을 먼저 확인하는지도 점검했습니다.",
+        "[data-profile-adoption-title]": "현업의 설명을 알림 조건으로 구체화",
+        "[data-profile-adoption-body]": "PPM이 낮아도 행사로 소진 중인 상품은 우선 점검 대상이 아닐 수 있었습니다. 전체 상품의 조회·필터는 유지하면서 판매량·PPM 알림 조건을 조정했고, 운영 과정에서 추가 의견도 받았습니다.",
+        "#architecture-title": "원천 수집에서 DB·업무 화면까지",
+        "[data-profile-architecture-summary]": "API·CSV·크롤링 원천을 정제·검증해 DB·시트·웹과 AI 조회에 연결했습니다. 실제 테이블명·식별자·회사 수치는 공개하지 않는 개념도입니다.",
+        "[data-project-key='data-platform'] h3": "Python·SQL 데이터 파이프라인과 운영 플랫폼",
+        "[data-project-key='data-platform'] .human-interface strong": "상품별 판매·광고·재고를 한 번에 확인",
+        "[data-project-key='data-platform'] .human-interface p": "여러 판매처의 자료를 각각 확인하던 업무를 공통 상품 기준의 조회로 연결했습니다. API와 자동 수집으로 직원이 CSV를 직접 내려받아 적재하던 반복 업무를 줄였습니다.",
+        "[data-profile-order-effect-body]": "광고팀과 발주팀에 공통 자료를 제공했습니다. 광고 집행·발주량의 자동 변경이나 미측정 성과를 뜻하지 않습니다."
+      }
+    },
     cj: {
       company: "CJ올리브네트웍스",
       role: "Data Engineer · 신입",
@@ -698,6 +766,8 @@
   };
 
   const aliases = {
+    kolonbenit: "kolon",
+    "kolon-benit": "kolon",
     "cj-olivenetworks": "cj",
     "nh-investment": "nh",
     nhqv: "nh",
