@@ -2,6 +2,78 @@
   "use strict";
 
   const profiles = {
+    skb: {
+      company: "SK브로드밴드",
+      role: "Junior Talent AT/DT · Data 분석/개발",
+      title: "권도영 | SK브로드밴드 AT/DT 포트폴리오",
+      description: "상품 식별자·집계 단위를 맞춘 데이터 파이프라인, 사내 AI 자비스의 조회·응답 검증, Python Slack 봇 연동 경험을 정리한 SK브로드밴드 AT/DT 포트폴리오입니다.",
+      blindRecruitment: true,
+      brand: "SK브로드밴드 · AT/DT",
+      eyebrow: "SK브로드밴드 · Junior Talent AT/DT 지원",
+      statement: "서로 다른 데이터를 연결해,<br>업무에 쓰이는 AI 서비스를 만듭니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 Python·SQL 데이터 파이프라인과 FastAPI 업무 서비스를 구축하고 AWS·Linux에서 운영했습니다. 상품 식별자와 집계 기준을 맞추고, 자비스가 확인한 데이터 범위 안에서 답하도록 보완했습니다. 현업의 확인 순서에 맞춰 조회 화면과 알림을 개선했습니다.",
+      note: "직접 수행 · 요구사항 파악 → 데이터·API 개발 → 검증 → 운영·개선",
+      consoleFile: "data_agent_delivery.yml",
+      console: '<span class="code-key">연결</span>  API · CSV · 상품·옵션 매핑\n<span class="code-key">처리</span>  Python · SQL · FastAPI\n<span class="code-key">검증</span>  집계 단위 · 조회 범위 · 미확인 값\n<span class="code-key">제공</span>  통계 웹 · AI 응답 · 업무 알림',
+      heroFacts: [
+        { value: "Python · SQL", label: "다중 원천 수집·정제·통합" },
+        { value: "FastAPI", label: "데이터·AI·업무 화면 연동" },
+        { value: "AWS · Linux", label: "배포·배치·오류 대응" },
+        { value: "Slack Bot", label: "6인 교육 프로젝트 · 우수상" }
+      ],
+      fitKicker: "SK BROADBAND · AT/DT",
+      fitTitle: "데이터 기반부터<br>Agent와 업무 도구 연동까지",
+      fitSummary: "공고의 데이터 파이프라인, LLM·Agent 개발, 업무 시스템·협업 도구 API 연동과 연결되는 경험입니다. 이커머스 실무와 교육 프로젝트에서 직접 맡은 범위를 구분했습니다.",
+      fitItems: [
+        { label: "데이터 파이프라인", heading: "수집 이후의 식별·집계 문제까지 처리", body: "판매처마다 다른 SKU·바코드·광고 옵션을 연결했습니다. 옵션별 선집계로 복잡한 원본 조인의 부담을 줄이도록 구성하고, 직접 확인하기 어려운 실적의 배분값은 추정으로 구분했습니다." },
+        { label: "LLM·Agent", heading: "데이터가 반환돼도 답변 범위는 별도 검증", body: "자비스에서 문서 검색과 DB·API 조회를 연결했습니다. 요청 기간·실제 조회 범위·최종 답변을 대조해, 일부 조회 결과가 전체 분석으로 전달되는 문제를 보완했습니다." },
+        { label: "업무 시스템·협업 연동", heading: "사용자가 확인하는 화면과 알림으로 전달", body: "실무에서는 통계 웹과 기존 시트를 함께 제공하고 판매팀과 알림 조건을 조정했습니다. 교육 프로젝트에서는 Python Slack 봇에 분석 결과를 연결해 채널·날짜별 조회와 이상 징후 알림을 구현했습니다." }
+      ],
+      contributionTitle: "SK브로드밴드에서 확장할 방향",
+      contributionBody: "통신 업무의 용어와 데이터 기준, 접근 권한·변경 절차를 먼저 익히겠습니다. 원천과 조회 결과를 대조한 경험을 바탕으로 업무 데이터·AI 기능·API를 연결하겠습니다. 전사 Data Lake·Governance와 BSS는 입사 후 학습할 영역이며, 현재 구축·운영한 경험으로 제시하지 않습니다.",
+      directionSource: { label: "공식 채용 공고 · Junior Talent AT/DT", url: "https://www.skcareers.com/Recruit/Detail/R262088" },
+      experienceTitle: "사용자의 판단 기준을 듣고,<br>화면과 알림을 바꿨습니다.",
+      experienceSummary: "여러 판매처를 비교하는 직원과 한 판매처를 맡은 직원은 필요한 화면이 달랐습니다. 통합 조회·판매처별 페이지·기존 시트 갱신을 함께 제공하고, 쿠팡 판매팀의 점검 방식에 맞춰 판매량·PPM 알림 조건을 조정했습니다.",
+      foundationTitle: "분석 결과를 서비스로 연결하며 쌓은 기본기",
+      foundationSummary: "두 차례 데이터 전문교육에서 Python·SQL·분석의 기반을 쌓고 SQLD·ADsP를 취득했습니다. 팀 프로젝트에서 익힌 RAG와 Slack 연동을 출발점으로, 실무의 데이터 파이프라인·API·AI 응답 검증으로 경험을 확장했습니다.",
+      scopeKicker: "COLLECT · ALIGN · VERIFY · DELIVER",
+      scopeTitle: "데이터가 들어와서,<br>사용자의 판단에 쓰이기까지",
+      scopeSummary: "원천의 의미, 연결 기준, 확인 범위와 사용 방식을 나눠 구현했습니다. 아래 내용은 직접 수행한 업무 흐름이며 통신 시스템의 운영 구조를 재현한 것은 아닙니다.",
+      scopeLanes: [
+        { label: "01 · COLLECT", title: "원천 수집", items: [["입력", "판매처 API·CSV·크롤링 자료 수집"], ["처리", "Python·SQL 정제와 날짜별 적재"], ["운영", "AWS·Linux 예약 실행·오류 확인"], ["상태", "실패·누락을 실제 0과 구분"]] },
+        { label: "02 · ALIGN", title: "식별·집계", items: [["매핑", "바코드·SKU·광고 옵션의 관계 연결"], ["기준", "광고 대상과 구매 상품을 구분"], ["집계", "옵션별로 먼저 집계한 뒤 상품에 연결"], ["한계", "페이지 비용의 추정 배분을 실적과 구분"]] },
+        { label: "03 · VERIFY", title: "조회·응답 검증", items: [["질문", "요청 기간과 항목 확인"], ["대조", "조회 범위와 답변 근거 비교"], ["보완", "확인된 값과 미조회 항목 안내"], ["검증", "실패 사례 재생·원천 값 대조"]] },
+        { label: "04 · DELIVER", title: "업무에 제공", items: [["웹·시트", "현업의 익숙한 조회 방식 병행"], ["알림", "판매량·PPM으로 점검 대상 조정"], ["협업", "교육 프로젝트의 Slack 조회·알림 연동"], ["개선", "사용자 문의·피드백을 기능에 반영"]] }
+      ],
+      workKicker: "DATA PIPELINE · AI VALIDATION · API INTEGRATION",
+      workTitle: "데이터 통합, 자비스, Slack 연동",
+      workSummary: "재직 중의 데이터 플랫폼·AI 서비스와 교육 과정의 협업 프로젝트입니다. 구현한 기능, 그때의 판단과 남은 한계를 함께 정리했습니다. 공개 데모는 합성 데이터만 사용합니다.",
+      contactTitle: "데이터를 연결하고,<br>사용자에게 전달된 결과까지 확인하겠습니다.",
+      contactSummary: "데이터 처리·API 연동·AI 검증 경험으로 맡은 기능을 구현하겠습니다. 통신 업무와 팀의 설계·검토 절차를 배우며, 동료가 이해하고 유지보수할 수 있는 서비스로 발전시키겠습니다.",
+      projectOrder: ["data-platform", "jarvis", "retail-slack"],
+      excludedProjects: ["order-ai"],
+      projectSummaries: {
+        "data-platform": "판매·광고·재고의 식별자와 집계 단위를 맞춰 한 상품 기준으로 조회하는 통계 웹을 구축했습니다. 쿠팡 SKU·바코드·광고 옵션을 연결하고 네이버 묶음 페이지의 상위노출비는 추정 배분했습니다. 쿠팡 판매팀과 판매량·PPM 알림 조건을 조정해 먼저 살펴볼 대상을 좁혔습니다.",
+        jarvis: "업무 기준은 문서 검색으로, 최신 수치는 DB·API 조회로 연결한 사내 AI입니다. 1년치 요청에 일부 결과로 전체를 설명하는 문제를 확인했습니다. 요청·조회·응답 범위를 대조하고, 확인된 값과 조회 한계를 안내하며 제한 응답을 전체 분석 완료와 구분하도록 보완했습니다.",
+        "retail-slack": "교육 과정의 6인 팀에서 팀장과 Python Slack 봇 개발을 맡았습니다. 팀원들의 예측·이상 탐지 결과를 연결해, 봇 태그와 날짜 입력에 따라 채널에 맞는 데이터를 조회하고 이상 징후를 알리도록 구현했습니다. 팀은 프로젝트 발표회에서 우수상을 받았습니다."
+      },
+      textOverrides: {
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "[data-profile-support-kicker]": "USER CONTEXT · OPERATIONS",
+        "#support-title": "기능의 동작과 사용자의 활용을 함께 확인",
+        "[data-profile-support-summary]": "구현 이후에도 업무 기준과 이용 방식을 현업에게 확인했습니다.",
+        "[data-profile-security-title]": "조회 권한과 응답 근거 확인",
+        "[data-profile-adoption-title]": "화면을 함께 보며 이용 안내",
+        "[data-profile-adoption-body]": "이용 가이드가 필요하다는 의견을 받아 구조·원리 설명에서 실제 화면 중심의 안내로 바꿨습니다. 문의와 새로운 아이디어를 후속 개선에 반영했습니다.",
+        "#architecture-title": "원천 데이터에서 업무 화면과 AI 응답까지",
+        "[data-profile-architecture-summary]": "사내 서비스의 수집·정제·저장·검증·제공 흐름을 정리한 개념도입니다. 실제 데이터와 내부 주소는 공개하지 않습니다.",
+        "[data-project-key='data-platform'] h3": "상품 기준을 연결한 데이터 파이프라인·통계 웹",
+        "[data-project-key='data-platform'] .human-interface strong": "한 상품의 판매·광고·재고를 같은 기준으로 확인",
+        "[data-project-key='data-platform'] .human-interface p": "광고팀과 발주팀이 같은 자료로 재고·발주 필요성을 논의하도록 지원했습니다. 광고 집행과 발주 결정은 현업이 담당하며, 시스템이 자동 변경한 성과로 표현하지 않습니다.",
+        "[data-project-key='jarvis'] h3": "자비스 · 업무 조회와 답변 범위를 검증한 AI",
+        "[data-project-key='retail-slack'] .case-columns li:first-child": "봇 태그·날짜 입력으로 채널별 데이터 조회"
+      }
+    },
     hansol: {
       company: "한솔PNS",
       role: "웹개발자(AI 응용) · 신입",
@@ -836,6 +908,8 @@
   };
 
   const aliases = {
+    skbroadband: "skb",
+    "sk-broadband": "skb",
     "hansol-pns": "hansol",
     hansolpns: "hansol",
     kolonbenit: "kolon",

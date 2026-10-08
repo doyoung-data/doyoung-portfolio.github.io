@@ -26,6 +26,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             ("cj", "CJ올리브네트웍스", "Data Engineer · 신입"),
             ("kolon", "코오롱베니트", "데이터플랫폼 엔지니어 · 채용연계형 인턴"),
             ("hansol", "한솔PNS", "웹개발자(AI 응용) · 신입"),
+            ("skb", "SK브로드밴드", "Junior Talent AT/DT · Data 분석/개발"),
         ):
             with self.subTest(key=key):
                 self.assertIn(f"{key}: {{", self.script)
@@ -63,7 +64,7 @@ class CompanyPortfolioTests(unittest.TestCase):
         self.assertIn('class="timeline-date">2024.12 — 2025.03</div>', self.index)
 
     def test_every_profile_has_project_specific_summaries(self):
-        self.assertEqual(self.script.count("projectSummaries: {"), 11)
+        self.assertEqual(self.script.count("projectSummaries: {"), 12)
 
     def test_unknown_targets_do_not_resolve_object_prototypes(self):
         self.assertIn("Object.prototype.hasOwnProperty.call(profiles, requested)", self.script)
@@ -77,7 +78,7 @@ class CompanyPortfolioTests(unittest.TestCase):
             self.assertNotIn(stale_count, self.index + self.script)
 
     def test_company_direction_sources_and_evaluation_scope_are_explicit(self):
-        self.assertEqual(self.script.count("directionSource: {"), 11)
+        self.assertEqual(self.script.count("directionSource: {"), 12)
         self.assertIn("롯데백화점 브랜드 AI 구축", self.script)
         self.assertIn("TF-IDF 기반 문서 RAG", self.index)
         self.assertIn("판매 분석 100문항", self.index)
@@ -104,10 +105,29 @@ class CompanyPortfolioTests(unittest.TestCase):
         for unsupported in ("정확도 100%", "만족도 28%", "MCP를 구축", "AST를 구현", "모델 전체를 개발"):
             self.assertNotIn(unsupported, hansol)
         self.assertIn('id="hansol-answer-scope" data-profile-only="hansol" hidden', self.index)
-        self.assertIn('data-project-key="retail-slack" data-profile-only="hansol" hidden', self.index)
+        self.assertIn('data-project-key="retail-slack" data-profile-only="hansol skb" hidden', self.index)
         self.assertIn("팀원들이 담당한 예측·이상 탐지 모델 전체", self.index)
         self.assertIn("제한 답변은 전체 분석 완료와 구분", self.index)
         self.assertIn("child.dataset.projectKey && !child.hidden", self.script)
+
+    def test_skb_prioritizes_verified_data_and_agent_integration(self):
+        skb = self.script.split("    skb: {", 1)[1].split("    hansol: {", 1)[0]
+        self.assertIn('projectOrder: ["data-platform", "jarvis", "retail-slack"]', skb)
+        self.assertIn('excludedProjects: ["order-ai"]', skb)
+        self.assertIn('"sk-broadband": "skb"', self.script)
+        self.assertIn("https://www.skcareers.com/Recruit/Detail/R262088", skb)
+        for evidence in ("옵션별 선집계", "추정", "조회 범위", "Slack", "SQLD·ADsP", "입사 후 학습"):
+            self.assertIn(evidence, skb)
+        for detail in ("skb-data-integration", "skb-query-guard"):
+            self.assertEqual(self.index.count(f'id="{detail}" data-profile-only="skb" hidden'), 1)
+        for evidence in ("vendor_item_id", "평균 판매단가 비중", "전체 분석 완료로 기록하지", "알림 대상을 좁힌"):
+            self.assertIn(evidence, self.index)
+        for unsupported in ("정확도 100%", "만족도 28%", "중앙값", "BSS를 구축", "Data Lake를 운영"):
+            self.assertNotIn(unsupported, skb)
+        self.assertIn("blindRecruitment: true", skb)
+        self.assertIn('data-expired-credential', self.index)
+        css = (ROOT / "css" / "portfolio.css").read_text(encoding="utf-8")
+        self.assertIn('html[data-portfolio-target="skb"] [data-expired-credential]', css)
 
     def test_jarvis_engineering_has_cases_scope_and_demo_boundary(self):
         self.assertEqual(self.index.count('id="jarvis-engineering"'), 1)

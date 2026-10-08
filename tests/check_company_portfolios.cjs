@@ -16,7 +16,8 @@ const profiles = {
   nh: { company: 'NH투자증권', order: ['data-platform', 'jarvis', 'order-ai'] },
   cj: { company: 'CJ올리브네트웍스', order: ['data-platform', 'jarvis', 'order-ai'] },
   kolon: { company: '코오롱베니트', order: ['data-platform', 'order-ai', 'jarvis'] },
-  hansol: { company: '한솔PNS', order: ['jarvis', 'data-platform', 'retail-slack'] }
+  hansol: { company: '한솔PNS', order: ['jarvis', 'data-platform', 'retail-slack'] },
+  skb: { company: 'SK브로드밴드', order: ['data-platform', 'jarvis', 'retail-slack'] }
 };
 
 async function main() {
@@ -47,7 +48,19 @@ async function main() {
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
       assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
-      if (key === 'hansol') {
+      if (key === 'skb') {
+        assert.match(await page.title(), /SK브로드밴드 AT\/DT/);
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://www.skcareers.com/Recruit/Detail/R262088');
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /입사 후 학습/);
+        assert.equal(await page.locator('[data-expired-credential]').isVisible(), false);
+        for (const selector of ['#skb-data-integration', '#skb-query-guard']) {
+          const detail = page.locator(selector);
+          assert.equal(await detail.isVisible(), true);
+          await detail.locator('summary').click();
+          assert.match(await detail.innerText(), /범위|추정/);
+          await detail.locator('summary').click();
+        }
+      } else if (key === 'hansol') {
         assert.match(await page.title(), /웹개발자\(AI 응용\)/);
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://hansol.careerlink.kr/jobs/RC20260918034904');
         assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /추가 학습 영역/);
@@ -150,9 +163,12 @@ async function main() {
       assert.deepEqual(projectKeys, profile.order);
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key]:not([hidden]) .case-index').allTextContents(), ['01', '02', '03']);
-      assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), key === 'hansol');
+      assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), ['hansol', 'skb'].includes(key));
       assert.equal(await page.locator('#hansol-answer-scope').isVisible(), key === 'hansol');
-      assert.equal(await page.locator('[data-academic-identity]').count(), key === 'lotte' ? 0 : 2);
+      assert.equal(await page.locator('[data-academic-identity]').count(), ['lotte', 'skb'].includes(key) ? 0 : 2);
+      for (const selector of ['#skb-data-integration', '#skb-query-guard']) {
+        assert.equal(await page.locator(selector).isVisible(), key === 'skb');
+      }
       assert.equal(await page.locator('[data-profile-only="sempio lotte hanwha hyundai nh cj"]').isVisible(), ['sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
       assert.equal(await page.locator('#cj-data-quality').isVisible(), key === 'cj');
       assert.equal(await page.locator('#kolon-data-platform').isVisible(), key === 'kolon');

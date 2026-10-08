@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20261002-hansol">
+  <link rel="stylesheet" href="css/portfolio.css?v=20261008-skb">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -296,6 +296,24 @@
                   </div>
                 </div>
               </details>
+              <details class="case-engineering" id="skb-query-guard" data-profile-only="skb" hidden>
+                <summary><span><i data-lucide="scan-search" aria-hidden="true"></i>조회 성공과 분석 완료를 구분한 사례</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">REQUEST → EVIDENCE → RESPONSE</p><h4>일부 수치가 맞아도, 전체 기간의 결론은 달랐습니다.</h4></header>
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 문제 정의와 구현 기준</h5><dl>
+                      <div><dt>문제</dt><dd>1년치 요청에서 일부 결과만 조회하고 전체 기간의 분석처럼 답했습니다. 잘못된 수치가 아니라 확인 범위를 넘어선 해석이 문제였습니다.</dd></div>
+                      <div><dt>내 역할</dt><dd>요청 기간·조회 범위·답변을 대조해 기대 동작을 정했습니다. 실패 질문과 조회 결과를 제시하고 Codex로 코드 분석·수정을 보조받았습니다.</dd></div>
+                      <div><dt>보완</dt><dd>기간·요청 항목·근거가 부족하면 생성된 분석문 대신 조회 도구의 반환값으로 응답을 구성하고, 미조회 항목을 안내하도록 했습니다. 해당 응답은 전체 분석 완료로 기록하지 않도록 했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 재생 검증과 한계</h5><dl>
+                      <div><dt>검증</dt><dd>실패 질문의 실제 조회 결과를 재생해 응답 수치와 누락 안내를 대조했습니다.</dd></div>
+                      <div><dt>의미</dt><dd>확인된 값은 전달하면서 질문 전체를 해결한 것으로 오해하지 않도록, 응답 내용과 완료 상태를 함께 보완했습니다.</dd></div>
+                      <div><dt>한계</dt><dd>알려진 실패 사례의 검증입니다. 모든 장기간 조회의 성공이나 모든 질문의 정확도를 보장하는 수치는 제시하지 않습니다.</dd></div>
+                    </dl></article>
+                  </div>
+                </div>
+              </details>
               <details class="case-engineering" id="jarvis-engineering">
                 <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -444,6 +462,30 @@
                   <p class="engineering-caption">약 2,500개 상품 행은 일별 판매 이력 시트의 갱신 규모입니다. 거래 건수·전체 처리량·성능 개선율을 뜻하지 않습니다. 원본 데이터와 테이블명은 공개하지 않습니다.</p>
                 </div>
               </details>
+              <details class="case-engineering" id="skb-data-integration" data-profile-only="skb" hidden>
+                <summary><span><i data-lucide="database" aria-hidden="true"></i>상품 식별·추정 배분·알림 조건의 설계 판단</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 쿠팡의 상품 식별자 연결</h5><dl>
+                      <div><dt>차이</dt><dd>판매·재고의 SKU, 사내 바코드, 광고 옵션 ID가 서로 달랐습니다. 광고한 상품과 실제 구매된 상품도 다를 수 있었습니다.</dd></div>
+                      <div><dt>선택</dt><dd>SKU와 바코드를 매핑하고 광고 옵션은 vendor_item_id를 통해 SKU에 연결했습니다. 광고 대상 옵션을 우선 기준으로 삼아 다른 상품의 광고가 섞이지 않도록 했습니다.</dd></div>
+                      <div><dt>집계</dt><dd>광고를 옵션별로 먼저 집계한 뒤 상품에 연결해 복잡한 원본 조인의 부담을 줄이도록 구성했습니다. 성능 개선율을 측정한 성과로 제시하지 않습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 네이버 묶음 페이지의 비용 배분</h5><dl>
+                      <div><dt>한계</dt><dd>여러 상품을 묶은 판매 페이지에서는 상품별 실적을 직접 확인하기 어려웠고, 다른 페이지의 판매량까지 배분에 영향을 줄 수 있었습니다.</dd></div>
+                      <div><dt>대안</dt><dd>대체 기준으로 평균 판매단가 비중을 활용해 상위노출비를 추정 배분했습니다.</dd></div>
+                      <div><dt>구분</dt><dd>상품별 실제 광고 기여도를 측정한 값이 아닌 추정 배분입니다. 전체 원천에 같은 기준을 일괄 적용하지 않았습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>03</span> 낮은 PPM과 점검 우선순위 구분</h5><dl>
+                      <div><dt>현업</dt><dd>쿠팡 판매팀은 수익성 지표인 PPM을 매일 점검했습니다. 행사로 낮아진 상품도 있어 단순히 낮은 수치부터 정렬하는 것으로는 부족했습니다.</dd></div>
+                      <div><dt>변경</dt><dd>판매량과 PPM 조건을 함께 적용해 판매가 활발하면서 점검이 필요한 상품을 우선 알리도록 했습니다. 전체 상품의 지표·이력 조회는 유지했습니다.</dd></div>
+                      <div><dt>범위</dt><dd>하락 원인을 자동 판정한 것이 아니라 알림 대상을 좁힌 것입니다. 매출 증가나 검토 시간의 감소율은 측정 성과로 제시하지 않습니다.</dd></div>
+                    </dl></article>
+                  </div>
+                  <p class="engineering-caption">실제 상품·바코드·광고 실적은 공개하지 않습니다. 아래 시연은 설계 개념을 설명하는 합성 데이터입니다.</p>
+                  <a class="case-demo-link" href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 합성 데이터 시연<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+                </div>
+              </details>
               <details class="case-engineering" id="kolon-data-platform" data-profile-only="kolon" hidden>
                 <summary><span><i data-lucide="database" aria-hidden="true"></i>집계 검증·배치 운영·현업 알림 설계</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -510,7 +552,7 @@
             <aside class="case-proof"><div><strong>Multi</strong><span>API·CSV·크롤링</span></div><div><strong>60+</strong><span>자동 갱신 업무 탭</span></div><div><strong>E2E</strong><span>기획부터 운영</span></div></aside>
           </article>
 
-          <article class="case-study" data-project-key="retail-slack" data-profile-only="hansol" hidden>
+          <article class="case-study" data-project-key="retail-slack" data-profile-only="hansol skb" hidden>
             <div class="case-index">03</div>
             <div class="case-main">
               <div class="case-title-row">
@@ -618,7 +660,7 @@
           <div class="credentials" aria-labelledby="credentials-title">
             <div class="credentials-title"><i data-lucide="badge-check" aria-hidden="true"></i><h3 id="credentials-title">자격·교육</h3></div>
             <ul class="credential-list">
-              <li><strong>Google Analytics Certification</strong><span>Google · 2024.11</span></li>
+              <li data-expired-credential><strong>Google Analytics Certification</strong><span>Google · 2024.11</span></li>
               <li><strong>SQLD</strong><span>한국데이터산업진흥원 · 2024.04</span></li>
               <li><strong>ADsP</strong><span>한국데이터산업진흥원 · 2023.09</span></li>
               <li data-academic-identity><strong>Tableau 데이터 시각화 과정</strong><span>안동대학교 · 2023.06</span></li>
@@ -968,7 +1010,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20261002-hansol" defer></script>
+  <script src="js/company-portfolio.js?v=20261008-skb" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>

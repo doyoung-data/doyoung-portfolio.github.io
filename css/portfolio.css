@@ -590,6 +590,18 @@ html[data-portfolio-target="dbinc"] {
   display: none;
 }
 
+html[data-portfolio-target="skb"] {
+  --company-accent: #c7293b;
+}
+
+html[data-theme="dark"][data-portfolio-target="skb"] {
+  --company-accent: #ff8897;
+}
+
+html[data-portfolio-target="skb"] [data-expired-credential] {
+  display: none;
+}
+
 html[data-portfolio-target="hansol"] {
   --company-accent: #16744d;
 }
