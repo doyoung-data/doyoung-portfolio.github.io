@@ -602,6 +602,22 @@ html[data-portfolio-target="skb"] [data-expired-credential] {
   display: none;
 }
 
+html[data-portfolio-target="skb"] :is(#architecture, #codex-activity) {
+  display: none;
+}
+
+html[data-portfolio-target="skb"] .skb-evidence-links:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin: 12px 0;
+}
+
+html[data-portfolio-target="skb"] .skb-evidence-links .case-demo-link {
+  margin: 0;
+  max-width: 100%;
+}
+
 html[data-portfolio-target="hansol"] {
   --company-accent: #16744d;
 }

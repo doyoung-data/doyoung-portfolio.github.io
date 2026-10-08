@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20261008-skb">
+  <link rel="stylesheet" href="css/portfolio.css?v=20261008-skb-review">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -108,7 +108,7 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#work">
               <i data-lucide="arrow-down" aria-hidden="true"></i>
-              핵심 성과
+              <span data-profile-primary-label>핵심 성과</span>
             </a>
             <a class="button button-secondary" href="#public-code">
               <i data-lucide="code-2" aria-hidden="true"></i>
@@ -299,7 +299,7 @@
               <details class="case-engineering" id="skb-query-guard" data-profile-only="skb" hidden>
                 <summary><span><i data-lucide="scan-search" aria-hidden="true"></i>조회 성공과 분석 완료를 구분한 사례</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
-                  <header class="engineering-heading"><p class="case-label">REQUEST → EVIDENCE → RESPONSE</p><h4>일부 수치가 맞아도, 전체 기간의 결론은 달랐습니다.</h4></header>
+                  <header class="engineering-heading"><p class="case-label">REQUEST → EVIDENCE → RESPONSE</p><h4>수치는 맞았지만, 전체 기간을 설명할 근거는 부족했습니다.</h4></header>
                   <div class="engineering-incidents">
                     <article><h5><span>01</span> 문제 정의와 구현 기준</h5><dl>
                       <div><dt>문제</dt><dd>1년치 요청에서 일부 결과만 조회하고 전체 기간의 분석처럼 답했습니다. 잘못된 수치가 아니라 확인 범위를 넘어선 해석이 문제였습니다.</dd></div>
@@ -309,7 +309,7 @@
                     <article><h5><span>02</span> 재생 검증과 한계</h5><dl>
                       <div><dt>검증</dt><dd>실패 질문의 실제 조회 결과를 재생해 응답 수치와 누락 안내를 대조했습니다.</dd></div>
                       <div><dt>의미</dt><dd>확인된 값은 전달하면서 질문 전체를 해결한 것으로 오해하지 않도록, 응답 내용과 완료 상태를 함께 보완했습니다.</dd></div>
-                      <div><dt>한계</dt><dd>알려진 실패 사례의 검증입니다. 모든 장기간 조회의 성공이나 모든 질문의 정확도를 보장하는 수치는 제시하지 않습니다.</dd></div>
+                      <div><dt>한계</dt><dd>알려진 실패 사례를 재생한 검증입니다. 새로운 복합 질문과 장기간 요청은 조회 범위와 답변 완결성을 계속 확인하고 있습니다.</dd></div>
                     </dl></article>
                   </div>
                 </div>
@@ -381,6 +381,7 @@
                 <span class="ownership">기획·개발·운영 전담</span>
               </div>
               <p class="case-summary">쿠팡·네이버·카카오·카페24·광고 매체·재고 시스템 등 서로 다른 데이터를 수집해 공통 상품·SKU 기준으로 통합하고, 운영 DB와 목적별 조회 데이터셋으로 구성했습니다. 실무자는 한 화면에서 판매·광고 효율·사내 및 쿠팡 재고·입고 예정 물량을 함께 보고 광고 점검·재고 이동·발주 우선순위를 결정합니다.</p>
+              <p class="case-role" data-profile-only="skb" hidden><strong>직접 담당</strong> 요구사항 · Python·SQL 처리 · FastAPI 개발 · AWS 배포·운영<br><strong>기간</strong> 데이터 자동화 2025.12 — 현재 · 통계 웹 2026.03 — 현재</p>
               <div class="human-interface">
                 <i data-lucide="file-spreadsheet" aria-hidden="true"></i>
                 <div>
@@ -469,7 +470,7 @@
                     <article><h5><span>01</span> 쿠팡의 상품 식별자 연결</h5><dl>
                       <div><dt>차이</dt><dd>판매·재고의 SKU, 사내 바코드, 광고 옵션 ID가 서로 달랐습니다. 광고한 상품과 실제 구매된 상품도 다를 수 있었습니다.</dd></div>
                       <div><dt>선택</dt><dd>SKU와 바코드를 매핑하고 광고 옵션은 vendor_item_id를 통해 SKU에 연결했습니다. 광고 대상 옵션을 우선 기준으로 삼아 다른 상품의 광고가 섞이지 않도록 했습니다.</dd></div>
-                      <div><dt>집계</dt><dd>광고를 옵션별로 먼저 집계한 뒤 상품에 연결해 복잡한 원본 조인의 부담을 줄이도록 구성했습니다. 성능 개선율을 측정한 성과로 제시하지 않습니다.</dd></div>
+                      <div><dt>집계</dt><dd>광고를 옵션별로 먼저 집계한 뒤 상품에 연결했습니다. 광고 원본에 상품 매핑을 바로 조인하는 대신, 집계와 식별자 연결을 나눠 처리했습니다.</dd></div>
                     </dl></article>
                     <article><h5><span>02</span> 네이버 묶음 페이지의 비용 배분</h5><dl>
                       <div><dt>한계</dt><dd>여러 상품을 묶은 판매 페이지에서는 상품별 실적을 직접 확인하기 어려웠고, 다른 페이지의 판매량까지 배분에 영향을 줄 수 있었습니다.</dd></div>
@@ -477,15 +478,18 @@
                       <div><dt>구분</dt><dd>상품별 실제 광고 기여도를 측정한 값이 아닌 추정 배분입니다. 전체 원천에 같은 기준을 일괄 적용하지 않았습니다.</dd></div>
                     </dl></article>
                     <article><h5><span>03</span> 낮은 PPM과 점검 우선순위 구분</h5><dl>
-                      <div><dt>현업</dt><dd>쿠팡 판매팀은 수익성 지표인 PPM을 매일 점검했습니다. 행사로 낮아진 상품도 있어 단순히 낮은 수치부터 정렬하는 것으로는 부족했습니다.</dd></div>
+                      <div><dt>현업</dt><dd>쿠팡 판매팀은 수익성 관련 지표인 PPM을 매일 점검했습니다. 행사로 낮아진 상품도 있어 단순히 낮은 수치부터 정렬하는 것으로는 부족했습니다.</dd></div>
                       <div><dt>변경</dt><dd>판매량과 PPM 조건을 함께 적용해 판매가 활발하면서 점검이 필요한 상품을 우선 알리도록 했습니다. 전체 상품의 지표·이력 조회는 유지했습니다.</dd></div>
-                      <div><dt>범위</dt><dd>하락 원인을 자동 판정한 것이 아니라 알림 대상을 좁힌 것입니다. 매출 증가나 검토 시간의 감소율은 측정 성과로 제시하지 않습니다.</dd></div>
+                      <div><dt>범위</dt><dd>알림 대상을 좁힌 것이며 하락 원인은 판매팀이 확인합니다. 낮은 지표의 상품도 전체 조회에서는 계속 확인할 수 있습니다.</dd></div>
                     </dl></article>
                   </div>
-                  <p class="engineering-caption">실제 상품·바코드·광고 실적은 공개하지 않습니다. 아래 시연은 설계 개념을 설명하는 합성 데이터입니다.</p>
-                  <a class="case-demo-link" href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 합성 데이터 시연<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+                  <p class="engineering-caption">실제 상품·바코드·광고 실적은 비공개입니다. 공개 데모는 합성 데이터로 통합 조회 흐름을 재현했습니다.</p>
                 </div>
               </details>
+              <div class="skb-evidence-links" data-profile-only="skb" hidden>
+                <a class="case-demo-link" href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 데모 · 합성 데이터<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+                <a class="case-demo-link" href="#public-code"><i data-lucide="code-2" aria-hidden="true"></i>공개 재현 코드<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
+              </div>
               <details class="case-engineering" id="kolon-data-platform" data-profile-only="kolon" hidden>
                 <summary><span><i data-lucide="database" aria-hidden="true"></i>집계 검증·배치 운영·현업 알림 설계</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -578,6 +582,9 @@
                 </div>
               </details>
               <a class="case-demo-link" href="https://drive.google.com/file/d/1Tf6MGntxhI7f1wFfWQ4iXvNG9T7tV-t6/view?usp=drive_link" target="_blank" rel="noopener noreferrer"><i data-lucide="file-text" aria-hidden="true"></i>팀 프로젝트 발표 자료<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+              <div class="skb-evidence-links" data-profile-only="skb" hidden>
+                <a class="case-demo-link" href="https://drive.google.com/file/d/1ZOYFtPeelxsS_z_s_ge9oY_wnheeUVRd/view?usp=sharing" target="_blank" rel="noopener noreferrer"><i data-lucide="play" aria-hidden="true"></i>Slack 봇 실제 시연 영상<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+              </div>
               <div class="stack-row" aria-label="담당 기능 사용 기술"><span>Python</span><span>Slack Bot</span><span>slack-bolt</span><span>분석 결과 연동</span></div>
             </div>
             <aside class="case-proof"><div><strong>6인</strong><span>교육 팀 프로젝트</span></div><div><strong>팀장</strong><span>역할·우선순위 조율</span></div><div><strong>우수상</strong><span>프로젝트 발표회</span></div></aside>
@@ -1010,7 +1017,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20261008-skb" defer></script>
+  <script src="js/company-portfolio.js?v=20261008-skb-review" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>

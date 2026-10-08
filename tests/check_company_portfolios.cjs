@@ -53,6 +53,15 @@ async function main() {
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://www.skcareers.com/Recruit/Detail/R262088');
         assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /입사 후 학습/);
         assert.equal(await page.locator('[data-expired-credential]').isVisible(), false);
+        assert.equal(await page.locator('[data-profile-primary-label]').innerText(), '대표 프로젝트');
+        assert.equal(await page.locator('#architecture').isVisible(), false);
+        assert.equal(await page.locator('#codex-activity').isVisible(), false);
+        const siteDemoLink = page.getByRole('link', { name: '통합 조회 데모 · 합성 데이터', exact: true });
+        assert.equal(await siteDemoLink.isVisible(), true);
+        await siteDemoLink.click();
+        assert.equal(await page.locator('#journey-site').isVisible(), true);
+        assert.equal(await page.getByRole('link', { name: 'Slack 봇 실제 시연 영상', exact: true }).isVisible(), true);
+        assert.match(await page.locator('[data-project-key="data-platform"] .case-summary').innerText(), /수익성 관련 지표인 PPM/);
         for (const selector of ['#skb-data-integration', '#skb-query-guard']) {
           const detail = page.locator(selector);
           assert.equal(await detail.isVisible(), true);
@@ -166,6 +175,8 @@ async function main() {
       assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), ['hansol', 'skb'].includes(key));
       assert.equal(await page.locator('#hansol-answer-scope').isVisible(), key === 'hansol');
       assert.equal(await page.locator('[data-academic-identity]').count(), ['lotte', 'skb'].includes(key) ? 0 : 2);
+      assert.equal(await page.locator('.skb-evidence-links').first().isVisible(), key === 'skb');
+      assert.equal(await page.locator('#architecture').isVisible(), key !== 'skb');
       for (const selector of ['#skb-data-integration', '#skb-query-guard']) {
         assert.equal(await page.locator(selector).isVisible(), key === 'skb');
       }

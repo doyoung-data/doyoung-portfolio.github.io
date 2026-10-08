@@ -129,6 +129,22 @@ class CompanyPortfolioTests(unittest.TestCase):
         css = (ROOT / "css" / "portfolio.css").read_text(encoding="utf-8")
         self.assertIn('html[data-portfolio-target="skb"] [data-expired-credential]', css)
 
+    def test_skb_review_keeps_evidence_accessible_and_claims_scoped(self):
+        skb = self.script.split("    skb: {", 1)[1].split("    hansol: {", 1)[0]
+        for phrase in ("수익성 관련 지표인 PPM", "제한 응답은 전체 분석 완료와 구분", "입사 후 학습"):
+            self.assertIn(phrase, skb)
+        for phrase in ("성과로 표현하지 않습니다", "경험으로 제시하지 않습니다", "전체 기간의 결론은 달랐습니다"):
+            self.assertNotIn(phrase, skb)
+        self.assertEqual(self.index.count('class="skb-evidence-links" data-profile-only="skb" hidden'), 2)
+        self.assertIn("Slack 봇 실제 시연 영상", self.index)
+        self.assertIn("통합 조회 데모 · 합성 데이터", self.index)
+        platform = self.index.split('data-project-key="data-platform"', 1)[1].split('data-project-key="retail-slack"', 1)[0]
+        detail = platform.split('id="skb-data-integration"', 1)[1].split('</details>', 1)[0]
+        self.assertNotIn('data-open-journey="site"', detail)
+        self.assertIn('data-profile-primary-label', self.index)
+        css = (ROOT / "css" / "portfolio.css").read_text(encoding="utf-8")
+        self.assertIn('html[data-portfolio-target="skb"] :is(#architecture, #codex-activity)', css)
+
     def test_jarvis_engineering_has_cases_scope_and_demo_boundary(self):
         self.assertEqual(self.index.count('id="jarvis-engineering"'), 1)
         self.assertIn('data-open-journey="jarvis"', self.index)
