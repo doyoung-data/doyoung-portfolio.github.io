@@ -586,12 +586,25 @@ html[data-portfolio-target="dbinc"] {
   --company-accent: #2458a6;
 }
 
-.case-study[hidden] {
+.case-study[hidden],
+.case-demo-link[hidden] {
   display: none;
 }
 
 html[data-portfolio-target="skb"] {
   --company-accent: #c7293b;
+}
+
+html[data-portfolio-target="dn"] {
+  --company-accent: #006f72;
+}
+
+html[data-theme="dark"][data-portfolio-target="dn"] {
+  --company-accent: #6ad5cc;
+}
+
+html[data-portfolio-target="dn"] :is([data-expired-credential], #architecture, #codex-activity) {
+  display: none;
 }
 
 html[data-theme="dark"][data-portfolio-target="skb"] {

@@ -17,7 +17,8 @@ const profiles = {
   cj: { company: 'CJ올리브네트웍스', order: ['data-platform', 'jarvis', 'order-ai'] },
   kolon: { company: '코오롱베니트', order: ['data-platform', 'order-ai', 'jarvis'] },
   hansol: { company: '한솔PNS', order: ['jarvis', 'data-platform', 'retail-slack'] },
-  skb: { company: 'SK브로드밴드', order: ['data-platform', 'jarvis', 'retail-slack'] }
+  skb: { company: 'SK브로드밴드', order: ['data-platform', 'jarvis', 'retail-slack'] },
+  dn: { company: 'DN솔루션즈', order: ['jarvis', 'data-platform', 'retail-slack'] }
 };
 
 async function main() {
@@ -48,7 +49,23 @@ async function main() {
       assert.match(await page.locator('[data-profile-direction-source]').getAttribute('href'), /^https:\/\//);
       const supportingSource = page.locator('[data-profile-supporting-source]');
       assert.equal(await supportingSource.isVisible(), ['daou', 'sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key));
-      if (key === 'skb') {
+      if (key === 'dn') {
+        assert.match(await page.title(), /DN솔루션즈 AX/);
+        assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://career-dncompany.recruiter.co.kr/career/jobs/130313');
+        assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /추가로 배울 영역/);
+        assert.equal(await page.locator('[data-expired-credential]').isVisible(), false);
+        assert.equal(await page.locator('#codex-activity').isVisible(), false);
+        assert.equal(await page.locator('[data-project-key="order-ai"]').isVisible(), false);
+        for (const selector of ['#dn-query-scope', '#dn-data-workflow']) {
+          const detail = page.locator(selector);
+          assert.equal(await detail.isVisible(), true);
+          await detail.locator('summary').click();
+          assert.match(await detail.innerText(), /검증|대조/);
+          await detail.locator('summary').click();
+        }
+        await page.getByRole('link', { name: '통합 조회 데모 · 합성 데이터', exact: true }).click();
+        assert.equal(await page.locator('[data-journey-panel="site"]').isVisible(), true);
+      } else if (key === 'skb') {
         assert.match(await page.title(), /SK브로드밴드 AT\/DT/);
         assert.equal(await page.locator('[data-profile-direction-source]').getAttribute('href'), 'https://www.skcareers.com/Recruit/Detail/R262088');
         assert.match(await page.locator('[data-profile-contribution-body]').innerText(), /입사 후 학습/);
@@ -172,11 +189,14 @@ async function main() {
       assert.deepEqual(projectKeys, profile.order);
       assert.equal(await page.locator('.case-list > .case-featured').count(), 1);
       assert.deepEqual(await page.locator('.case-list > [data-project-key]:not([hidden]) .case-index').allTextContents(), ['01', '02', '03']);
-      assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), ['hansol', 'skb'].includes(key));
+      assert.equal(await page.locator('[data-project-key="retail-slack"]').isVisible(), ['hansol', 'skb', 'dn'].includes(key));
       assert.equal(await page.locator('#hansol-answer-scope').isVisible(), key === 'hansol');
       assert.equal(await page.locator('[data-academic-identity]').count(), ['lotte', 'skb'].includes(key) ? 0 : 2);
       assert.equal(await page.locator('.skb-evidence-links').first().isVisible(), key === 'skb');
-      assert.equal(await page.locator('#architecture').isVisible(), key !== 'skb');
+      assert.equal(await page.locator('#architecture').isVisible(), !['skb', 'dn'].includes(key));
+      for (const selector of ['#dn-query-scope', '#dn-data-workflow']) {
+        assert.equal(await page.locator(selector).isVisible(), key === 'dn');
+      }
       for (const selector of ['#skb-data-integration', '#skb-query-guard']) {
         assert.equal(await page.locator(selector).isVisible(), key === 'skb');
       }
@@ -210,6 +230,17 @@ async function main() {
         });
         assert.equal(overflow.page, false, `${key} @ ${width}: page overflow`);
         assert.deepEqual(overflow.text, [], `${key} @ ${width}: text overflow`);
+        if (key === 'dn') {
+          for (const selector of ['#dn-query-scope', '#dn-data-workflow']) {
+            const detail = page.locator(selector);
+            await detail.locator('summary').click();
+            assert.equal(await detail.evaluate(node => Array.from(node.querySelectorAll('h4, h5, p, dd')).some(element => element.scrollWidth > element.clientWidth + 1)), false, `${selector} @ ${width}: text overflow`);
+            if (screenshotDir && [1440, 390].includes(width)) {
+              await detail.screenshot({ path: path.join(screenshotDir, `${selector.slice(1)}-${width}.png`), style: '.site-header, .skip-link { visibility: hidden !important; }' });
+            }
+            await detail.locator('summary').click();
+          }
+        }
         if (['sempio', 'lotte', 'hanwha', 'hyundai', 'nh', 'cj'].includes(key)) {
           const platformDetail = page.locator('#platform-engineering');
           await platformDetail.locator('summary').click();
@@ -291,7 +322,7 @@ async function main() {
       assert.equal(await page.locator('[data-journey-panel="site"]').isVisible(), true);
       if (key === 'sempio') {
         await page.locator('[data-journey-tab="jarvis"]').click();
-        await page.locator('[data-open-journey="site"]').click();
+        await page.getByRole('link', { name: '통계 사이트 합성 데이터 시연', exact: true }).click();
         assert.equal(await page.locator('[data-journey-panel="site"]').isVisible(), true);
         assert.match(page.url(), /target=sempio#journey-site$/);
       }
@@ -344,6 +375,7 @@ async function main() {
       ['company=nh-investment', 'nh'], ['target=nhqv', 'nh'], ['target=%20NH%20', 'nh'],
       ['company=cj-olivenetworks', 'cj'], ['target=%20CJ%20', 'cj'],
       ['company=hansol-pns', 'hansol'], ['target=hansolpns', 'hansol'], ['target=%20HANSOL%20', 'hansol'],
+      ['company=dn-solutions', 'dn'], ['target=dnsolutions', 'dn'], ['target=%20DN%20', 'dn'],
       ['', undefined], ['target=toss', undefined], ['target=unknown', undefined],
       ['target=__proto__', undefined], ['target=constructor', undefined], ['target=toString', undefined]
     ]) {

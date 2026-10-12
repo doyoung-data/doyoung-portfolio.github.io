@@ -51,7 +51,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="css/portfolio.css?v=20261008-skb-review">
+  <link rel="stylesheet" href="css/portfolio.css?v=20261012-dn">
 </head>
 <body>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -314,6 +314,24 @@
                   </div>
                 </div>
               </details>
+              <details class="case-engineering" id="dn-query-scope" data-profile-only="dn" hidden>
+                <summary><span><i data-lucide="scan-search" aria-hidden="true"></i>AI 코딩 도구와 협업하고, 결과는 직접 검증</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">DEFINE → IMPLEMENT → VERIFY</p><h4>조회 성공과 질문 전체에 대한 답변은 달랐습니다.</h4></header>
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 내가 정한 문제와 기대 동작</h5><dl>
+                      <div><dt>문제</dt><dd>1년치 요청에서 일부 데이터만 조회하고도 전체 기간의 분석처럼 답했습니다. 수치가 맞더라도 결론을 뒷받침하는 범위는 부족했습니다.</dd></div>
+                      <div><dt>판단</dt><dd>요청 기간·실제 조회 범위·최종 답변을 비교했습니다. 확인된 값만 답하고 조회하지 못한 범위를 알리는 것을 수정 기준으로 정했습니다.</dd></div>
+                      <div><dt>구현</dt><dd>실패 질문과 조회 결과를 정리해 Codex로 원인 분석·코드 수정을 보조받았습니다. 답변 생성과 별도로 조회 범위와 누락 상태를 확인하도록 보완했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 재검증과 남은 과제</h5><dl>
+                      <div><dt>검증</dt><dd>같은 질문을 다시 입력해 응답을 원천 조회 결과와 대조했습니다. 일부 값을 전체 결과로 확대하지 않는지, 미확인 범위를 알리는지 점검했습니다.</dd></div>
+                      <div><dt>결과</dt><dd>확인된 정보와 조회 한계를 함께 안내하도록 보완했습니다. 제한 답변은 전체 분석 완료와 구분합니다.</dd></div>
+                      <div><dt>한계</dt><dd>알려진 실패 사례의 개선이며 모든 질문의 해결을 뜻하지 않습니다. 새 복합 질문과 장기간 조회의 완결성은 계속 확인할 과제입니다.</dd></div>
+                    </dl></article>
+                  </div>
+                </div>
+              </details>
               <details class="case-engineering" id="jarvis-engineering">
                 <summary><span><i data-lucide="workflow" aria-hidden="true"></i>설계와 문제 해결</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -490,6 +508,25 @@
                 <a class="case-demo-link" href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 데모 · 합성 데이터<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
                 <a class="case-demo-link" href="#public-code"><i data-lucide="code-2" aria-hidden="true"></i>공개 재현 코드<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
               </div>
+              <details class="case-engineering" id="dn-data-workflow" data-profile-only="dn" hidden>
+                <summary><span><i data-lucide="git-merge" aria-hidden="true"></i>데이터 연결 기준과 알림 우선순위를 현업과 조정</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                <div class="engineering-content">
+                  <header class="engineering-heading"><p class="case-label">IDENTIFIERS · AGGREGATION · USER CONTEXT</p><h4>같은 상품을 찾는 기준과 먼저 확인할 기준을 나눴습니다.</h4></header>
+                  <div class="engineering-incidents">
+                    <article><h5><span>01</span> 서로 다른 식별자와 집계 단위 연결</h5><dl>
+                      <div><dt>문제</dt><dd>판매·재고 SKU, 광고 옵션 식별자, 사내 바코드가 달라 단순 조인만으로는 상품별 지표를 연결하기 어려웠습니다.</dd></div>
+                      <div><dt>처리</dt><dd>광고 옵션은 vendor_item_id를 거쳐 SKU·사내 상품 기준에 연결했습니다. 옵션별 선집계 후 상품 정보를 연결하고 광고 대상과 구매 상품을 구분했습니다.</dd></div>
+                      <div><dt>검증</dt><dd>원천과 저장·조회 결과의 상품·기간·수치를 대조했습니다. 공동 판매페이지의 비용 배분값은 실제 관측값과 구분해 추정으로 관리했습니다.</dd></div>
+                    </dl></article>
+                    <article><h5><span>02</span> 단순 저수익 순위에서 점검 우선순위로</h5><dl>
+                      <div><dt>피드백</dt><dd>쿠팡 판매팀은 매일 상품별 PPM을 확인했습니다. 행사·저판매 상품의 지표도 낮아, 낮은 순 정렬만으로는 우선순위를 정하기 어렵다고 했습니다.</dd></div>
+                      <div><dt>보완</dt><dd>전체 상품의 조회·필터는 유지하면서 판매량·PPM 조건으로 알림 대상을 조정했습니다. 잘 팔리던 상품의 지표 하락을 먼저 확인하도록 구성했습니다.</dd></div>
+                      <div><dt>범위</dt><dd>시스템은 점검 대상과 자료를 제공합니다. 행사 원인을 자동으로 확정하거나 광고·발주를 자동 집행하지 않습니다.</dd></div>
+                    </dl></article>
+                  </div>
+                </div>
+              </details>
+              <a class="case-demo-link" data-profile-only="dn" hidden href="#journey-site" data-open-journey="site"><i data-lucide="play" aria-hidden="true"></i>통합 조회 데모 · 합성 데이터<i data-lucide="arrow-down-right" aria-hidden="true"></i></a>
               <details class="case-engineering" id="kolon-data-platform" data-profile-only="kolon" hidden>
                 <summary><span><i data-lucide="database" aria-hidden="true"></i>집계 검증·배치 운영·현업 알림 설계</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                 <div class="engineering-content">
@@ -556,7 +593,7 @@
             <aside class="case-proof"><div><strong>Multi</strong><span>API·CSV·크롤링</span></div><div><strong>60+</strong><span>자동 갱신 업무 탭</span></div><div><strong>E2E</strong><span>기획부터 운영</span></div></aside>
           </article>
 
-          <article class="case-study" data-project-key="retail-slack" data-profile-only="hansol skb" hidden>
+          <article class="case-study" data-project-key="retail-slack" data-profile-only="hansol skb dn" hidden>
             <div class="case-index">03</div>
             <div class="case-main">
               <div class="case-title-row">
@@ -1017,7 +1054,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="js/company-portfolio.js?v=20261008-skb-review" defer></script>
+  <script src="js/company-portfolio.js?v=20261012-dn" defer></script>
   <script src="js/portfolio.js?v=20260907-4" defer></script>
   <script src="js/codex-activity.js?v=20260826-1" defer></script>
   <script src="js/product-intelligence.js?v=20260907-4" defer></script>

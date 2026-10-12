@@ -2,6 +2,78 @@
   "use strict";
 
   const profiles = {
+    dn: {
+      company: "DN솔루션즈",
+      role: "AX · 신입",
+      title: "권도영 | DN솔루션즈 AX 포트폴리오",
+      description: "사내 AI 자비스의 RAG·DB·API 연동, Python·SQL 데이터 파이프라인, 현업 협업과 AWS 운영 경험을 정리한 DN솔루션즈 AX 지원 포트폴리오입니다.",
+      brand: "DN솔루션즈 · AX",
+      eyebrow: "DN솔루션즈 · 2026 하반기 AX 신입 지원",
+      statement: "업무의 기준을 이해하고,<br>현업이 쓰는 AI로 연결합니다.",
+      heroDescription: "이커머스 기업의 1인 개발자로 사내 AI '자비스'와 데이터 통합 웹을 개발·운영했습니다. 업무 문서와 DB·API를 연결하고, 현업의 질문에 맞는 결과인지 검증했습니다. Python·FastAPI 구현부터 AWS 배포와 사용자 피드백 반영까지 맡았습니다.",
+      note: "직접 수행 · 문제 정의 → 데이터·AI 연동 → 검증 → 배포·개선",
+      consoleFile: "applied_ai_delivery.yml",
+      console: '<span class="code-key">이해</span>  현업 용어 · 질문 · 업무 순서\n<span class="code-key">연결</span>  문서 RAG · SQL · Tool Calling\n<span class="code-key">구현</span>  Python · FastAPI · AWS\n<span class="code-key">검증</span>  조회 범위 · 응답 근거 · 사용자 피드백',
+      heroFacts: [
+        { value: "RAG · API", label: "문서와 최신 업무 수치 연결" },
+        { value: "Python · SQL", label: "데이터 수집·정제·통합" },
+        { value: "FastAPI · AWS", label: "웹 서비스 개발·배포·운영" },
+        { value: "현업 협업", label: "질문·화면·알림 기준 조율" }
+      ],
+      fitKicker: "DN SOLUTIONS · APPLIED AI",
+      fitTitle: "업무 자료를 연결하고,<br>AI 결과를 현업과 확인합니다.",
+      fitSummary: "DN솔루션즈 AX의 자료 지식화, 생성형 AI 응용 개발, 현업 협업·운영과 연결되는 경험입니다. 제조 현장 경력이 아닌 이커머스 실무와 교육 프로젝트에서의 수행 범위입니다.",
+      fitItems: [
+        { label: "자료·데이터의 AI 활용", heading: "업무 기준과 최신 수치의 근거를 분리", body: "자비스에서 문서는 업무 기준을 찾는 RAG에, 판매·재고 수치는 DB·API 조회에 연결했습니다. 상품 식별자와 집계 단위를 맞춘 데이터 파이프라인을 함께 개발했습니다." },
+        { label: "생성형 AI 응용 개발", heading: "답변 생성 이후의 조회 범위까지 검증", body: "Python·FastAPI에 LLM 조회 기능을 연동했습니다. 일부 결과로 전체 기간을 단정하던 문제에서 기대 동작을 정하고, Codex로 분석·구현을 보조받아 응답과 실제 조회 결과를 대조했습니다." },
+        { label: "현업 협업·운영", heading: "사용자가 확인하는 화면과 알림으로 완성", body: "판매·광고·발주팀의 업무 순서를 듣고 통합 웹과 기존 시트 갱신을 함께 제공했습니다. AWS·Linux에서 배치를 운영하고, 쿠팡 판매팀과 판매량·PPM 알림 조건을 조정했습니다." }
+      ],
+      contributionTitle: "DN솔루션즈에서 확장할 방향",
+      contributionBody: "입사 후 장비·부품·공정의 용어와 자료 구조를 현업과 익히고, 반복적인 검색·조회 업무부터 작은 AI 기능으로 구현하겠습니다. 도면 해석과 온톨로지·지식그래프, AI Playground는 추가로 배울 영역입니다. 현재의 문서·DB 연동과 응답 검증 경험을 바탕으로 팀의 배포·검토 기준에 맞춰 개선하겠습니다.",
+      directionSource: { label: "직무 기준 · DN솔루션즈 신입 채용 / Job Profile", url: "https://career-dncompany.recruiter.co.kr/career/jobs/130313" },
+      experienceTitle: "문제의 우선순위는,<br>업무를 하는 팀과 정했습니다.",
+      experienceSummary: "여러 판매처를 비교하는 직원에게는 통합 화면이, 한 판매처를 맡은 직원에게는 익숙한 시트가 필요했습니다. 두 방식을 병행하고 이용 방법을 화면으로 안내했습니다. 쿠팡 판매팀과는 지표가 낮다는 사실과 먼저 점검할 대상을 구분해 알림 조건을 조정했습니다.",
+      foundationTitle: "분석 결과를 사용 가능한 서비스로 연결",
+      foundationSummary: "컴퓨터공학·정보통계학과 데이터 전문교육에서 기반을 쌓고 SQLD·ADsP를 취득했습니다. 교육 프로젝트의 Python Slack 봇·RAG 경험을 출발점으로, 실무의 데이터 파이프라인과 사내 AI 개발·운영으로 확장했습니다.",
+      scopeKicker: "UNDERSTAND · CONNECT · VERIFY · OPERATE",
+      scopeTitle: "현업의 질문에서,<br>배포 후 검증까지",
+      scopeSummary: "이커머스 서비스에서 실제로 맡은 개발 흐름입니다. 자동화는 판단에 필요한 정보를 제공하며, 광고 집행과 최종 발주는 현업이 결정합니다.",
+      scopeLanes: [
+        { label: "01 · UNDERSTAND", title: "업무 문제 정의", items: [["질문", "직원이 찾는 상품·기간·지표 확인"], ["순서", "판매·광고·발주팀의 조회 흐름 파악"], ["기준", "전체 조회와 우선 알림 대상을 구분"], ["협의", "화면을 함께 보며 요구사항 구체화"]] },
+        { label: "02 · CONNECT", title: "데이터·AI 연결", items: [["수집", "API·CSV 수집과 Python·SQL 정제"], ["매핑", "SKU·광고 옵션·사내 상품 기준 연결"], ["근거", "업무 문서 검색과 DB·API 조회 분리"], ["서비스", "FastAPI와 LLM Tool Calling 연동"]] },
+        { label: "03 · VERIFY", title: "기대 결과 검증", items: [["범위", "요청 기간과 실제 조회 범위 비교"], ["수치", "원천·저장·응답 결과 대조"], ["예외", "미조회·누락을 실제 0과 구분"], ["AI 도구", "Codex 구현 보조 후 실패 사례 재검증"]] },
+        { label: "04 · OPERATE", title: "배포·현업 개선", items: [["환경", "AWS·Linux 배포와 배치 운영"], ["상태", "오류 로그와 처리 결과 확인"], ["사용", "통합 웹·기존 시트 제공과 이용 안내"], ["개선", "현업의 알림 조건·화면 의견 반영"]] }
+      ],
+      workKicker: "RAG APPLICATION · DATA PIPELINE · TEAM DELIVERY",
+      workTitle: "업무 조회 AI와 그 기반이 된 데이터 서비스",
+      workSummary: "재직 중의 자비스·통계 웹과 교육 과정의 Slack 연동 프로젝트입니다. 문제를 정의한 판단, 직접 담당한 범위, 검증 방법을 중심으로 정리했습니다. 공개 시연에는 합성 데이터만 사용합니다.",
+      contactTitle: "현업과 확인하며,<br>사용 가능한 AI를 만들겠습니다.",
+      contactSummary: "문서·데이터 연결부터 서비스 배포와 피드백 반영까지 경험했습니다. 제조 업무의 용어와 팀의 개발 절차를 익혀, 맡은 AI 기능의 근거와 동작을 확인하는 AX 엔지니어로 기여하겠습니다.",
+      projectOrder: ["jarvis", "data-platform", "retail-slack"],
+      excludedProjects: ["order-ai"],
+      projectSummaries: {
+        jarvis: "업무 문서를 검색하고 최신 판매·재고를 DB·API로 조회하는 사내 AI입니다. 요구사항 정리, FastAPI·LLM 연동, 응답 검증과 운영을 맡았습니다. 일부 조회 결과로 전체를 단정하던 문제를 보완해 확인된 값과 미조회 범위를 함께 안내했습니다.",
+        "data-platform": "판매처별 API·CSV 자료를 Python·SQL로 정제해 상품별 판매·광고·재고를 함께 보는 통계 웹을 개발했습니다. SKU·바코드·광고 옵션의 관계와 집계 단위를 맞췄습니다. 쿠팡 판매팀과 수익성 관련 지표인 PPM·판매량 조건을 조정해 우선 점검할 상품을 알리도록 했습니다.",
+        "retail-slack": "교육 과정의 6인 팀에서 팀장과 Python Slack 봇 개발을 맡았습니다. 팀원들의 예측·이상 탐지 결과를 연결해, 봇 태그와 날짜 입력에 따라 채널별 자료를 조회하고 이상 징후를 알렸습니다. 역할 분담과 우선순위를 함께 정했으며 팀은 우수상을 받았습니다."
+      },
+      textOverrides: {
+        "[data-profile-primary-label]": "대표 프로젝트",
+        "[data-profile-current-role]": "이커머스 기업 · AI팀 매니저",
+        "#experience .timeline-item.current p": "2025년 12월부터 데이터 자동화를 시작해 통계 웹과 사내 AI로 범위를 넓혔습니다. 판매·광고·발주팀과 업무 기준을 정하고, 요구사항 파악부터 Python·SQL·FastAPI 개발과 AWS 운영, 사용자 피드백 반영을 담당했습니다.",
+        "[data-profile-support-kicker]": "USER FEEDBACK · AI VERIFICATION",
+        "#support-title": "현업의 사용과 AI의 근거를 함께 확인",
+        "[data-profile-support-summary]": "AI 도입 자체보다 실제 조회 결과와 사용자의 업무 순서를 확인했습니다.",
+        "[data-profile-security-title]": "읽기 전용 조회와 답변 범위 검증",
+        "[data-profile-adoption-title]": "이용 안내와 피드백 반영",
+        "[data-profile-adoption-body]": "이용 가이드가 필요하다는 의견에 직원과 실제 화면을 함께 보며 안내했습니다. 추가 질문과 기능 아이디어를 받아 화면과 사용 방식을 보완했습니다.",
+        "[data-project-key='jarvis'] h3": "자비스 · 문서·DB를 연결한 사내 AI",
+        "[data-project-key='jarvis'] .case-label": "APPLIED AI · RAG · TOOL CALLING · VALIDATION",
+        "[data-project-key='data-platform'] h3": "상품 기준을 맞춘 데이터 파이프라인·통계 웹",
+        "[data-project-key='data-platform'] .human-interface strong": "여러 팀이 같은 상품·지표로 논의하도록 지원",
+        "[data-project-key='data-platform'] .human-interface p": "광고팀과 발주팀이 같은 판매·광고·재고 자료를 확인할 수 있게 됐습니다. 통합 조회와 판매처별 페이지를 제공하고 기존 시트도 자동 갱신했습니다. 최종 광고·발주 판단은 현업이 담당합니다.",
+        "#hansol-retail-flow .engineering-caption": "교육 과정의 팀 프로젝트입니다. 팀원들은 예측·이상 탐지를, 저는 팀장 역할과 Python Slack 봇 연동을 맡았습니다. 모델 전체를 개발한 경험과 서비스 연동 경험을 구분합니다."
+      }
+    },
     skb: {
       company: "SK브로드밴드",
       role: "Junior Talent AT/DT · Data 분석/개발",
@@ -913,6 +985,8 @@
   };
 
   const aliases = {
+    dnsolutions: "dn",
+    "dn-solutions": "dn",
     skbroadband: "skb",
     "sk-broadband": "skb",
     "hansol-pns": "hansol",
