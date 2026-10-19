@@ -48,6 +48,13 @@ class CompanyPortfolioTests(unittest.TestCase):
                 1,
             )
 
+    def test_expired_credential_is_explicitly_labeled(self):
+        self.assertIn(
+            '<li data-expired-credential><strong>Google Analytics Certification</strong>'
+            '<span>Google · 2024.11 취득 · 현재 만료</span></li>',
+            self.index,
+        )
+
     def test_company_profile_runs_before_shared_interactions(self):
         company_script = self.index.index("js/company-portfolio.js")
         portfolio_script = self.index.index("js/portfolio.js")
